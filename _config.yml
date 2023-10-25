@@ -24,8 +24,8 @@ formspree_form_id: formspree_form_id
 
 # Social Media Settings
 # Remove the item if you don't need it
-github_username: https://github.com/mmccoy-01
-linkedin_username: https://www.linkedin.com/in/themichaelmccoy
+github_username: mmccoy-01
+linkedin_username: themichaelmccoy
 
 # Posts Settings
 show_time_bar: true
