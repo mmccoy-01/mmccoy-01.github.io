@@ -1,14 +1,9 @@
 # Site Settings
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
-description: Jekflix is a template for Jekyll inspired by Netflix and made by
-  Thiago Rossener.
+name: Katâlepsāra
+title: Katâlepsāra | A platform for cyclical comprehension
+description:
 tags:
   - blog
-  - template
-  - jekyll
-  - theme
-  - netlify
 show_hero: true
 menu:
   - title: Home
@@ -29,13 +24,8 @@ formspree_form_id: formspree_form_id
 
 # Social Media Settings
 # Remove the item if you don't need it
-github_username: github_username
-facebook_username: facebook_username
-twitter_username: twitter_username
-instagram_username: instagram_username
-linkedin_username: linkedin_username
-medium_username: medium_username
-
+github_username: https://www.github.com/mmccoy-01
+linkedin_username: https://www.linkedin.com/in/themichaelmccoy/
 
 # Posts Settings
 show_time_bar: true
