@@ -9,7 +9,13 @@ permalink: /about/
 
 <img class="img-rounded" src="/assets/img/uploads/profile.png" alt="Michael McCoy" width="200">
 
-# Hello! My name is Michael.
+# Hello and welcome to Katâlepsāra
+### A platform for cyclical comprehension.
+
+#### My name is Michael, and I put out the content here.
+#### If you like what you read, you can show me support here (TBD).
+
+---
 
 Our current milieu is **drowning** in information yet **starving** for knowledge. Remember, knowledge has to be digested. Only then does it become wisdom. Indigestion of information has become a problem. We're gaining weight and not nutrition.
 
