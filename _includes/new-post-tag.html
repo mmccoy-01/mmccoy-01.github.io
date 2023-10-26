@@ -1,6 +1,6 @@
 {% capture posttime %}{{ include.date | date: "%s" }}{% endcapture %}
-{% capture oneweekago %}{{ posttime | minus: 604800 }}{% endcapture %}
 {% capture currenttime %}{{ "now" | date: "%s" }}{% endcapture %}
-{% if currenttime > oneweekago %}
-<div class="new-post-tag">{{ site.translations.text.new_post | default: "New Post" }}</div>
+{% capture oneweekago %}{{ currenttime | minus: 604800 }}{% endcapture %}
+{% if posttime > oneweekago %}
+  <div class="new-post-tag">{{ site.translations.text.new_post | default: "New Post" }}</div>
 {% endif %}
