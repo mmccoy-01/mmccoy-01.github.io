@@ -3,7 +3,7 @@ title: Katâlepsāra | A platform for cyclical comprehension
 description: Our current milieu is drowning in information yet starving for knowledge. Remember, knowledge has to be digested. Only then does it become wisdom. Indigestion of information has become a problem. We’re gaining weight and not nutrition.
 tags:
   - blog
-show_hero: false
+show_hero: true
 paginate: 8
 menu:
   - title: Home
