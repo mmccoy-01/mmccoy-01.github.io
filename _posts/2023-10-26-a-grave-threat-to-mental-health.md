@@ -11,7 +11,7 @@ tags:
   - blog
   - stoicism
   - psychology
-author: michael
+author: Michael
 paginate: true
 ---
 
