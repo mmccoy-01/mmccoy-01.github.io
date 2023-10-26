@@ -10,7 +10,7 @@ category: blog
 tags:
   - welcome
   - blog
-author: michael
+author: Michael
 paginate: true
 ---
 
