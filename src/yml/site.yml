@@ -1,13 +1,9 @@
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
+name: Katâlepsāra
+title: Katâlepsāra | A platform for cyclical comprehension
 description: Jekflix is a template for Jekyll inspired by Netflix and made by
   Thiago Rossener.
 tags:
   - blog
-  - template
-  - jekyll
-  - theme
-  - netlify
 show_hero: true
 menu:
   - title: Home
