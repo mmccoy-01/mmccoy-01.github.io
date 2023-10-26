@@ -4,6 +4,7 @@ description: Our current milieu is drowning in information yet starving for know
 tags:
   - blog
 show_hero: true
+paginate: 8
 menu:
   - title: Home
     url: /
