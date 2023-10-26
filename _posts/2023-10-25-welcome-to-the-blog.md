@@ -1,4 +1,3 @@
-# _posts/2023-10-25-welcome-to-the-blog.md
 ---
 date: 2023-10-25 20:20:05
 layout: post
