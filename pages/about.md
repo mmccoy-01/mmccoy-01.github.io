@@ -29,8 +29,7 @@ Instead, (at least in the meantime) I've decided to settle on creating this blog
 
 Cicero relates that Zeno would illustrate katalepsis as follows:
 
-> he would display his hand in front of one with the fingers stretched out and say
-> 1. "A visual appearance is like this";
+> 1. he would display his hand in front of one with the fingers stretched out and say "A visual appearance is like this";
 > 2. next he closed his fingers a little and said, "An act of assent is like this";
 > 3. then he pressed his fingers closely together and made a fist, and said that that was comprehension (and from this illustration he gave to that process the actual name of katalepsis, which it had not had before);
 > 4. but then he used to apply his left hand to his right fist and squeeze it tightly and forcibly, and then say that such was knowledge, which was within the power of nobody save the wise man
