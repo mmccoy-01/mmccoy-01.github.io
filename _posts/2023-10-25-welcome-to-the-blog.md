@@ -5,8 +5,8 @@ title: Welcome to the blog!
 subtitle: This is my first post introducing myself and the blog.
 description: >-
   This is my first post introducing myself and the blog.
-image: https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559821647/theme6_qeeojf.jpg
-optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559821647/theme6_qeeojf.jpg
+image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1698285617/welcome_wauxor.jpg
+optimized_image: https://res.cloudinary.com/dtf8hxbjn/image/upload/c_crop,w_380/v1698285617/welcome_wauxor.jpg
 category: blog
 tags:
   - welcome
