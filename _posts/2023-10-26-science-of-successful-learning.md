@@ -94,7 +94,7 @@ So if you want the ultimate toolkit for human development—whether skills-based
 > 
 - Attention is the mother of memory and memory is the mother of all wisdom.
 
-```mermaid
+```{mermaid}
 flowchart TD
 	a((Attention)) --> b((Memory))
 	b((Memory)) --> c((Wisdom))
