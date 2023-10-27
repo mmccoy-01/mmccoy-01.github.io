@@ -13,6 +13,7 @@ permalink: /about/
 ### A platform for cyclical comprehension.
 
 #### My name is Michael, and I put out the content here.
+
 #### If you like what you read, you can show me support here (TBD).
 
 ---
