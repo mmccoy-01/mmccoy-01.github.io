@@ -5,7 +5,7 @@ layout: null
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for page in site.pages %}
         <url>
-            <loc>{{ site.url | append: page.url | prepend: site.baseurl }}</loc>
+            <loc>{{ site.url | append: site.baseurl | append: page.url }}</loc>
             {% if page.layout == 'main' %}
                 <changefreq>weekly</changefreq>
                 <priority>1</priority>
