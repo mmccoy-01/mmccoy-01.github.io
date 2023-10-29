@@ -7,7 +7,7 @@ tags:
 show_hero: true
 menu:
   - title: Home
-    url: www.katalepsara.com
+    url: /
   - title: About
     url: /about
   - title: Contact
