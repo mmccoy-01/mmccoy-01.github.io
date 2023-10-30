@@ -9,14 +9,14 @@ permalink: /about/
 
 <img class="img-rounded" src="/assets/img/uploads/profile.png" alt="Michael McCoy" width="200">
 
-# Hello and welcome to Katâlepsāra
-### A platform for cyclical comprehension.
+# Hello and welcome to Katâlepsāra!
+### My name is Michael, and I put out the content here.
 
-#### My name is Michael, and I put out the content here.
+<iframe id='kofiframe' src='https://ko-fi.com/katalepsara/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='katalepsara'></iframe>
 
 ---
 
-Our current milieu is **drowning** in information yet **starving** for knowledge. Remember, knowledge has to be digested. Only then does it become wisdom. Indigestion of information has become a problem. We're gaining weight and not nutrition.
+> Our current milieu is **drowning** in information yet **starving** for knowledge. Remember, knowledge has to be digested. Only then does it become wisdom. Indigestion of information has become a problem. We're gaining weight and not nutrition.
 
 Katâlepsāra is a portmanteau I made by combining:
 - **Katâlepsis**: a philosophical term referring to the idea of grasping or apprehending something with certainty or conviction, often used in discussions about knowledge and belief.
