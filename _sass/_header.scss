@@ -43,8 +43,8 @@ body {
   }
 
   .version {
-    color: $accentDark;
-    font-size: rem(10px);
+    color: $texts;
+    font-size: rem(15px);
     font-weight: normal;
     line-height: 1;
     position: absolute;
@@ -52,7 +52,7 @@ body {
     right: 0;
     display: block;
     transform: translateX(110%);
-    opacity: 0.3;
+    opacity: 0;
   }
 
   .icon-menu {
