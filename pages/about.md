@@ -39,6 +39,6 @@ Cicero relates that Zeno would illustrate katalepsis as follows:
 
 ---
 
-# If you enjoy the content here, please consider donating to help support me!
+### If you enjoy the content here, please consider donating to help support me! Your patronage is valuable to me.
 
 <iframe id='kofiframe' src='https://ko-fi.com/katalepsara/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='katalepsara'></iframe>
