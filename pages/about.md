@@ -15,7 +15,7 @@ permalink: /about/
 #### My name is Michael, and I put out the content here.
 
 #### Do you like my work? Buy me a coffee!
-<a href="https://ko-fi.com/katalepsara" target="_blank"><img src="https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea10_kofi_long_button_stroke%25402x-p-500.png" alt="Ko-fi" style="height: 20px !important;width: 100px !important;" ></a>.
+<a href="https://ko-fi.com/katalepsara" target="_blank"><img src="https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea10_kofi_long_button_stroke%25402x-p-500.png" alt="Ko-fi" style="height: 20px !important;width: 150px !important;" ></a>.
 
 ---
 
