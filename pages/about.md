@@ -12,8 +12,6 @@ permalink: /about/
 # Hello and welcome to Katâlepsāra!
 ### My name is Michael, and I put out the content here.
 
-<iframe id='kofiframe' src='https://ko-fi.com/katalepsara/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='katalepsara'></iframe>
-
 ---
 
 > Our current milieu is **drowning** in information yet **starving** for knowledge. Remember, knowledge has to be digested. Only then does it become wisdom. Indigestion of information has become a problem. We're gaining weight and not nutrition.
@@ -38,3 +36,9 @@ Cicero relates that Zeno would illustrate katalepsis as follows:
 > 2. next he closed his fingers a little and said, "An act of assent is like this";
 > 3. then he pressed his fingers closely together and made a fist, and said that that was comprehension (and from this illustration he gave to that process the actual name of katalepsis, which it had not had before);
 > 4. but then he used to apply his left hand to his right fist and squeeze it tightly and forcibly, and then say that such was knowledge, which was within the power of nobody save the wise man
+
+---
+
+# If you enjoy the content here, please consider donating to help support me!
+
+<iframe id='kofiframe' src='https://ko-fi.com/katalepsara/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='katalepsara'></iframe>
