@@ -15,6 +15,8 @@ paginate: true
 
 The following is an amalgamation from many different sources. I have cited the sources as best as possible. 
 
+# THIS POST IS STILL UNDER CONSTRUCTION so some links and text might look wonky
+
 # Table of Contents
 1. [Example](#example)
 2. [Example2](#example2)
