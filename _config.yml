@@ -15,8 +15,6 @@ menu:
   - title: Feed
     url: /feed.xml
 email: michael@katalepsara.com
-# See: https://disqus.com/
-disqus_username: disqus_username
 # Contact Form Setting
 # See: https://formspree.io/
 formspree_form_id: mleyzkqk
@@ -80,6 +78,7 @@ sass:
 plugins:
   - jekyll-paginate
   - jekyll-paginate-content
+  - jekyll-archives
 
 # Exclude my node related stuff
 exclude: [
