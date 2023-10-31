@@ -82,15 +82,6 @@ plugins:
   - jekyll-paginate-content
   - jekyll-archives
 
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    categroy: /categories/:name/
-
 # Exclude my node related stuff
 exclude: [
   'package.json',
@@ -103,5 +94,14 @@ exclude: [
   'gulpfile.js',
   'README.md'
 ]
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    categroy: /categories/:name/
 
 version: Φ
