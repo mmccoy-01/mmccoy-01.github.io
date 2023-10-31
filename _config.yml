@@ -54,6 +54,7 @@ paginate_path: "/page/:num/"
 show_get_theme_btn: true
 use_logo: false
 
+
 # Content paginator
 paginate_content:
   enabled: true
@@ -72,15 +73,18 @@ paginate_content:
     single:
       is_generated: true
 
+
 # SASS
 sass:
   style: compressed
+
 
 # Plugins
 plugins:
   - jekyll-paginate
   - jekyll-paginate-content
   - jekyll-archives
+
 
 # Exclude my node related stuff
 exclude: [
@@ -95,6 +99,7 @@ exclude: [
   'README.md'
 ]
 
+
 jekyll-archives:
   enabled: [categories, tags]
   layouts:
@@ -103,5 +108,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     categroy: /categories/:name/
+
 
 version: Φ
