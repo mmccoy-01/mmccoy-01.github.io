@@ -83,7 +83,6 @@ sass:
 plugins:
   - jekyll-paginate
   - jekyll-paginate-content
-  - jekyll-archives
 
 
 # Exclude my node related stuff
@@ -107,7 +106,7 @@ jekyll-archives:
     tag: tag
   permalinks:
     tag: /tags/:name/
-    categroy: /categories/:name/
+    category: /categories/:name/
 
 
 version: Φ
