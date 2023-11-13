@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: archive
 menu: false
 date: '2023-11-13 18:19:37'
 title: Archive
