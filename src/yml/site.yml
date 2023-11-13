@@ -11,6 +11,8 @@ paginate: 8
 menu:
   - title: Home
     url: /
+  - title: Archive
+    url: /archive
   - title: About
     url: /about
   - title: Contact
