@@ -3,7 +3,7 @@ layout: page
 menu: false
 date: '2023-10-25 19:34:37'
 title: About
-description: Some description.
+description: This page is about the context for the website.
 permalink: /about/
 ---
 
