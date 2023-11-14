@@ -54,11 +54,17 @@ permalink: /archive/
   }
 
   .archive-content {
-    margin-left: 30px;
+    position: relative;
     padding: 10px;
     border-radius: 4px;
     background-size: cover;
     background-position: center center;
+    color: #fff; /* Adjusted text color for better readability on images */
+    text-decoration: none; /* Remove default link underline */
+  }
+
+  .archive-content h3 {
+    margin: 0;
   }
 </style>
 
