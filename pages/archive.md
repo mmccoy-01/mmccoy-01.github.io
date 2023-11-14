@@ -15,15 +15,16 @@ permalink: /archive/
     margin: 0;
   }
 
-  #archives {
-    margin: 40px 0;
-    padding-left: 30px; /* Adjusted to provide space for the year */
-  }
+#archives {
+  margin: 40px 0;
+  padding-left: 30px; /* Adjusted to provide space for the year */
+  background-color: #000; /* Set background color to black */
+}
 
 .year {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #3498db;
+  color: #b0ad92;
   text-align: center; /* Center the text */
 }
 
@@ -45,7 +46,7 @@ permalink: /archive/
   .archive-point {
     position: absolute;
     border-radius: 50%;
-    background: #3498db;
+    background: #b0ad92;
     width: 20px;
     height: 20px;
     left: -10px;
