@@ -15,11 +15,10 @@ permalink: /archive/
     margin: 0;
   }
 
-#archives {
-  margin: 40px 0;
-  padding-left: 30px; /* Adjusted to provide space for the year */
-  background-color: #000; /* Set background color to black */
-}
+  #archives {
+    margin: 40px 0;
+    padding-left: 30px; /* Adjusted to provide space for the year */
+  }
 
 .year {
   font-size: 24px;
