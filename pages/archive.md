@@ -32,7 +32,7 @@ permalink: /archive/
   }
 
   .archive-item {
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increased margin for more space */
     position: relative;
   }
 
@@ -55,12 +55,14 @@ permalink: /archive/
 
   .archive-content {
     position: relative;
-    padding: 10px;
+    padding: 30px; /* Increased padding for more space */
     border-radius: 4px;
     background-size: cover;
     background-position: center center;
     color: #fff; /* Adjusted text color for better readability on images */
     text-decoration: none; /* Remove default link underline */
+    display: block;
+    height: 100%; /* Ensures the link takes up the full height of its parent */
   }
 
   .archive-content h3 {
