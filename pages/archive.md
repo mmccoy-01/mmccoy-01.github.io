@@ -53,20 +53,50 @@ permalink: /archive/
     z-index: 1000;
   }
 
-  .archive-content {
-    position: relative;
-    padding: 30px; /* Increased padding for more space */
-    border-radius: 4px;
-    background-size: cover;
-    background-position: center center;
-    color: #fff; /* Adjusted text color for better readability on images */
-    text-decoration: none; /* Remove default link underline */
-    display: block;
-    height: 100%; /* Ensures the link takes up the full height of its parent */
-  }
+.archive-content {
+  position: relative;
+  padding: 30px; /* Increased padding for more space */
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center center;
+  color: #fff; /* Adjusted text color for better readability on images */
+  text-decoration: none; /* Remove default link underline */
+  display: block;
+  height: 100%; /* Ensures the link takes up the full height of its parent */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 
   .archive-content h3 {
     margin: 0;
-    text-shadow: 2px 2px 2px #000; /* Add text-shadow for black outline */
   }
 </style>
+
+<div id="archives">
+  {% assign last_year = "" %}
+  {% for post in site.posts %}
+    {% assign cur_year = post.date | date: '%Y' %}
+    {% if cur_year != last_year %}
+      {% if forloop.index > 1 %}
+        </ul>
+      {% endif %}
+      {% if forloop.first %}
+        <div class="year">{{ cur_year }}</div>
+      {% endif %}
+      <ul class="archive-list">
+      {% assign last_year = cur_year %}
+    {% endif %}
+    <li class="archive-item">
+      <div class="archive-point"></div>
+      <a href="{{ post.url | relative_url }}" class="archive-content" style="background-image: url('{{ post.image }}');">
+        <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
+        <span class="date month small text-muted ms-1" data-ts="{{ post.date | date: '%s' }}" data-df="{{ df_dayjs_m }}">
+          {{ post.date | date: '%b' }}
+        </span>
+        <h3>{{ post.title }}</h3>
+      </a>
+    </li>
+    {% if forloop.last %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</div>
