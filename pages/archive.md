@@ -55,9 +55,10 @@ permalink: /archive/
 
   .archive-content {
     margin-left: 30px;
-    background: #ecf0f1;
     padding: 10px;
     border-radius: 4px;
+    background-size: cover;
+    background-position: center center;
   }
 </style>
 
@@ -78,13 +79,13 @@ permalink: /archive/
         <div class="archive-year">{{ cur_year }}</div>
       {% endif %}
       <div class="archive-point"></div>
-      <div class="archive-content">
+      <a href="{{ post.url | relative_url }}" class="archive-content" style="background-image: url('{{ post.image_link }}');">
         <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
         <span class="date month small text-muted ms-1" data-ts="{{ post.date | date: '%s' }}" data-df="{{ df_dayjs_m }}">
           {{ post.date | date: '%b' }}
         </span>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      </div>
+        <h3>{{ post.title }}</h3>
+      </a>
     </li>
     {% if forloop.last %}
       </ul>
