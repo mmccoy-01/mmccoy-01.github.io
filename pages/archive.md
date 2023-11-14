@@ -38,6 +38,11 @@ permalink: /archive/
     position: relative;
   }
 
+  .archive-year {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
   .archive-point {
     position: absolute;
     border-radius: 50%;
@@ -71,11 +76,12 @@ permalink: /archive/
       {% assign last_year = cur_year %}
     {% endif %}
     <li class="archive-item">
+      <div class="archive-year">{{ cur_year }}</div>
       <div class="archive-point"></div>
       <div class="archive-content">
         <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
         <span class="date month small text-muted ms-1" data-ts="{{ post.date | date: '%s' }}" data-df="{{ df_dayjs_m }}">
-          {{ post.date | date: df_strftime_m }}
+          {{ post.date | date: '%b' }}
         </span>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       </div>
