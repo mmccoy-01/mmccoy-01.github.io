@@ -9,9 +9,6 @@ permalink: /archive/
 
 <img class="img-rounded" src="/assets/img/icons/largetile.png" alt="Katalepsara" width="200">
 
-{% assign df_strftime_m = site.data.locales[lang].df.archives.strftime | default: '/ %m' %}
-{% assign df_dayjs_m = site.data.locales[lang].df.archives.dayjs | default: '/ MM' %}
-
 <style>
   body {
     font-family: 'Lato', sans-serif;
@@ -20,6 +17,7 @@ permalink: /archive/
 
   #archives {
     margin: 40px 0;
+    padding-left: 30px; /* Adjusted to provide space for the year */
   }
 
   .year {
@@ -76,7 +74,9 @@ permalink: /archive/
       {% assign last_year = cur_year %}
     {% endif %}
     <li class="archive-item">
-      <div class="archive-year">{{ cur_year }}</div>
+      {% if forloop.first %}
+        <div class="archive-year">{{ cur_year }}</div>
+      {% endif %}
       <div class="archive-point"></div>
       <div class="archive-content">
         <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
