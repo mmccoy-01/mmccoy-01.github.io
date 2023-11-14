@@ -20,11 +20,12 @@ permalink: /archive/
     padding-left: 30px; /* Adjusted to provide space for the year */
   }
 
-  .year {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #3498db;
-  }
+.year {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #3498db;
+  text-align: center; /* Center the text */
+}
 
   .archive-list {
     list-style: none;
