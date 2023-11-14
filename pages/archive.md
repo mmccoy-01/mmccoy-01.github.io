@@ -67,10 +67,22 @@ permalink: /archive/
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-  .archive-content h3 {
-    margin: 0;
+.archive-content h3 {
+   margin: 0;
+}
+
+.tags {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
   }
 
+  .tag-link {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
 </style>
 
 <div id="archives">
@@ -96,17 +108,15 @@ permalink: /archive/
         </span>
         <h3>{{ post.title }}</h3>
       </a>
+      <div class="tags">
+        Tags:
+        {% for tag in post.tags %}
+          <a href="/tags/#{{ tag | slugify }}" class="tag-link">{{ tag }}</a>
+        {% endfor %}
+      </div>
     </li>
     {% if forloop.last %}
       </ul>
     {% endif %}
   {% endfor %}
-</div>
-<div class="tags">
-  <h2>Tags</h2>
-  <ul>
-    {% for tag in site.tags %}
-      <li class="tag"><a href="#{{ tag[0] }}">{{ tag[0] }}</a></li>
-    {% endfor %}
-  </ul>
 </div>
