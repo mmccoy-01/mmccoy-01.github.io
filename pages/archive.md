@@ -24,8 +24,7 @@ permalink: /archive/
     font-size: 24px;
     margin-bottom: 10px;
     color: #3498db;
-    text-align: center;
-    margin-left: -20px; /* Adjusted to center the year */
+    text-align: center; /* Center the year */
   }
 
   .archive-list {
@@ -65,19 +64,10 @@ permalink: /archive/
     text-decoration: none; /* Remove default link underline */
     display: block;
     height: 100%; /* Ensures the link takes up the full height of its parent */
-    text-align: center; /* Center-align text */
-    text-shadow: 2px 2px 2px #000; /* Added text shadow for better readability */
   }
 
   .archive-content h3 {
     margin: 0;
-    font-size: 18px;
-    line-height: 1.4;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.8); /* Greyish white text box background */
-    border-radius: 4px;
-    display: inline-block;
-    letter-spacing: 0.5px;
   }
 </style>
 
@@ -90,7 +80,7 @@ permalink: /archive/
         </ul>
       {% endif %}
       {% if forloop.first %}
-        <div class="year">{{ cur_year }}</div>
+        <div class="year" style="color: #fff;">{{ cur_year }}</div>
       {% endif %}
       <ul class="archive-list">
       {% assign last_year = cur_year %}
