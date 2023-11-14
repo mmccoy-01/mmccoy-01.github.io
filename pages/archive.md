@@ -70,6 +70,7 @@ permalink: /archive/
   .archive-content h3 {
     margin: 0;
   }
+
 </style>
 
 <div id="archives">
@@ -100,4 +101,12 @@ permalink: /archive/
       </ul>
     {% endif %}
   {% endfor %}
+</div>
+<div class="tags">
+  <h2>Tags</h2>
+  <ul>
+    {% for tag in site.tags %}
+      <li class="tag"><a href="#{{ tag[0] }}">{{ tag[0] }}</a></li>
+    {% endfor %}
+  </ul>
 </div>
