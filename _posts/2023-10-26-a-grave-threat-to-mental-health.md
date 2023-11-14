@@ -6,7 +6,7 @@ subtitle: Languishing occurs because we fail to allocate our attention into a co
 description: The text discusses the negative impact of task switching on mental health and productivity. It explains how constantly shifting between tasks disrupts immersion and flow, leading to a state of languishing. The author emphasizes the importance of learning "how to think" rather than just "what to think" and advocates for a balance between commitment to goals and detachment from outcomes. Additionally, the text briefly mentions the influence of the woke movement on cultural values.
 image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1698296672/A%20Grave%20Threat%20To%20Mental%20Health/output_w5fboc.jpg
 optimized_image: https://res.cloudinary.com/dtf8hxbjn/image/upload/c_fill,w_380/v1698296672/A%20Grave%20Threat%20To%20Mental%20Health/output_w5fboc.jpg
-category: blog
+category: philosophy
 tags:
   - blog
   - stoicism
