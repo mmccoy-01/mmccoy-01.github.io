@@ -18,63 +18,39 @@ permalink: /archive/
     margin: 0;
   }
 
-  .timeline {
-    position: relative;
+  #archives {
     margin: 40px 0;
-    padding: 20px 0;
+  }
+
+  .year {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #3498db;
+  }
+
+  .archive-list {
     list-style: none;
+    padding: 0;
   }
 
-  .timeline:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #3498db;
-    left: 50%;
-    margin-left: -2px;
-  }
-
-  .timeline-item {
-    padding: 10px;
-    border-radius: 4px;
+  .archive-item {
     margin-bottom: 20px;
     position: relative;
   }
 
-  .timeline-item:before,
-  .timeline-item:after {
-    content: '';
-    display: table;
-  }
-
-  .timeline-item:after {
-    clear: both;
-  }
-
-  .timeline-item:before,
-  .timeline-item:after {
-    content: '';
-    display: table;
-  }
-
-  .timeline-item:after {
-    clear: both;
-  }
-
-  .timeline-item .timeline-point {
+  .archive-point {
     position: absolute;
     border-radius: 50%;
     background: #3498db;
     width: 20px;
     height: 20px;
-    left: 50%;
-    margin-left: -10px;
+    left: -10px;
+    top: 0;
+    margin-left: 50%;
     z-index: 1000;
   }
 
-  .timeline-item .timeline-content {
+  .archive-content {
     margin-left: 30px;
     background: #ecf0f1;
     padding: 10px;
@@ -82,29 +58,30 @@ permalink: /archive/
   }
 </style>
 
-<div class="timeline">
+<div id="archives">
   {% assign last_year = "" %}
   {% for post in site.posts %}
     {% assign cur_year = post.date | date: '%Y' %}
     {% if cur_year != last_year %}
       {% if forloop.index > 1 %}
-        </div>
+        </ul>
       {% endif %}
-      <div class="timeline-item">
-        <div class="timeline-point"></div>
-        <div class="timeline-content">
-          <h3>{{ cur_year }}</h3>
-        </div>
-      </div>
+      <div class="year">{{ cur_year }}</div>
+      <ul class="archive-list">
+      {% assign last_year = cur_year %}
     {% endif %}
-    <div class="timeline-item">
-      <div class="timeline-point"></div>
-      <div class="timeline-content">
-        <h4>{{ post.title }}</h4>
-        <p>{{ post.excerpt }}</p>
-        <a href="{{ post.url | relative_url }}">Read more</a>
+    <li class="archive-item">
+      <div class="archive-point"></div>
+      <div class="archive-content">
+        <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
+        <span class="date month small text-muted ms-1" data-ts="{{ post.date | date: '%s' }}" data-df="{{ df_dayjs_m }}">
+          {{ post.date | date: df_strftime_m }}
+        </span>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       </div>
-    </div>
-    {% assign last_year = cur_year %}
+    </li>
+    {% if forloop.last %}
+      </ul>
+    {% endif %}
   {% endfor %}
 </div>
