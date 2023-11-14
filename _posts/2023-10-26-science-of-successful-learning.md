@@ -6,7 +6,7 @@ subtitle: ⚙️ Productivity is spending time well. Are you being productive or
 description: This text discusses the importance of spaced repetition as a long-term growth tactic for learning, emphasizing that it is the way our brains are hardwired to learn efficiently. It highlights how learning is critical for our survival and explores the relationship between studying, memory, and living better. The text also delves into the challenges posed by the forgetting curve and suggests effective strategies for combatting it, such as spaced repetition, active recall, associations, and desirable difficulty.
 image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1698366974/Science%20of%20Successful%20Learning/output_1_kmlpoo.jpg
 optimized_image: https://res.cloudinary.com/dtf8hxbjn/image/upload/c_fill,w_380/v1698366974/Science%20of%20Successful%20Learning/output_1_kmlpoo.jpg
-category: blog
+category: tips
 tags:
   - learning
 author: Michael
