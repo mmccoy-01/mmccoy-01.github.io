@@ -70,16 +70,15 @@ permalink: /archive/
       {% if forloop.index > 1 %}
         </ul>
       {% endif %}
-      <div class="year">{{ cur_year }}</div>
+      {% if forloop.first %}
+        <div class="year">{{ cur_year }}</div>
+      {% endif %}
       <ul class="archive-list">
       {% assign last_year = cur_year %}
     {% endif %}
     <li class="archive-item">
-      {% if forloop.first %}
-        <div class="archive-year">{{ cur_year }}</div>
-      {% endif %}
       <div class="archive-point"></div>
-      <a href="{{ post.url | relative_url }}" class="archive-content" style="background-image: url('{{ post.image_link }}');">
+      <a href="{{ post.url | relative_url }}" class="archive-content" style="background-image: url('{{ post.image }}');">
         <span class="date day" data-ts="{{ post.date | date: '%s' }}" data-df="DD">{{ post.date | date: '%d' }}</span>
         <span class="date month small text-muted ms-1" data-ts="{{ post.date | date: '%s' }}" data-df="{{ df_dayjs_m }}">
           {{ post.date | date: '%b' }}
