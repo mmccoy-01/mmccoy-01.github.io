@@ -4,20 +4,11 @@
   font-style: normal;
 }
 
-// Font-face declaration for 'Dancing Script'
-@font-face {
-  font-family: 'Dancing Script';
-  src: url('/path/to/dancing-script.woff2') format('woff2');
-  /* Add additional font formats and paths if needed */
-}
-
-// Size mixin
 @mixin size($width: 30, $height: 30) {
   width: #{$width}px;
   height: #{$height}px;
 }
 
-// Center mixin
 @mixin center($max-width: map-get($jeet, 'max-width'), $pad: 0) {
   @include clearfix;
   width: auto;
@@ -34,7 +25,6 @@
   };
 }
 
-// Align mixin
 @mixin align($direction: both) {
   position: absolute;
   transform-style: preserve-3d;
@@ -52,7 +42,6 @@
   }
 }
 
-// Clearfix mixin
 @mixin clearfix() {
   &::after {
     content: '';
