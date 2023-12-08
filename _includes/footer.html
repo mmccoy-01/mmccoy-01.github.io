@@ -34,10 +34,8 @@
 
     {% include links.html %}
 
-    <div id="daily-quote-container" style="max-width: 600px; margin: 0 auto;"></div>
-
     <p>
-        The <a href="https://github.com/thiagorossener/jekflix-template" target="_blank" class="creator"><u>template</u></a> for this site was made with <svg class="love"><use xlink:href="#icon-heart"></use></svg> by <a href="https://rossener.com" target="_blank" class="creator"><u>Thiago Rossener</u></a>
+      The <a href="https://github.com/thiagorossener/jekflix-template" target="_blank" class="creator"><u>template</u></a> for this site was made with <svg class="love"><use xlink:href="#icon-heart"></use></svg> by <a href="https://rossener.com" target="_blank" class="creator"><u>Thiago Rossener</u></a>
     </p>
 </footer>
 
@@ -61,29 +59,23 @@
     {% assign social_urls = social_urls | append: '"https://www.linkedin.com/in/' | append: site.linkedin_username | append: '",' %}
 {% endif %}
 
-<script>
-    (async () => {
-        const quoteData = localStorage.getItem('daily_quote');
-        const storedDate = localStorage.getItem('quote_date');
-
-        const currentDate = new Date().toLocaleDateString();
-
-        let quote;
-        if (quoteData && storedDate === currentDate) {
-            quote = JSON.parse(quoteData);
-        } else {
-            // Replace the next line with appropriate code for fetching data in your environment
-            quote = JSON.parse(await request("https://api.quotable.io/random"));
-            localStorage.setItem('daily_quote', JSON.stringify(quote));
-            localStorage.setItem('quote_date', currentDate);
-        }
-
-        const quoteContainer = document.getElementById('daily-quote-container');
-        quoteContainer.innerHTML = `
-            <div style="text-align: left; line-height: 1.5; color: #999;">"${quote.content}"</div>
-            <div style="text-align: right; color: #999; font-weight: 400; font-size: 90%; line-height: 1.5;">- ${quote.author}</div>
-        `;
-    })();
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.name }}",
+  "description": "{{ site.description }}",
+  "url": "{{ site.url }}{{site.baseurl}}/",
+  "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{site.baseurl}}/assets/img/icons/mediumtile.png",
+      "width": "600",
+      "height": "315"
+  },
+  "sameAs": [
+    {{ social_urls | split: "," | join: "," }}
+  ]
+}
 </script>
 
 <!-- Include the script that allows Netlify CMS login -->
