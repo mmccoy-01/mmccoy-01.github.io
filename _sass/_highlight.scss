@@ -5,7 +5,6 @@ pre {
   color: $accentDark;
   margin: rem(30px) 0;
   font-size: rem(14px);
-  font-family: 'Dancing Script', cursive; /* Add this line */
 
   @include media(">=sm") {
     font-size: rem(16px);
@@ -16,7 +15,6 @@ pre {
   code {
     @include center(rem(800px));
     padding: 0 rem(20px);
-    font-family: 'Dancing Script', cursive; /* Add this line */
 
     @include media("<sm") {
       overflow-x: scroll;
