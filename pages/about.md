@@ -18,7 +18,7 @@ permalink: /about/
 
 Katâlepsāra is a portmanteau I made by combining:
 - **Katâlepsis**: a philosophical term referring to the idea of grasping or apprehending something with certainty or conviction, often used in discussions about knowledge and belief.
-- **Saṃsāra**: an eastern philosophical term literally meaning "wandering" or "world," with the connottation of cyclic, circuitous change.
+- **Saṃsāra**: an eastern philosophical term literally meaning "wandering" or "world," with the connotation of cyclic, circuitous change.
 
 My problem began as an insatiable curiosity with an exponential rate of incoming information. Some was signal, but much was noise. My question was: "How can I effectively differentiate signal from noise with respect to my precious time?" In other words, much of what we consume is nonsense, so how can we consume more sense?
 
