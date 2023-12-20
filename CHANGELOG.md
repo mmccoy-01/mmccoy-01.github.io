@@ -78,20 +78,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added optional [sidebar](docs/features.md#posts-sidebar)
-- Added optional [Featured post](docs/features.md#featured-post)
-- Added optional ["Before you go" modal](docs/features.md#before-you-go-modal)
-- Added optional [post pagination](docs/features.md#paginated-posts)
-- Added [post recommendation](docs/features.md#post-recommendation)
+- Added optional [sidebar](features.md#posts-sidebar)
+- Added optional [Featured post](features.md#featured-post)
+- Added optional ["Before you go" modal](features.md#before-you-go-modal)
+- Added optional [post pagination](features.md#paginated-posts)
+- Added [post recommendation](features.md#post-recommendation)
 - Added meta keywords to improve SEO
 - Added JSON-LD to improve SEO
-- Set up [Netlify CMS](docs/features.md#netlify-cms-ready)
+- Set up [Netlify CMS](features.md#netlify-cms-ready)
 
 ### Changed
 
-- Changed pagination to be [optional](docs/features.md#home-page-pagination)
-- Improved [Tags page](docs/features.md#tags-page)
-- Cleaned up and improved [Front Matter properties](docs/post.md#front-matter-properties)
+- Changed pagination to be [optional](features.md#home-page-pagination)
+- Improved [Tags page](features.md#tags-page)
+- Cleaned up and improved [Front Matter properties](post.md#front-matter-properties)
 - Improved customization settings
 - Minor design updates
 
