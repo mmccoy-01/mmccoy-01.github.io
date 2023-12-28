@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+<head>
+<title>Shady</title>
+</head>
+<body>
+<outline title="1. News" text="1. News">
+<outline type="rss" htmlUrl="https://www.nytimes.com/series/us-morning-briefing" xmlUrl="https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/series/us-morning-briefing/rss.xml" text="NYT Morning Newsletter" title="NYT Morning Newsletter" />
+<outline type="rss" text="Political Science" title="Political Science" htmlUrl="https://www.frontiersin.org/journals/political-science" xmlUrl="https://www.frontiersin.org/journals/political-science/rss" />
+<outline title="Sociology" type="rss" xmlUrl="https://www.frontiersin.org/journals/sociology/rss" htmlUrl="https://www.frontiersin.org/journals/sociology" text="Sociology" />
+<outline text="Phillies Yardbarker" htmlUrl="http://www.yardbarker.com/mlb/teams/philadelphia_phillies/21" xmlUrl="https://www.yardbarker.com/rss/team/21" title="Phillies Yardbarker" type="rss" />
+<outline htmlUrl="https://counter-currents.com" text="Counter-Currents" type="rss" title="Counter-Currents" xmlUrl="https://counter-currents.com/feed/" />
+<outline type="rss" title="Morning Brew" htmlUrl="https://www.morningbrew.com" text="Morning Brew" xmlUrl="https://www.morningbrew.com/feed/" />
+<outline text="The Onion" type="rss" htmlUrl="https://www.theonion.com" title="The Onion" xmlUrl="https://www.theonion.com/rss" />
+<outline text="Phillies Nation" htmlUrl="https://www.philliesnation.com" title="Phillies Nation" xmlUrl="http://feeds.feedburner.com/PhilliesNation" type="rss" />
+</outline>
+<outline title="2. Blogs" text="2. Blogs">
+<outline xmlUrl="https://marginalrevolution.com/feed/" type="rss" htmlUrl="https://marginalrevolution.com/" text="Marginal REVOLUTION" title="Marginal REVOLUTION" />
+<outline text="Cal Newport" htmlUrl="https://calnewport.com/blog/" title="Cal Newport" xmlUrl="https://www.calnewport.com/blog/feed/" type="rss" />
+<outline text="Backreaction" xmlUrl="http://backreaction.blogspot.com/feeds/posts/default?alt=rss" type="rss" htmlUrl="http://backreaction.blogspot.com/" title="Backreaction" />
+<outline xmlUrl="https://imasportsphile.com/feed/" text="ImaSportsphile" type="rss" htmlUrl="https://imasportsphile.com" title="ImaSportsphile" />
+<outline title="Statistical Modeling, Causal Inference, and Social Science" xmlUrl="https://statmodeling.stat.columbia.edu/feed/" text="Statistical Modeling, Causal Inference, and Social Science" htmlUrl="https://statmodeling.stat.columbia.edu" type="rss" />
+<outline htmlUrl="https://guzey.substack.com" type="rss" title="Alexey Guzey" text="Alexey Guzey" xmlUrl="https://guzey.substack.com/feed/" />
+<outline title="Reactions" type="rss" text="Reactions" xmlUrl="https://douthat.substack.com/feed/" htmlUrl="https://douthat.substack.com" />
+<outline xmlUrl="https://writings.stephenwolfram.com/feed/" htmlUrl="https://writings.stephenwolfram.com" text="Stephen Wolfram Writings" title="Stephen Wolfram Writings" type="rss" />
+<outline type="rss" htmlUrl="https://www.astralcodexten.com" xmlUrl="https://astralcodexten.substack.com/feed/" title="Astral Codex Ten" text="Astral Codex Ten" />
+<outline xmlUrl="https://discourse.datamethods.org/latest.rss" text="Datamethods Discussion Forum" type="rss" htmlUrl="https://discourse.datamethods.org/latest" title="Datamethods Discussion Forum" />
+<outline type="rss" htmlUrl="https://www.r-bloggers.com" xmlUrl="https://www.r-bloggers.com/feed/" text="R-bloggers" title="R-bloggers" />
+<outline htmlUrl="https://join.substack.com" xmlUrl="https://join.substack.com/feed/" text="Join Andrew" type="rss" title="Join Andrew" />
+<outline htmlUrl="https://fergus-mccullough.com" xmlUrl="https://fergus-mccullough.com/index.php/feed/" title="Fergus McCullough" text="Fergus McCullough" type="rss" />
+<outline htmlUrl="https://replicationindex.com" type="rss" text="Replicability-Index" xmlUrl="https://replicationindex.com/feed/" title="Replicability-Index" />
+<outline text="RStudio | Open source &amp; professional software for data science teams on RStudio" type="rss" htmlUrl="https://www.rstudio.com/blog/" xmlUrl="https://blog.rstudio.com/feed/" title="RStudio | Open source &amp; professional software for data science teams on RStudio" />
+<outline text="Revolutions" title="Revolutions" type="rss" htmlUrl="https://blog.revolutionanalytics.com/" xmlUrl="https://blog.revolutionanalytics.com/rss.xml" />
+<outline title="RWeekly.org" type="rss" text="RWeekly.org" htmlUrl="https://rweekly.org/atom.xml" xmlUrl="https://rweekly.org/atom.xml" />
+<outline xmlUrl="https://ropensci.org/blog/index.xml" title="Blog on rOpenSci" text="Blog on rOpenSci" type="rss" htmlUrl="https://ropensci.org/blog/" />
+<outline text="Stats and R" type="rss" title="Stats and R" htmlUrl="https://statsandr.com/" xmlUrl="https://statsandr.com/index.xml" />
+<outline xmlUrl="https://gwern.substack.com/feed/" title="Gwern.net Newsletter" text="Gwern.net Newsletter" htmlUrl="https://gwern.substack.com" type="rss" />
+<outline htmlUrl="https://www.overcomingbias.com" title="Overcoming Bias" type="rss" xmlUrl="https://www.overcomingbias.com/feed" text="Overcoming Bias" />
+<outline text="Future a16z" title="Future a16z" type="rss" htmlUrl="https://future.com/" xmlUrl="https://future.a16z.com/feed/" />
+<outline text="Caitlin Flanagan | The Atlantic" xmlUrl="https://www.theatlantic.com/feed/author/caitlin-flanagan/" type="rss" title="Caitlin Flanagan | The Atlantic" htmlUrl="https://www.theatlantic.com/author/caitlin-flanagan/" />
+<outline title="George Packer | The Atlantic" type="rss" xmlUrl="https://www.theatlantic.com/feed/author/george-packer/" text="George Packer | The Atlantic" htmlUrl="https://www.theatlantic.com/author/george-packer/" />
+<outline text="Cold Takes" type="rss" htmlUrl="https://www.cold-takes.com/" title="Cold Takes" xmlUrl="https://www.cold-takes.com/rss/" />
+<outline title="Sabermetric Research" type="rss" xmlUrl="http://blog.philbirnbaum.com/feeds/posts/default?alt=rss" text="Sabermetric Research" htmlUrl="http://blog.philbirnbaum.com/" />
+<outline xmlUrl="https://www.lesswrong.com/feed.xml?view=curated-rss" htmlUrl="https://www.lesswrong.com" title="LessWrong" type="rss" text="LessWrong" />
+<outline htmlUrl="https://www.colinmcginn.net" title="Colin McGinn" text="Colin McGinn" type="rss" xmlUrl="https://www.colinmcginn.net/feed/" />
+<outline title="NeuroBanter" text="NeuroBanter" type="rss" htmlUrl="https://neurobanter.com" xmlUrl="https://neurobanter.com/feed/" />
+<outline xmlUrl="https://www.tjmahr.com/feed" text="Higher Order Functions" htmlUrl="https://tjmahr.github.io/" title="Higher Order Functions" type="rss" />
+<outline text="Nonzero Newsletter" type="rss" htmlUrl="https://nonzero.substack.com" xmlUrl="https://nonzero.substack.com/feed/" title="Nonzero Newsletter" />
+<outline htmlUrl="http://af4.cf3.mwp.accessdomain.com/" text="Chris Blattman" title="Chris Blattman" xmlUrl="https://chrisblattman.com/feed/" type="rss" />
+<outline type="rss" text="Bayesian Spectacles" xmlUrl="https://www.bayesianspectacles.org/feed/" title="Bayesian Spectacles" htmlUrl="https://www.bayesianspectacles.org" />
+<outline type="rss" htmlUrl="https://fs.blog/" title="Farnam Street" text="Farnam Street" xmlUrl="https://www.farnamstreetblog.com/feed/" />
+<outline title="HighExistence" xmlUrl="https://highexistence.com/feed/" type="rss" htmlUrl="https://highexistence.com" text="HighExistence" />
+<outline text="Zen Habits" type="rss" htmlUrl="https://zenhabits.net" title="Zen Habits" xmlUrl="https://zenhabits.net/feed/" />
+<outline title="Wait But Why" type="rss" htmlUrl="https://waitbutwhy.com/" xmlUrl="https://waitbutwhy.com/feed" text="Wait But Why" />
+<outline htmlUrl="https://baseballwithr.wordpress.com" type="rss" text="Exploring Baseball Data with R" xmlUrl="https://baseballwithr.wordpress.com/feed/" title="Exploring Baseball Data with R" />
+<outline text="The Prism" htmlUrl="https://gurwinder.substack.com" title="The Prism" xmlUrl="https://gurwinder.substack.com/feed" type="rss" />
+<outline type="rss" text="Nat Eliason" htmlUrl="https://www.nateliason.com" title="Nat Eliason" xmlUrl="https://www.nateliason.com/blog/rss.xml" />
+<outline type="rss" xmlUrl="https://readsomethinggreat.substack.com/feed" text="Read Something Great" htmlUrl="https://readsomethinggreat.substack.com" title="Read Something Great" />
+<outline type="rss" text="Obsidian Roundup" title="Obsidian Roundup" xmlUrl="https://www.eleanorkonik.com/tag/roundup/rss" htmlUrl="https://www.eleanorkonik.com/" />
+<outline title="Reasonable Deviations" text="Reasonable Deviations" htmlUrl="https://reasonabledeviations.com/atom.xml" type="rss" xmlUrl="https://reasonabledeviations.com/atom.xml" />
+<outline title="The Marginalian" type="rss" htmlUrl="https://www.themarginalian.org" text="The Marginalian" xmlUrl="https://www.themarginalian.org/rss" />
+<outline xmlUrl="https://medium.com/feed/obsidian-observer" type="rss" title="Obsidian Observer - Medium" text="Obsidian Observer - Medium" htmlUrl="https://medium.com/obsidian-observer?source=rss----dc0a52745260---4" />
+<outline text="Weekly Wisereads" xmlUrl="https://wise.readwise.io/feed/" type="rss" title="Weekly Wisereads" htmlUrl="https://wise.readwise.io/feed/" />
+<outline type="rss" xmlUrl="https://katalepsara.com/feed" text="Katâlepsāra" htmlUrl="https://katalepsara.com/" title="Katâlepsāra" />
+<outline title="Obsidian Iceberg" type="rss" htmlUrl="https://eleanorkonik.substack.com" xmlUrl="https://eleanorkonik.substack.com/feed" text="Obsidian Iceberg" />
+</outline>
+<outline title="3. Research Roundup" text="3. Research Roundup">
+<outline xmlUrl="https://www.frontiersin.org/journals/neuroscience/rss" type="rss" title="Neuroscience" text="Neuroscience" htmlUrl="https://www.frontiersin.org/journals/neuroscience" />
+<outline text="Behavioral Neuroscience" htmlUrl="https://www.frontiersin.org/journals/behavioral-neuroscience" type="rss" xmlUrl="https://www.frontiersin.org/journals/behavioral-neuroscience/rss" title="Behavioral Neuroscience" />
+<outline xmlUrl="https://www.frontiersin.org/journals/cellular-neuroscience/rss" title="Cellular Neuroscience" text="Cellular Neuroscience" type="rss" htmlUrl="https://www.frontiersin.org/journals/cellular-neuroscience" />
+<outline type="rss" xmlUrl="https://www.frontiersin.org/journals/computational-neuroscience/rss" text="Computational Neuroscience" htmlUrl="https://www.frontiersin.org/journals/computational-neuroscience" title="Computational Neuroscience" />
+<outline xmlUrl="https://www.frontiersin.org/journals/endocrinology/rss" title="Endocrinology" text="Endocrinology" htmlUrl="https://www.frontiersin.org/journals/endocrinology" type="rss" />
+<outline xmlUrl="https://www.frontiersin.org/journals/human-neuroscience/rss" type="rss" title="Human Neuroscience" htmlUrl="https://www.frontiersin.org/journals/human-neuroscience" text="Human Neuroscience" />
+<outline title="Integrative Neuroscience" text="Integrative Neuroscience" type="rss" htmlUrl="https://www.frontiersin.org/journals/integrative-neuroscience" xmlUrl="https://www.frontiersin.org/journals/integrative-neuroscience/rss" />
+<outline htmlUrl="https://www.frontiersin.org/journals/immunology" xmlUrl="https://www.frontiersin.org/journals/immunology/rss" title="Immunology" type="rss" text="Immunology" />
+<outline xmlUrl="https://www.frontiersin.org/journals/molecular-neuroscience/rss" title="Molecular Neuroscience" text="Molecular Neuroscience" htmlUrl="https://www.frontiersin.org/journals/molecular-neuroscience" type="rss" />
+<outline type="rss" title="Neural Circuits" htmlUrl="https://www.frontiersin.org/journals/neural-circuits" text="Neural Circuits" xmlUrl="https://www.frontiersin.org/journals/neural-circuits/rss" />
+<outline text="Neuroanatomy" htmlUrl="https://www.frontiersin.org/journals/neuroanatomy" type="rss" title="Neuroanatomy" xmlUrl="https://www.frontiersin.org/journals/neuroanatomy/rss" />
+<outline type="rss" title="Neurology" text="Neurology" xmlUrl="https://www.frontiersin.org/journals/neurology/rss" htmlUrl="https://www.frontiersin.org/journals/neurology" />
+<outline type="rss" xmlUrl="https://www.frontiersin.org/journals/nutrition/rss" title="Nutrition" text="Nutrition" htmlUrl="https://www.frontiersin.org/journals/nutrition" />
+<outline htmlUrl="https://www.frontiersin.org/journals/pain-research" type="rss" text="Pain Research" xmlUrl="https://www.frontiersin.org/journals/pain-research/rss" title="Pain Research" />
+<outline xmlUrl="https://www.frontiersin.org/journals/pharmacology/rss" title="Pharmacology" type="rss" htmlUrl="https://www.frontiersin.org/journals/pharmacology" text="Pharmacology" />
+<outline htmlUrl="https://www.frontiersin.org/journals/psychology" xmlUrl="https://www.frontiersin.org/journals/psychology/rss" text="Psychology" type="rss" title="Psychology" />
+<outline type="rss" xmlUrl="https://www.frontiersin.org/journals/psychiatry/rss" text="Psychiatry" title="Psychiatry" htmlUrl="https://www.frontiersin.org/journals/psychiatry" />
+<outline htmlUrl="https://www.frontiersin.org/journals/synaptic-neuroscience" type="rss" title="Synaptic Neuroscience" text="Synaptic Neuroscience" xmlUrl="https://www.frontiersin.org/journals/synaptic-neuroscience/rss" />
+<outline xmlUrl="https://www.frontiersin.org/journals/systems-neuroscience/rss" htmlUrl="https://www.frontiersin.org/journals/systems-neuroscience" type="rss" title="Systems Neuroscience" text="Systems Neuroscience" />
+<outline title="Toxicology" type="rss" text="Toxicology" htmlUrl="https://www.frontiersin.org/journals/toxicology" xmlUrl="https://www.frontiersin.org/journals/toxicology/rss" />
+<outline type="rss" title="2) Glial-related" text="2) Glial-related" xmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss/search/1fw6FpZzwPPJSf7Cbdwomu6HKurhKmnpk4T-2zGzp3aftkdQpk/?limit=100&amp;utm_campaign=pubmed-2&amp;fc=20210206172648" htmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss-feed/?feed_id=1fw6FpZzwPPJSf7Cbdwomu6HKurhKmnpk4T-2zGzp3aftkdQpk&amp;fc=20210206172648&amp;ff=20231227063406&amp;v=2.18.0&amp;utm_campaign=pubmed-2&amp;utm_medium=rss&amp;utm_source=Reeder&amp;utm_content=1fw6FpZzwPPJSf7Cbdwomu6HKurhKmnpk4T-2zGzp3aftkdQpk" />
+<outline htmlUrl="https://www.cell.com/archive?publicationCode=cell&amp;rss=yes" type="rss" title="Cell" text="Cell" xmlUrl="https:/www.cell.com/cell/inpress.rss" />
+<outline text="Cell" htmlUrl="https://www.cell.com/current?publicationCode=cell&amp;rss=yes" xmlUrl="https:/www.cell.com/cell/current.rss" title="Cell" type="rss" />
+<outline title="The Lancet" xmlUrl="http://www.thelancet.com/rssfeed/lancet_online.xml" text="The Lancet" htmlUrl="https://www.thelancet.com/journals/lancet/issues" type="rss" />
+<outline text="The Lancet Neurology" title="The Lancet Neurology" htmlUrl="https://www.thelancet.com/journals/lancet/issues" xmlUrl="http://www.thelancet.com/rssfeed/laneur_online.xml" type="rss" />
+<outline text="The Lancet Psychiatry" type="rss" htmlUrl="https://www.thelancet.com/journals/lancet/issues" xmlUrl="http://www.thelancet.com/rssfeed/lanpsy_online.xml" title="The Lancet Psychiatry" />
+<outline text="The Lancet Public Health" htmlUrl="https://www.thelancet.com/journals/lancet/issues" type="rss" title="The Lancet Public Health" xmlUrl="http://www.thelancet.com/rssfeed/lanpub_online.xml" />
+<outline htmlUrl="https://www.thelancet.com/journals/lancet/issues" xmlUrl="http://www.thelancet.com/rssfeed/eclinm_online.xml" title="The Lancet ClinicalMedicine" text="The Lancet ClinicalMedicine" type="rss" />
+<outline type="rss" title="Science First Release Online" htmlUrl="https://www.science.org/journal/science" text="Science First Release Online" xmlUrl="http://science.sciencemag.org/rss/express.xml" />
+<outline htmlUrl="https://www.ajnrblog.org" xmlUrl="http://www.ajnrblog.org/feed/" title="AJNR Blog" type="rss" text="AJNR Blog" />
+<outline text="Berkeley Neuroscience" htmlUrl="https://neuroscience.berkeley.edu/" title="Berkeley Neuroscience" type="rss" xmlUrl="https://neuroscience.berkeley.edu/feed/" />
+<outline xmlUrl="https://bmcneurosci.biomedcentral.com/articles/most-recent/rss.xml" title="BMC Neuroscience" type="rss" text="BMC Neuroscience" htmlUrl="https://bmcneurosci.biomedcentral.com" />
+<outline htmlUrl="https://medicalxpress.com/neuroscience-news/" type="rss" title="Medicalxpress" xmlUrl="https://medicalxpress.com/rss-feed/neuroscience-news/" text="Medicalxpress" />
+<outline htmlUrl="https://mindhacks.com" type="rss" text="Mind Hacks" xmlUrl="https://mindhacks.com/feed/" title="Mind Hacks" />
+<outline htmlUrl="https://mcgovern.mit.edu/" xmlUrl="https://mcgovern.mit.edu/feed/" text="MIT McGovern Institute" type="rss" title="MIT McGovern Institute" />
+<outline title="MIT Neuroscience News" text="MIT Neuroscience News" htmlUrl="https://news.mit.edu/topic/mitneuroscience-rss.xml" type="rss" xmlUrl="https://news.mit.edu/topic/mitneuroscience-rss.xml" />
+<outline title="Neuroscience News" xmlUrl="https://neurosciencenews.com/feed/" text="Neuroscience News" htmlUrl="https://neurosciencenews.com/" type="rss" />
+<outline htmlUrl="https://sharpbrains.com/" type="rss" text="SharpBrains" xmlUrl="https://sharpbrains.com/feed/" title="SharpBrains" />
+<outline xmlUrl="http:/rss.sciencedirect.com/publication/science/13646613" type="rss" title="Trends in Cognitive Sciences" text="Trends in Cognitive Sciences" htmlUrl="https://www.sciencedirect.com/journal/trends-in-cognitive-sciences" />
+<outline type="rss" htmlUrl="https://www.sciencedirect.com/journal/sleep-medicine-reviews" xmlUrl="http://rss.sciencedirect.com/publication/science/10870792" text="Sleep Medicine Reviews" title="Sleep Medicine Reviews" />
+<outline title="Progress in Neurobiology" text="Progress in Neurobiology" type="rss" htmlUrl="https://www.sciencedirect.com/journal/progress-in-neurobiology" xmlUrl="http://rss.sciencedirect.com/publication/science/03010082" />
+<outline xmlUrl="http://rss.sciencedirect.com/publication/science/02785846" type="rss" text="Progress in Neuro-Psychopharmacology and Biological Psychiatry" htmlUrl="https://www.sciencedirect.com/journal/progress-in-neuro-psychopharmacology-and-biological-psychiatry" title="Progress in Neuro-Psychopharmacology and Biological Psychiatry" />
+<outline text="Neuroscience &amp; Biobehavioral Reviews" title="Neuroscience &amp; Biobehavioral Reviews" type="rss" htmlUrl="https://www.sciencedirect.com/journal/neuroscience-and-biobehavioral-reviews" xmlUrl="http://rss.sciencedirect.com/publication/science/01497634" />
+<outline htmlUrl="https://www.sciencedirect.com/journal/neuropsychologia" text="Neuropsychologia" xmlUrl="http://rss.sciencedirect.com/publication/science/00283932" title="Neuropsychologia" type="rss" />
+<outline title="Neuron" text="Neuron" htmlUrl="https://www.sciencedirect.com/journal/neuron" xmlUrl="http://rss.sciencedirect.com/publication/science/08966273" type="rss" />
+<outline type="rss" text="Journal of Memory and Language" title="Journal of Memory and Language" htmlUrl="https://www.sciencedirect.com/journal/journal-of-memory-and-language" xmlUrl="http://rss.sciencedirect.com/publication/science/0749596X" />
+<outline htmlUrl="https://www.sciencedirect.com/journal/journal-of-experimental-social-psychology" text="Journal of Experimental Social Psychology" type="rss" xmlUrl="http://rss.sciencedirect.com/publication/science/00221031" title="Journal of Experimental Social Psychology" />
+<outline title="Evolution and Human Behavior" text="Evolution and Human Behavior" xmlUrl="http://rss.sciencedirect.com/publication/science/10905138" htmlUrl="https://www.sciencedirect.com/journal/evolution-and-human-behavior" type="rss" />
+<outline text="Developmental Review" type="rss" htmlUrl="https://www.sciencedirect.com/journal/developmental-review" xmlUrl="http://rss.sciencedirect.com/publication/science/02732297" title="Developmental Review" />
+<outline type="rss" text="Cortex" xmlUrl="http://rss.sciencedirect.com/publication/science/00109452" htmlUrl="https://www.sciencedirect.com/journal/cortex" title="Cortex" />
+<outline htmlUrl="https://www.sciencedirect.com/journal/consciousness-and-cognition" type="rss" text="Consciousness and Cognition" title="Consciousness and Cognition" xmlUrl="http://rss.sciencedirect.com/publication/science/10538100" />
+<outline xmlUrl="http://rss.sciencedirect.com/publication/science/00100277" htmlUrl="https://www.sciencedirect.com/journal/cognition" text="Cognition" type="rss" title="Cognition" />
+<outline type="rss" title="Biological Psychiatry" xmlUrl="http://rss.sciencedirect.com/publication/science/00063223" text="Biological Psychiatry" htmlUrl="https://www.sciencedirect.com/journal/biological-psychiatry" />
+<outline text="Trends in Neurosciences" xmlUrl="http://rss.sciencedirect.com/publication/science/01662236" htmlUrl="https://www.sciencedirect.com/journal/trends-in-neurosciences" type="rss" title="Trends in Neurosciences" />
+<outline htmlUrl="https://www.sciencedirect.com/journal/cognitive-psychology" xmlUrl="http://rss.sciencedirect.com/publication/science/00100285" type="rss" title="Cognitive Psychology" text="Cognitive Psychology" />
+<outline htmlUrl="https://www.sciencedirect.com/journal/behaviour-research-and-therapy" type="rss" title="Behaviour Research and Therapy" text="Behaviour Research and Therapy" xmlUrl="http://rss.sciencedirect.com/publication/science/00057967" />
+<outline title="1) rubber hand OR rubber tail" text="1) rubber hand OR rubber tail" type="rss" xmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss/search/14g2Xb2ijyN6eFF45fad3wk_bzunZUt2G_nAgPF6Jl8IvFfg8m/?limit=15&amp;utm_campaign=pubmed-2&amp;fc=20221112171840" htmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss-feed/?feed_id=14g2Xb2ijyN6eFF45fad3wk_bzunZUt2G_nAgPF6Jl8IvFfg8m&amp;fc=20221112171840&amp;ff=20231227063405&amp;utm_medium=rss&amp;utm_content=14g2Xb2ijyN6eFF45fad3wk_bzunZUt2G_nAgPF6Jl8IvFfg8m&amp;v=2.18.0&amp;utm_campaign=pubmed-2&amp;utm_source=Reeder" />
+<outline type="rss" title="1) body representation OR multisensory integration" xmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss/search/1HkK4H6_H1ZcBWHHAQkBY6PDCDu0qLPpd3sPtIRrTRrBQ4OkV6/?limit=15&amp;utm_campaign=pubmed-2&amp;fc=20221112171735" text="1) body representation OR multisensory integration" htmlUrl="https://pubmed.ncbi.nlm.nih.gov/rss-feed/?feed_id=1HkK4H6_H1ZcBWHHAQkBY6PDCDu0qLPpd3sPtIRrTRrBQ4OkV6&amp;utm_source=Reeder&amp;utm_campaign=pubmed-2&amp;utm_content=1HkK4H6_H1ZcBWHHAQkBY6PDCDu0qLPpd3sPtIRrTRrBQ4OkV6&amp;fc=20221112171735&amp;ff=20231227063406&amp;v=2.18.0&amp;utm_medium=rss" />
+</outline>
+<outline text="4. Podcasts" title="4. Podcasts">
+<outline htmlUrl="https://www.learnbayesstats.com" type="rss" xmlUrl="https://feeds.captivate.fm/learnbayesstats/" text="Learning Bayesian Statistics" title="Learning Bayesian Statistics" />
+<outline type="rss" htmlUrl="https://www.aan.com/education-and-research/online-learning-programs/podcasts/neurology-minute-podcast" title="Neurology Minute" text="Neurology Minute" xmlUrl="https://neurologyminute.libsyn.com/rss" />
+<outline title="The Good Life w/Taylor Welch" xmlUrl="https://feeds.captivate.fm/dailymindmedicine/" text="The Good Life w/Taylor Welch" htmlUrl="https://blog.taylorawelch.com/" type="rss" />
+<outline title="The Walled Garden" type="rss" htmlUrl="https://www.spreaker.com/show/the-walled-garden" text="The Walled Garden" xmlUrl="https://anchor.fm/s/710a5b24/podcast/rss" />
+<outline type="rss" htmlUrl="https://ageofmiracles.co/" title="&quot;Age of Miracles&quot;" text="&quot;Age of Miracles&quot;" xmlUrl="https://anchor.fm/s/16186c88/podcast/rss" />
+<outline htmlUrl="https://www.stitcher.com/" xmlUrl="https://anchor.fm/s/2f55bfc0/podcast/rss" title="The Psychology Podcast" text="The Psychology Podcast" type="rss" />
+<outline title="Stoic Meditations" text="Stoic Meditations" type="rss" htmlUrl="https://massimopigliucci.wordpress.com" xmlUrl="https://anchor.fm/s/1d80328/podcast/rss" />
+<outline xmlUrl="https://rss.art19.com/the-daily-stoic" title="The Daily Stoic" htmlUrl="https://wondery.com/shows/the-daily-stoic/" type="rss" text="The Daily Stoic" />
+<outline xmlUrl="http://www.podcastone.com/podcast?categoryID2=1237" type="rss" title="The Jordan Harbinger Show" htmlUrl="https://www.jordanharbinger.com/" text="The Jordan Harbinger Show" />
+<outline xmlUrl="https://twiv.libsyn.com/" text="This Week in Virology" title="This Week in Virology" type="rss" htmlUrl="http://www.microbe.tv/twiv" />
+<outline xmlUrl="https://sopapa.libsyn.com/rss" text="Speaking of Psychology" title="Speaking of Psychology" type="rss" htmlUrl="http://www.apa.org/speakingofpsychology" />
+<outline type="rss" title="Jocko Podcast" htmlUrl="https://redcircle.com/shows/jocko-podcast" text="Jocko Podcast" xmlUrl="https://feeds.redcircle.com/64a89f88-a245-4098-8d8d-496325ec4f74" />
+<outline htmlUrl="https://fs.blog/knowledge-project/" text="The Knowledge Project - Shane Parrish" xmlUrl="https://theknowledgeproject.libsyn.com/rss" type="rss" title="The Knowledge Project - Shane Parrish" />
+<outline htmlUrl="http://www.samharris.org" xmlUrl="https://wakingup.libsyn.com/rss" title="Making Sense - Sam Harris" type="rss" text="Making Sense - Sam Harris" />
+<outline title="The Blog - Rich Roll" type="rss" text="The Blog - Rich Roll" xmlUrl="https://www.richroll.com/blog/feed" htmlUrl="https://www.richroll.com/blog/" />
+<outline text="Huberman Lab" type="rss" xmlUrl="https://hubermanlab.com/feed/" htmlUrl="https://hubermanlab.com/" title="Huberman Lab" />
+<outline title="The Peter Attia Drive" text="The Peter Attia Drive" xmlUrl="https://peterattiadrive.libsyn.com/rss" type="rss" htmlUrl="http://www.PeterAttiaMD.com" />
+<outline htmlUrl="https://lexfridman.com/podcast" title="Lex Fridman Podcast" xmlUrl="https://lexfridman.com/feed/podcast/" type="rss" text="Lex Fridman Podcast" />
+<outline xmlUrl="https://www.abc.net.au/radionational/programs/allinthemind/feed/2888650/podcast.xml" type="rss" text="All In The Mind" htmlUrl="https://www.abc.net.au/listen/programs/allinthemind/" title="All In The Mind" />
+<outline htmlUrl="http://www.asm.org/twim/" xmlUrl="https://twimshow.libsyn.com/" title="This Week in Microbiology" type="rss" text="This Week in Microbiology" />
+<outline type="rss" htmlUrl="https://themattwalkerpodcast.buzzsprout.com" xmlUrl="https://feeds.buzzsprout.com/1821163.rss" title="The Matt Walker Podcast" text="The Matt Walker Podcast" />
+<outline type="rss" text="Academy of Ideas" htmlUrl="https://academyofideas.com" xmlUrl="https://academyofideas.com/feed" title="Academy of Ideas" />
+<outline type="rss" htmlUrl="http://microbe.tv/twin" xmlUrl="https://twin1.libsyn.com/rss" title="This Week in Neuroscience" text="This Week in Neuroscience" />
+<outline text="Brain Science - Ginger Campbell" title="Brain Science - Ginger Campbell" xmlUrl="https://brainsciencepodcast.com/bsp?format=rss" type="rss" htmlUrl="https://brainsciencepodcast.com/bsp/" />
+<outline title="Not Overthinking" text="Not Overthinking" htmlUrl="https://art19.com/shows/not-overthinking" xmlUrl="https://rss.art19.com/not-overthinking" type="rss" />
+<outline title="Naval" type="rss" xmlUrl="https://nav.al/feed" text="Naval" htmlUrl="https://nav.al/" />
+<outline xmlUrl="https://feeds.pacific-content.com/financialdecoder" title="Financial Decoder - Schwab" htmlUrl="https://www.schwab.com/learn/financial-decoder" type="rss" text="Financial Decoder - Schwab" />
+<outline title="Rugged Stoic Leadership Experience" xmlUrl="https://feed.podbean.com/stoicpodcast/feed.xml" type="rss" htmlUrl="https://stoicpodcast.podbean.com" text="Rugged Stoic Leadership Experience" />
+<outline type="rss" htmlUrl="https://www.thenakedscientists.com/podcasts/naked-neuroscience" title="Naked Neuroscience" text="Naked Neuroscience" xmlUrl="https://www.thenakedscientists.com/rss/naked_neuroscience.xml" />
+<outline type="rss" htmlUrl="https://art19.com/shows/the-portal" title="The Portal" xmlUrl="https://www.omnycontent.com/d/playlist/9b7dacdf-a925-4f95-84dc-ac46003451ff/1713c520-edb6-43a3-b1b9-acb8002fdae7/58e33a0c-f86b-41c5-a11c-acb8002fdaf5/podcast.rss" text="The Portal" />
+<outline htmlUrl="https://chriswillx.com/books/" xmlUrl="https://modernwisdom.libsyn.com/rss" title="Modern Wisdom" text="Modern Wisdom" type="rss" />
+<outline xmlUrl="https://psychsessionspodcast.libsyn.com/rss" title="PsychSessions" htmlUrl="http://psychsessionspodcast.libsyn.com/" type="rss" text="PsychSessions" />
+<outline type="rss" text="Rationally Speaking Podcast" title="Rationally Speaking Podcast" xmlUrl="https://rationallyspeakingpodcast.libsyn.com/rss" htmlUrl="http://rationallyspeakingpodcast.org" />
+<outline text="Collective Insights" htmlUrl="http://blubrry.com/neurohacker/" xmlUrl="https://feeds.blubrry.com/feeds/neurohacker.xml" title="Collective Insights" type="rss" />
+<outline text="Future Thinkers Podcast" title="Future Thinkers Podcast" xmlUrl="https://futurethinkerspodcast.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="https://futurethinkerspodcast.blogspot.com/" type="rss" />
+<outline htmlUrl="https://bloggingheads.tv" title="Bloggingheads.tv" type="rss" text="Bloggingheads.tv" xmlUrl="https://bloggingheads.tv/programs/current/wrightshow/feed" />
+<outline htmlUrl="http://partiallyexaminedlife.com" title="The Partially Examined Life Philosophy Podcast" text="The Partially Examined Life Philosophy Podcast" xmlUrl="https://partiallyexaminedlife.libsyn.com/rss" type="rss" />
+<outline xmlUrl="https://onemorebrown.com/category/consciousness-live/feed/" htmlUrl="https://onemorebrown.com" text="Consciousness Live!" title="Consciousness Live!" type="rss" />
+</outline>
+<outline title="5. YouTube" text="5. YouTube">
+<outline title="FromSergio" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCIDJH27tBTlA7jjMI5wnibA" type="rss" text="FromSergio" htmlUrl="https://www.youtube.com/channel/UCIDJH27tBTlA7jjMI5wnibA" />
+<outline title="Nicole van der Hoeven" type="rss" htmlUrl="https://www.youtube.com/channel/UCrmQZ9HHnJ2qpd6udc8iYYw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCrmQZ9HHnJ2qpd6udc8iYYw" text="Nicole van der Hoeven" />
+<outline xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCfhSB16X9MXhzSFe_H7XbHg" title="Bryan Jenks" type="rss" text="Bryan Jenks" htmlUrl="https://www.youtube.com/channel/UCfhSB16X9MXhzSFe_H7XbHg" />
+<outline xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCKuK7cMQFx9qu9xXStG3uWw" text="Danny Hatcher" type="rss" htmlUrl="https://www.youtube.com/channel/UCKuK7cMQFx9qu9xXStG3uWw" title="Danny Hatcher" />
+<outline text="Danny and Jon" title="Danny and Jon" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCGu5aGn7G48DL3oDCAH6EAQ" htmlUrl="https://www.youtube.com/channel/UCGu5aGn7G48DL3oDCAH6EAQ" />
+<outline htmlUrl="https://www.youtube.com/channel/UC_nJ4PiyzE26LX-FmrnvCfQ" type="rss" text="John Mavrick" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_nJ4PiyzE26LX-FmrnvCfQ" title="John Mavrick" />
+<outline title="Artem Kirsanov" text="Artem Kirsanov" htmlUrl="https://www.youtube.com/channel/UCR2uRTQ53V_egXKFflMMaaw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCR2uRTQ53V_egXKFflMMaaw" type="rss" />
+<outline text="PhDCoffeeTime" htmlUrl="https://www.youtube.com/channel/UC2YqZKndK7HxCnbe06ZCEuw" title="PhDCoffeeTime" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC2YqZKndK7HxCnbe06ZCEuw" />
+<outline htmlUrl="https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA" title="Veritasium" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA" text="Veritasium" />
+<outline type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCVFIXQOwEhOOj2qmj_RGtcg" htmlUrl="https://www.youtube.com/channel/UCVFIXQOwEhOOj2qmj_RGtcg" text="Cade Prior" title="Cade Prior" />
+<outline text="RedFrost Motivation" htmlUrl="https://www.youtube.com/channel/UCXD5aOFDPO1W264sJvYc85Q" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCXD5aOFDPO1W264sJvYc85Q" title="RedFrost Motivation" type="rss" />
+<outline title="Quotes" text="Quotes" htmlUrl="https://www.youtube.com/channel/UCeM09s9na5Hwq7hQptgEkJg" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCeM09s9na5Hwq7hQptgEkJg" />
+<outline htmlUrl="https://www.youtube.com/channel/UCj1VqrHhDte54oLgPG4xpuQ" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCj1VqrHhDte54oLgPG4xpuQ" title="Stuff Made Here" text="Stuff Made Here" />
+<outline xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCihSAOIkn047eJOBZfSg12g" text="The Coverage Project" title="The Coverage Project" type="rss" htmlUrl="https://www.youtube.com/channel/UCihSAOIkn047eJOBZfSg12g" />
+<outline xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCAbfUFKU8U1gChrHneYFVLg" type="rss" htmlUrl="https://www.youtube.com/channel/UCAbfUFKU8U1gChrHneYFVLg" title="Prakash Joshi Pax" text="Prakash Joshi Pax" />
+</outline>
+</body>
+</opml>
