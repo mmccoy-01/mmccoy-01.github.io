@@ -285,7 +285,7 @@ collections:
             default: "#141414"
           - label: "Accent Dark Color"
             name: "accentDark"
-            default: "#ffffff"
+            default: "#d2b48c"
             widget: "color"
           - label: "Light Gray Color"
             name: "lightGray"
