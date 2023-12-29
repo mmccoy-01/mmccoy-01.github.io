@@ -8,3 +8,14 @@ $texts: #333333;
 
 @import "jekflix";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* Night mode styles */
+.night-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Additional night mode styles if needed */
+.night-mode h1 {
+  color: #ffcc00; /* Adjust heading color in night mode */
+}
