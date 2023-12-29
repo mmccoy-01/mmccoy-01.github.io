@@ -28,7 +28,7 @@ I wanted to create an application that aimed to leverage AI in summarizing RSS f
 
 Alas, I am not that technologically savvy with coding in order to pull off an application like that so I archived that idea in my Github repo.
 
-Instead, (at least in the meantime) I've decided to settle on creating this blog that aims to equip readers with the philosophical accoutrement to think critically about information. Consuming information for nourishing sustenance, not for bloating fodder. 
+Instead, (at least in the meantime) I've decided to settle on creating this blog that aims to equip readers with the philosophical accoutrement to think critically about information. Consuming information for nourishing sustenance, not as bloating fodder. 
 
 Cicero relates that Zeno would illustrate katalepsis as follows:
 
