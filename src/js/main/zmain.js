@@ -1,15 +1,34 @@
-(function( $, window, undefined ) {
+(function ($, window, undefined) {
   // Menu
-  $("#menu").click(function() {
+  $("#menu").click(function () {
     $("body").addClass("push-menu-to-right");
     $("#sidebar").addClass("open");
     $(".overlay").addClass("show");
   });
 
-  $("#mask").click(function() {
+  $("#mask").click(function () {
     $("body").removeClass("push-menu-to-right");
     $("#sidebar").removeClass("open");
     $(".overlay").removeClass("show");
+  });
+
+  // Night Mode Toggle
+  document.addEventListener('DOMContentLoaded', function () {
+    // Check if night mode preference is stored in local storage
+    const isNightMode = localStorage.getItem('nightMode') === 'true';
+
+    // Set initial mode based on user preference
+    if (isNightMode) {
+      document.body.classList.add('night-mode');
+    }
+
+    // Toggle night mode on button click
+    $("#nightModeToggle").on('click', function () {
+      document.body.classList.toggle('night-mode');
+
+      // Store user preference in local storage
+      localStorage.setItem('nightMode', document.body.classList.contains('night-mode'));
+    });
   });
 
   // Header
@@ -17,25 +36,23 @@
     var top = $(this).scrollTop();
     if (top > 0) {
       $("body").addClass("light");
-    }
-    else {
+    } else {
       $("body").removeClass("light");
     }
   });
 
   // Modals
-
   var $closeBtn = $('.modal .close');
-  $closeBtn.on('click', function() {
-      $closeBtn.parent().parent().addClass('closed');
+  $closeBtn.on('click', function () {
+    $closeBtn.parent().parent().addClass('closed');
   });
 
   var $exitModal = $('.modal.exit');
   if ($exitModal.length) {
     ouibounce($exitModal[0], {
       aggressive: true,
-      callback: function() {
-        $exitModal.find('.close').on('click', function() {
+      callback: function () {
+        $exitModal.find('.close').on('click', function () {
           $exitModal.hide();
         });
       }
@@ -50,7 +67,7 @@
     dothis: $('.dosearch')
   };
 
-  bs.dothis.on('click', function() {
+  bs.dothis.on('click', function () {
     $('.search-wrapper').toggleClass('active');
     bs.searchform.toggleClass('active');
     bs.searchform.find('input').focus();
@@ -67,25 +84,25 @@
   bs.close.on('click', close_search);
 
   // Closing menu with ESC
-  document.addEventListener('keyup', function(e){
-      if(e.keyCode == 27 && $('.search-overlay').length) {
-          close_search();
-      }
+  document.addEventListener('keyup', function (e) {
+    if (e.keyCode == 27 && $('.search-overlay').length) {
+      close_search();
+    }
   });
-  
-  if (document.getElementsByClassName('home').length >=1 ) {
-      new AnimOnScroll( document.getElementById( 'grid' ), {
-        minDuration : 0.4,
-        maxDuration : 0.7,
-        viewportFactor : 0.2
-      });
+
+  if (document.getElementsByClassName('home').length >= 1) {
+    new AnimOnScroll(document.getElementById('grid'), {
+      minDuration: 0.4,
+      maxDuration: 0.7,
+      viewportFactor: 0.2
+    });
   }
 
   // Init smooth scroll
   smoothScroll.init({
-      selectorHeader: '.bar-header', // Selector for fixed headers (must be a valid CSS selector)
-      speed: 500, // Integer. How fast to complete the scroll in milliseconds
-      updateURL: false // Boolean. Whether or not to update the URL with the anchor hash on scroll
+    selectorHeader: '.bar-header', // Selector for fixed headers (must be a valid CSS selector)
+    speed: 500, // Integer. How fast to complete the scroll in milliseconds
+    updateURL: false // Boolean. Whether or not to update the URL with the anchor hash on scroll
   });
 
-})( Zepto, window );
+})(Zepto, window);
