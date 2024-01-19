@@ -1,0 +1,29 @@
+name: Katâlepsāra
+title: Katâlepsāra | A platform for cyclical comprehension
+description: Our current milieu is drowning in information yet starving for knowledge. Indigestion of information has become a problem. We’re gaining weight and not nutrition.
+tags:
+  - blog
+  - stoicism
+  - philosophy
+  - psychology
+  - neuroscience
+  - consciousness
+show_hero: true
+paginate: 8
+menu:
+  - title: Home
+    url: /
+  - title: Archive
+    url: /archive
+  - title: About
+    url: /about
+  - title: Contact
+    url: /contact
+  - title: Feed
+    url: /feed.xml
+email: michael@katalepsara.com
+# See: https://disqus.com/
+disqus_username: disqus_username
+# Contact Form Setting
+# See: https://formspree.io/
+formspree_form_id: formspree_form_id

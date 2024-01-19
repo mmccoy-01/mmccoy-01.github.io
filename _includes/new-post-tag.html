@@ -1,0 +1,6 @@
+{% capture current_time %}{{ "now" | date: "%s" }}{% endcapture %}
+{% capture post_time %}{{ include.date | date: "%s" }}{% endcapture %}
+{% capture one_week_ago %}{{ current_time | minus: 604800 }}{% endcapture %}
+{% if post_time > one_week_ago %}
+<div class="new-post-tag">{{ site.translations.text.new_post | default: "New Post" }}</div>
+{% endif %}
