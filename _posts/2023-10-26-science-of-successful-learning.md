@@ -98,8 +98,8 @@ So if you want the ultimate toolkit for human development—whether skills-based
 
 <div class="mermaid">
 flowchart TD;
-	a((Attention)) --> b((Memory))
-	b((Memory)) --> c((Wisdom))
+	a((Attention)) --> b((Memory));
+	b((Memory)) --> c((Wisdom));
 </div>
 
 # Why Study?
