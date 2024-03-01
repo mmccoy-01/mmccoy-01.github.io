@@ -38,6 +38,11 @@ Cicero relates that Zeno would illustrate katalepsis as follows:
 > 4. but then he used to apply his left hand to his right fist and squeeze it tightly and forcibly, and then say that such was knowledge, which was within the power of nobody save the wise man
 
 ---
+# Why the lotus?
+
+The lotus symbolizes purity, enlightenment, rebirth, and spiritual awakening across various cultures, particularly in Buddhism and Hinduism. It grows from muddy waters, yet its pristine bloom represents the journey from darkness to light, symbolizing spiritual growth and enlightenment.
+
+---
 
 ### If you enjoy the content here, please consider donating to help support me! Your patronage is valuable to me.
 
