@@ -2,7 +2,7 @@
 date: 2024-01-02
 layout: post
 title: MediTEAte
-subtitle: 🍵 It is called the present because it is a gift.
+subtitle: 🍵 It's called the present because it's a gift.
 description: "\rThis article highlights the underappreciated capabilities of the iPhone Shortcuts app, showcasing its potential for personalized automation. The author shares examples of creatively designed shortcuts, such as using NFC tags for household tasks or automating the retrieval of price history for Amazon items. A specific shortcut called \"MediTEAte\" is detailed, demonstrating how it integrates with the Forest pomodoro timer app and iPhone's background sounds to facilitate a focused meditation session with a single tap on the home screen."
 image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1704220605/MediTEAte/cfcb880b-0d2e-42f3-b243-8f1721e03b11_e2qiv1.jpg
 optimized_image: https://res.cloudinary.com/dtf8hxbjn/image/upload/c_scale,w_380/v1704220605/MediTEAte/cfcb880b-0d2e-42f3-b243-8f1721e03b11_e2qiv1.jpg
