@@ -13,6 +13,8 @@ author: Michael
 paginate: true
 ---
 
+<iframe src="https://archive.org/embed/science-of-successful-learning" width="640" height="80" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+
 No matter who you are, we all have 24 hours in a day—168 hours in a week. What will you accomplish in that time? At the end of each day, we are the product of our choices.
 
 The number of hours that people have in the day hasn't changed, but the amount of time that people spend on online platforms has. "I cannot make my days longer, so I strive to make them better" (Henry David Thoreau). It is not death that one should fear, but never beginning to live. How many of the posts you recently scrolled through on social media do you remember? Not many? Were they even worthwhile? So, was there much difference between scrolling and being a corpse? 
