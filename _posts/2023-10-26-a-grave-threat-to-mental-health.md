@@ -20,10 +20,6 @@ This is the full text from chapter 3 of a book that I'm working on.
 The following chapter integrates central ideas from various thinkers. I am not reinventing, but instead synthesizing their ideas. I want to carefully simplify and demystify the process that threatens our collective mental health.
 Our mental health declines once our psychological needs (competence, autonomy, and relatedness) are disrupted. However, once these needs are met, then we become self-determined (Deci & Ryan, 1985).
 
-![](https://res.cloudinary.com/dtf8hxbjn/image/upload/v1698296126/A%20Grave%20Threat%20To%20Mental%20Health/8103cd6c1dcb208285f7f55684be5bae_c604xw.png)
-
-A motivational model of the effects of psychological needs on engagement. Source: From Connell and Wellborn (1990, Figure 2.2, p. 51). Reprinted from Connell, J. P., & Wellborn, J. G. (1990), “Competence, autonomy, and relatedness: A motivational analysis of self-system processes,” as appeared in M. Gunnar & L. A. Sroufe (Eds.), The Minnesota Symposia on Child Psychology Vol. 22, p. 43–77 (Minneapolis, MN: University of Minnesota Press). Permission conveyed through the Copyright Clearance Center.
-
 # Disruption #1: Task Switching
 
 A task is an assigned piece of work that is expected to be done. Focusing too much on what has to be done is being outcome-oriented which leads to languishing. This ties into the tantalizing pursuit for knowledge because as we learn more, then we develop ideas for what we don’t know. In this process of obtaining more knowledge, we can generate more ideas for getting what we want. In the short term it’s quick but in the long term it isn’t effective for our mental health. We languish from this overwhelming feeling of being unable to halt this pursuit where the cost of remaining comfortably sedentary is unbearable. Languishing is purgatory between flourishing and depression.
