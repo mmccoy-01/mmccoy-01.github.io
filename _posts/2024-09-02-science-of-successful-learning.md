@@ -13,7 +13,7 @@ author: Michael
 paginate: true
 ---
 
-<iframe src="https://archive.org/embed/science-of-successful-learning" width="640" height="80" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+<iframe src="https://archive.org/embed/science-of-successful-learning" width="640" height="200" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
 
 No matter who you are, we all have 24 hours in a day—168 hours in a week. What will you accomplish in that time? At the end of each day, we are the product of our choices.
 
