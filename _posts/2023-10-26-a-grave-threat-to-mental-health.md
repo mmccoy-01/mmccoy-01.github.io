@@ -15,8 +15,6 @@ author: Michael
 paginate: true
 ---
 
-<iframe src="https://archive.org/embed/a-grave-threat-to-mental-health_202410" width="640" height="200" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-
 This is the full text from chapter 3 of my book.
 
 The following chapter integrates central ideas from various thinkers. I am not reinventing, but instead synthesizing their ideas. I want to carefully simplify and demystify the process that threatens our collective mental health.
