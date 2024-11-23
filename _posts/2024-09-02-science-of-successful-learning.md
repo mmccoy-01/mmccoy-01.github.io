@@ -278,12 +278,22 @@ Know when to grit or quit. Know when to outsource or stop entirely so that you a
 
 ## Pomodoro technique
 
-The Pomodoro techniques aims to minimize distraction since effective preparation requires your total focus.
+The Pomodoro techniques aims to minimize distraction since effective preparation requires your total focus. The Pomodoro technique eliminates procrastination by breaking tasks into manageable intervals and leveraging the following psychological principles:
+
+1. Reduces Overwhelm: Large, intimidating tasks are broken into 25-minute focused sessions (“Pomodoros”), making them feel more achievable.
+2. Creates Urgency: Setting a timer introduces a sense of urgency, encouraging you to focus and avoid distractions during the session.
+3. Encourages Focus: Committing to just 25 minutes of work helps overcome the resistance to starting by making the task feel more manageable. This aligns with Parkinson’s Law, which states that work tends to expand to fill the time available for its completion. By setting a clear, short time limit, the Pomodoro Technique prevents unnecessary expansion and promotes focused effort.
+4. Builds Momentum: Once you begin, it’s easier to continue working, often leading to more productivity beyond the initial session.
+5. Minimizes Decision Fatigue: With a structured system of work and break intervals, you spend less mental energy deciding when to work or pause.
+6. Reinforces Reward: Short, scheduled breaks after each Pomodoro create a reward cycle, associating work with positive outcomes and reducing dread.
+7. Improves Time Awareness: The timed intervals help you better estimate how long tasks take, promoting realistic planning and reducing procrastination caused by misjudging task duration.
+  
+By addressing the psychological barriers to starting and sustaining focus, the Pomodoro Technique makes work feel less overwhelming and helps you develop consistent, productive habits.
 
 One Pomodoro is 25 minutes of strictly studying without distraction followed by 5 minutes of rest doing whatever you want. After every four Pomodoros, increase your rest time by another five minutes.
 - 25 min on; 5 min off (4x)
 - 25 min on; 10 min off (4x)
-- And so on, but *ideally* you really shouldn't be studying for that long because of diminishing returns (Pareto Principle).
+- And so on, but *ideally* you really shouldn't be studying for longer than this example because of diminishing returns (Pareto Principle).
 
 ### THE VALUE OF 5–10-MINUTE BREAKS
 
