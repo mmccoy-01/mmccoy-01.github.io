@@ -278,7 +278,7 @@ Know when to grit or quit. Know when to outsource or stop entirely so that you a
 
 ## Pomodoro technique
 
-The Pomodoro techniques aims to minimize distraction since effective preparation requires your total focus. The Pomodoro technique eliminates procrastination by breaking tasks into manageable intervals and leveraging the following psychological principles:
+The Pomodoro technique aims to minimize distraction since effective preparation requires your total focus. The Pomodoro technique eliminates procrastination by breaking tasks into manageable intervals and leveraging the following psychological principles:
 
 1. Reduces Overwhelm: Large, intimidating tasks are broken into 25-minute focused sessions (“Pomodoros”), making them feel more achievable.
 2. Creates Urgency: Setting a timer introduces a sense of urgency, encouraging you to focus and avoid distractions during the session.
