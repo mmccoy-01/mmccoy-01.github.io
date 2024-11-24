@@ -550,3 +550,4 @@ Cicero describes the story of Themistocles where Themistocles remarks about the 
 - [How to Get the Most Out of Studying](https://www.samford.edu/departments/academic-success-center/how-to-study)
 - Make it Stick: The Science of Successful Learning by Peter C. Brown, Henry L. Roediger III, and Mark A. McDaniel.
 - The Only Study Guide You'll Ever Need by Jade Bowler
+- A Mind for Numbers by Barbara Oakley
