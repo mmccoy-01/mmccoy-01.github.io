@@ -4,7 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title }}</title>
-  
+
+  {% if page.image %}
+    <meta property="og:image" content="{{ page.image }}" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta name="twitter:image" content="{{ page.image }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+  {% endif %}
   <style>
     html, body {
       margin: 0;
