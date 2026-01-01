@@ -169,16 +169,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Hero Section */
   .hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767288997/Wedding/engagement_ai_inl9tv.jpg');
-    background-size: cover;
-    background-position: center;
-  }
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center; /* was flex-end */
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767288997/Wedding/engagement_ai_inl9tv.jpg');
+  background-size: cover;
+  background-position: center;
+  padding-top: 20rem; /* optional fine-tuning */
+}
 
   .hero::before {
     content: '';
@@ -595,6 +596,35 @@ document.addEventListener('DOMContentLoaded', function() {
     margin: 2rem auto;
   }
 
+  .wedding-banner {
+  font-family: "Cormorant Garamond", serif; /* optional, very wedding */
+  text-align: center;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.wedding-banner::after {
+  content: "💍";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white; /* match your background */
+  padding: 0 6px;
+  font-size: 1rem;
+}
+
+.wedding-banner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+}
+
+
   /* Hide original story section - we'll replace with parallax, but you re-show it later as lore */
   /* .our-story { display: none; } */
 </style>
@@ -605,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <h1>
       Mackenzie's Wedding 
-      <span style="font-size: 0.4em; font-weight: normal;">feat. Michael</span>
+      <span style="font-size: 0.25em; font-weight: normal;">feat. Michael</span>
     </h1>
 
     <p style="font-size: 1rem; margin: 1rem 0;">She’s the bride. He's the plot twist.</p>
@@ -619,6 +649,10 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
+<h4 class="wedding-banner">
+  Continue scrolling below to enjoy their love story. The experience is best enjoyed if you click that audio icon at the bottom right of the screen. If you've already watched this experience, click 
+  <a href="#welcome-section">here</a> to bring you down to the details.
+</h4>
 
 <section class="parallax-section" data-parallax>
   <img class="parallax-bg" src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767117967/Wedding/text-pad_hppcof.png" alt="Couple walking in autumn">
@@ -675,16 +709,269 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div style="text-align: center; padding: 4rem 1rem;">
   <h1>They're getting married!</h1>
-  <h2>
-    Click 
-    <a href="#welcome-section" style="color: inherit; text-decoration: underline;">
-      HERE
-    </a>
-    for the details or keep scrolling for the lore.
-  </h2>
   <p>Michael and Mackenzie are so excited to celebrate with their favorite people.</p>
   <p>That is, if they can make it there...</p>
 </div>
+
+
+<style>
+  /* Startling Statistic Section */
+  .stat-section {
+    background: radial-gradient(circle at top, #1a1a1a 0%, #000 60%, #050509 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1.5rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-section::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0.4;
+    top: -120px;
+    right: -120px;
+    filter: blur(0.5px);
+  }
+
+  .stat-card {
+    position: relative;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem clamp(2.2rem, 4vw, 3.5rem);
+    border-radius: 24px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    overflow: hidden;
+
+    /* initial "hidden" state for scroll pop-in */
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+      radial-gradient(circle at bottom right, rgba(255, 204, 153, 0.16) 0%, transparent 55%);
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .stat-card-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f0e6ff;
+    margin-bottom: 1.4rem;
+  }
+
+  .stat-tag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ffb347;
+    box-shadow: 0 0 10px rgba(255, 179, 71, 0.9);
+  }
+
+  .stat-eyebrow {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f2dede;
+    opacity: 0.9;
+    margin-bottom: 0.45rem;
+  }
+
+  .stat-headline-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-percentage {
+    font-size: clamp(3.6rem, 6vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #ffb347;
+    text-shadow: 0 0 20px rgba(255, 179, 71, 0.6);
+    transform-origin: center;
+  }
+
+  .stat-headline-text {
+    font-size: 1.1rem;
+    max-width: 220px;
+    color: #f7f7f7;
+    opacity: 0.9;
+  }
+
+  .stat-divider {
+    height: 1px;
+    width: 100%;
+    margin: 1.75rem 0 1.25rem;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.0),
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.0)
+    );
+  }
+
+  .stat-body {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #f7f7f7;
+  }
+
+  .stat-body p {
+    margin: 0 0 0.9rem;
+  }
+
+  .stat-body p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .stat-footnote {
+    margin-top: 1.5rem;
+    font-size: 0.86rem;
+    color: #d0d0d0;
+    opacity: 0.9;
+  }
+
+  .stat-footnote span {
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  /* Scroll-in state */
+  .stat-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* One-time punchy keyframe for the percentage */
+  .stat-card.visible .stat-percentage {
+    animation: stat-pop 0.85s ease-out both;
+  }
+
+  @keyframes stat-pop {
+    0%   { transform: scale(0.7);   opacity: 0; }
+    40%  { transform: scale(1.08);  opacity: 1; }
+    70%  { transform: scale(0.96); }
+    100% { transform: scale(1);    }
+  }
+
+  @media (max-width: 768px) {
+    .stat-section {
+      padding: 4.5rem 1.25rem;
+      min-height: 80vh;
+    }
+    .stat-card {
+      padding: 2.25rem 1.8rem;
+      border-radius: 20px;
+    }
+    .stat-headline-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .stat-headline-text {
+      max-width: none;
+    }
+  }
+</style>
+
+<section class="stat-section">
+  <div class="stat-card" id="marriage-stat-card">
+    <div class="stat-card-inner">
+      <div class="stat-tag">
+        <span class="stat-tag-dot"></span>
+        Relationship Risk Report
+      </div>
+
+      <div class="stat-eyebrow">Marriage is a scary thing.</div>
+
+      <div class="stat-headline-row">
+        <div class="stat-percentage">99.9%</div>
+        <div class="stat-headline-text">
+          of divorces begin with one alarming common factor.
+        </div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-body">
+        <p>A recent study has found that <strong>99.9% of divorces begin with marriage.</strong></p>
+        <p>Marriage counselors lovingly call this phenomenon <strong>“job security.”</strong></p>
+        <p>Scientists are still working tirelessly to find a safer alternative.</p>
+        <p>So let’s be careful — <strong>I’d hate for us to become another statistic.</strong></p>
+      </div>
+
+      <div class="stat-footnote">
+        Warning: <span>correlation does not imply causation. </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll-triggered reveal for the statistic card
+  (function () {
+    const card = document.getElementById("marriage-stat-card");
+    if (!card || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            card.classList.add("visible");
+            // If you want it to only trigger once, unobserve after:
+            observer.unobserve(card);
+          }
+        });
+      },
+      {
+        threshold: 0.45,                // about half the card in view
+        rootMargin: "0px 0px -10% 0px", // small bottom margin
+      }
+    );
+
+    observer.observe(card);
+  })();
+</script>
+
 
 <style>
   .split-hero {
@@ -1480,272 +1767,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })();
 </script>
-
-
-
-
-
-
-
-<style>
-  /* Startling Statistic Section */
-  .stat-section {
-    background: radial-gradient(circle at top, #1a1a1a 0%, #000 60%, #050509 100%);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6rem 1.5rem;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stat-section::before {
-    content: "";
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    opacity: 0.4;
-    top: -120px;
-    right: -120px;
-    filter: blur(0.5px);
-  }
-
-  .stat-card {
-    position: relative;
-    max-width: 640px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 3rem clamp(2.2rem, 4vw, 3.5rem);
-    border-radius: 24px;
-    background: rgba(10, 10, 10, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    overflow: hidden;
-
-    /* initial "hidden" state for scroll pop-in */
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-    transition:
-      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .stat-card::before {
-    content: "";
-    position: absolute;
-    inset: -40%;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
-      radial-gradient(circle at bottom right, rgba(255, 204, 153, 0.16) 0%, transparent 55%);
-    opacity: 0.7;
-    mix-blend-mode: screen;
-    pointer-events: none;
-  }
-
-  .stat-card-inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .stat-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #f0e6ff;
-    margin-bottom: 1.4rem;
-  }
-
-  .stat-tag-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: #ffb347;
-    box-shadow: 0 0 10px rgba(255, 179, 71, 0.9);
-  }
-
-  .stat-eyebrow {
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #f2dede;
-    opacity: 0.9;
-    margin-bottom: 0.45rem;
-  }
-
-  .stat-headline-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .stat-percentage {
-    font-size: clamp(3.6rem, 6vw, 4.8rem);
-    font-weight: 700;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: #ffb347;
-    text-shadow: 0 0 20px rgba(255, 179, 71, 0.6);
-    transform-origin: center;
-  }
-
-  .stat-headline-text {
-    font-size: 1.1rem;
-    max-width: 220px;
-    color: #f7f7f7;
-    opacity: 0.9;
-  }
-
-  .stat-divider {
-    height: 1px;
-    width: 100%;
-    margin: 1.75rem 0 1.25rem;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.0),
-      rgba(255, 255, 255, 0.35),
-      rgba(255, 255, 255, 0.0)
-    );
-  }
-
-  .stat-body {
-    font-size: 1.02rem;
-    line-height: 1.7;
-    color: #f7f7f7;
-  }
-
-  .stat-body p {
-    margin: 0 0 0.9rem;
-  }
-
-  .stat-body p:last-of-type {
-    margin-bottom: 0;
-  }
-
-  .stat-footnote {
-    margin-top: 1.5rem;
-    font-size: 0.86rem;
-    color: #d0d0d0;
-    opacity: 0.9;
-  }
-
-  .stat-footnote span {
-    opacity: 0.7;
-    font-style: italic;
-  }
-
-  /* Scroll-in state */
-  .stat-card.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  /* One-time punchy keyframe for the percentage */
-  .stat-card.visible .stat-percentage {
-    animation: stat-pop 0.85s ease-out both;
-  }
-
-  @keyframes stat-pop {
-    0%   { transform: scale(0.7);   opacity: 0; }
-    40%  { transform: scale(1.08);  opacity: 1; }
-    70%  { transform: scale(0.96); }
-    100% { transform: scale(1);    }
-  }
-
-  @media (max-width: 768px) {
-    .stat-section {
-      padding: 4.5rem 1.25rem;
-      min-height: 80vh;
-    }
-    .stat-card {
-      padding: 2.25rem 1.8rem;
-      border-radius: 20px;
-    }
-    .stat-headline-row {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .stat-headline-text {
-      max-width: none;
-    }
-  }
-</style>
-
-<section class="stat-section">
-  <div class="stat-card" id="marriage-stat-card">
-    <div class="stat-card-inner">
-      <div class="stat-tag">
-        <span class="stat-tag-dot"></span>
-        Relationship Risk Report
-      </div>
-
-      <div class="stat-eyebrow">Marriage is a scary thing.</div>
-
-      <div class="stat-headline-row">
-        <div class="stat-percentage">99.9%</div>
-        <div class="stat-headline-text">
-          of divorces begin with one alarming common factor.
-        </div>
-      </div>
-
-      <div class="stat-divider"></div>
-
-      <div class="stat-body">
-        <p>A recent study has found that <strong>99.9% of divorces begin with marriage.</strong></p>
-        <p>Marriage counselors lovingly call this phenomenon <strong>“job security.”</strong></p>
-        <p>Scientists are still working tirelessly to find a safer alternative.</p>
-        <p>So let’s be careful — <strong>I’d hate for us to become another statistic.</strong></p>
-      </div>
-
-      <div class="stat-footnote">
-        Warning: <span>correlation does not imply causation. </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  // Scroll-triggered reveal for the statistic card
-  (function () {
-    const card = document.getElementById("marriage-stat-card");
-    if (!card || !("IntersectionObserver" in window)) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            card.classList.add("visible");
-            // If you want it to only trigger once, unobserve after:
-            observer.unobserve(card);
-          }
-        });
-      },
-      {
-        threshold: 0.45,                // about half the card in view
-        rootMargin: "0px 0px -10% 0px", // small bottom margin
-      }
-    );
-
-    observer.observe(card);
-  })();
-</script>
-
-
 
 <section id="welcome-section" style="padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto;">
 
