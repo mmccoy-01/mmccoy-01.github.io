@@ -1,0 +1,2160 @@
+---
+layout: wedding
+menu: false
+date: '2025-12-30 11:00:00'
+title: Wedding
+description: This page is for the wedding.
+permalink: /wedding/
+---
+
+<style>
+  * { box-sizing: border-box; }
+</style>
+
+<iframe
+  id="yt-audio"
+  width="1"
+  height="1"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  src="https://www.youtube.com/embed/qiKOif0UKRM?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=qiKOif0UKRM">
+</iframe>
+
+<button id="audioToggle">
+  <svg id="icon-muted" width="24" height="24" fill="#b2926b" viewBox="0 0 24 24">
+    <path d="M16.5 12c0-1.77-.77-3.29-2-4.31v8.63c1.23-1.02 2-2.54 2-4.32z" opacity=".3"/>
+    <path d="M12 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM5 9v6h4l5 5V4l-5 5H5z"/>
+  </svg>
+
+  <svg id="icon-sound" width="24" height="24" fill="#b2926b" viewBox="0 0 24 24" style="display:none;">
+    <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+    <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+  </svg>
+</button>
+
+<style>
+  /* Elegant bridal speaker button */
+  #audioToggle {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(178,146,107,0.45); /* soft gold line */
+    background: rgba(255,255,255,0.6); /* pearl white glass */
+    backdrop-filter: blur(6px) saturate(180%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    /* subtle glow + shadow */
+    box-shadow:
+      0 4px 12px rgba(178,146,107,0.25),
+      inset 0 0 6px rgba(255,255,255,0.4);
+    transition: all 0.35s ease;
+    z-index: 9999; /* make sure it's above everything */
+  }
+
+  /* gold shimmer on hover */
+  #audioToggle:hover {
+    background: rgba(255,255,255,0.8);
+    box-shadow:
+      0 6px 18px rgba(178,146,107,0.35),
+      inset 0 0 8px rgba(255,255,255,0.6);
+    transform: translateY(-2px);
+  }
+
+  /* tiny bounce when clicked - feels luxurious */
+  #audioToggle:active {
+    transform: scale(0.96);
+  }
+</style>
+
+<script>
+function toggleIcons(isMuted) {
+  document.getElementById('icon-muted').style.display = isMuted ? 'block' : 'none';
+  document.getElementById('icon-sound').style.display = isMuted ? 'none' : 'block';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const iframe = document.getElementById('yt-audio');
+  const button = document.getElementById('audioToggle');
+  if (!iframe || !button) return;
+
+  let isMuted = true;
+  toggleIcons(true);
+
+  function sendCommand(func, args = []) {
+    iframe.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: func,
+      args: args
+    }), '*');
+  }
+
+  button.addEventListener('click', function() {
+    if (isMuted) {
+      sendCommand('unMute');
+      sendCommand('playVideo');
+      isMuted = false;
+      toggleIcons(false);
+    } else {
+      sendCommand('mute');
+      isMuted = true;
+      toggleIcons(true);
+    }
+  });
+});
+</script>
+
+<style>
+  /* Autumnal Color Palette */
+  :root {
+    --color-autumn-rust: #C65D3B;
+    --color-autumn-gold: #D4A574;
+    --color-autumn-burgundy: #8B3A3A;
+    --color-autumn-sage: #8B9556;
+    --color-autumn-cream: #F5E6D3;
+    --color-autumn-brown: #4A3228;
+    --color-autumn-orange: #E87A3E;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    background: #FDFBF7;
+    color: var(--color-autumn-brown);
+    line-height: 1.8;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: var(--color-black);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    font-size: 1.125rem;
+    margin: 0 0 1rem 0;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767288997/Wedding/engagement_ai_inl9tv.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+  }
+
+  /* Our Story Section */
+  .our-story {
+    padding: 6rem 1rem;
+    background: var(--color-autumn-cream);
+  }
+
+  .container {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .container-lg {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .icon-heart {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-autumn-rust);
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
+
+  .story-card {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .story-card h4 {
+    color: var(--color-autumn-rust);
+    margin-bottom: 1rem;
+  }
+
+  .story-card p {
+    color: #6B5A4C;
+  }
+
+  /* Event Details */
+  .event-details {
+    padding: 6rem 1rem;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .event-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .event-card {
+    background: var(--color-autumn-cream);
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .event-card h3 {
+    color: var(--color-autumn-rust);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .event-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .event-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-autumn-burgundy);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .event-note {
+    background: var(--color-autumn-cream);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    margin-top: 3rem;
+    color: #6B5A4C;
+  }
+
+  /* Gallery */
+  .gallery {
+    padding: 6rem 1rem;
+    background: var(--color-autumn-cream);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+
+  .gallery-item:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Travel Section */
+  .travel {
+    padding: 6rem 1rem;
+    background: var(--color-autumn-cream);
+  }
+
+  .travel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .travel-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .travel-card {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .travel-card h3 {
+    color: var(--color-autumn-burgundy);
+    margin: 1.5rem 0;
+  }
+
+  .travel-card p {
+    color: #6B5A4C;
+    font-size: 1rem;
+  }
+
+  .travel-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-autumn-rust);
+    margin: 0 auto;
+  }
+
+  .hotel-info {
+    border-top: 1px solid #E5D3C0;
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* RSVP Section */
+  .rsvp {
+    padding: 6rem 1rem;
+  }
+
+  .rsvp-container {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .rsvp-form {
+    background: var(--color-autumn-cream);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #E5D3C0;
+    border-radius: 0.25rem;
+    background: white;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-autumn-rust);
+    box-shadow: 0 0 0 2px rgba(198, 93, 59, 0.1);
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  .radio-label input[type="radio"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--color-autumn-rust);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-autumn-rust);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: Georgia, serif;
+  }
+
+  .submit-btn:hover {
+    background: var(--color-autumn-burgundy);
+  }
+
+  .contact-info {
+    color: #6B5A4C;
+    margin-top: 2rem;
+  }
+
+  .contact-info a {
+    color: var(--color-autumn-rust);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--color-autumn-brown);
+    color: var(--color-autumn-cream);
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .footer-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-line {
+    width: 3rem;
+    height: 1px;
+    background: var(--color-autumn-gold);
+  }
+
+  .footer h3 {
+    color: var(--color-autumn-gold);
+    margin-bottom: 1rem;
+  }
+
+  .footer p {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+
+  .footer-note {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    opacity: 0.75;
+  }
+
+  /* Icons (using Unicode symbols) */
+  .icon::before {
+    content: '';
+    display: inline-block;
+  }
+
+  /* Parallax Scrollytelling Styles */
+  .parallax-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+  }
+
+  .parallax-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    z-index: 1;
+  }
+
+  .parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .parallax-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .parallax-content h2 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .parallax-content p {
+    font-size: 1.25rem;
+    line-height: 2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    margin-bottom: 1rem;
+  }
+
+  .parallax-divider {
+    width: 80px;
+    height: 2px;
+    background: var(--color-autumn-gold);
+    margin: 2rem auto;
+  }
+
+  /* Hide original story section - we'll replace with parallax, but you re-show it later as lore */
+  /* .our-story { display: none; } */
+</style>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="divider"></div>
+
+    <h1>
+      Mackenzie's Wedding 
+      <span style="font-size: 0.4em; font-weight: normal;">feat. Michael</span>
+    </h1>
+
+    <p style="font-size: 1rem; margin: 1rem 0;">She’s the bride. He's the plot twist.</p>
+
+    <div style="margin-top: 2rem;">
+      <p style="font-size: 1.25rem;">September 23, 2028</p>
+      <p style="font-size: 1.25rem;">Location: TBD</p>
+    </div>
+
+    <div class="divider" style="margin-top: 3rem;"></div>
+  </div>
+</section>
+
+
+<section class="parallax-section" data-parallax>
+  <img class="parallax-bg" src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767117967/Wedding/text-pad_hppcof.png" alt="Couple walking in autumn">
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content" data-fade-in>
+    <div class="parallax-divider"></div>
+    <h2>How They Met</h2>
+    <p>On a summer afternoon in 2022, Mackenzie pool-hopped to Michael's house then asked him to Applebee's.</p>
+    <p>He swooned her with his mellifluous kazoo tunes, and they've been insufferably inseparable ever since.</p>
+    <div class="parallax-divider"></div>
+  </div>
+</section>
+
+<section class="parallax-section" data-parallax>
+  <img class="parallax-bg" src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767116058/Wedding/pool_meymni.jpg" alt="Romantic dinner">
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content" data-fade-in>
+    <div class="parallax-divider"></div>
+    <h2>The Journey</h2>
+    <p>Love is compromise: He compromises her personal space; she compromises her standards.</p>
+    <p>Together, they transcend sanity and approach eternity.</p>
+    <div class="parallax-divider"></div>
+  </div>
+</section>
+
+<section class="parallax-section" data-parallax>
+  <img class="parallax-bg" src="https://pbs.twimg.com/media/ETnqN3iWAAAsBsW.jpg" alt="Scotland highlands">
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content" data-fade-in>
+    <div class="parallax-divider"></div>
+    <h2>The Proposal</h2>
+    <p>Three years later in Scotland, Michael got down on one knee and proposed to Mackenzie at the top of the Wallace monument.</p>
+    <p>William Wallace fought for freedom there and Michael surrendered his.</p>
+    <div class="parallax-divider"></div>
+  </div>
+</section>
+
+<section class="parallax-section" data-parallax>
+  <img class="parallax-bg" src="https://images.unsplash.com/photo-1630326844982-9b35b01cfe59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Wedding rings">
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content" data-fade-in>
+    <div class="parallax-divider"></div>
+    <h2>Looking Forward</h2>
+    <p>Now, they're thrilled to celebrate their love with the people who mean the most to them.</p>
+    <p>Join them as they say "I do" and begin this beautiful new chapter together.</p>
+    <div class="parallax-divider"></div>
+  </div>
+</section>
+
+<div class="split-hero">
+  <div class="hero-1"></div>
+  <div class="hero-2"></div>
+</div>
+
+<div style="text-align: center; padding: 4rem 1rem;">
+  <h1>They're getting married!</h1>
+  <h2>
+    Click 
+    <a href="#welcome-section" style="color: inherit; text-decoration: underline;">
+      HERE
+    </a>
+    for the details or keep scrolling for the lore.
+  </h2>
+  <p>Michael and Mackenzie are so excited to celebrate with their favorite people.</p>
+  <p>That is, if they can make it there...</p>
+</div>
+
+<style>
+  .split-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80vh;
+  }
+  .split-hero div {
+    background-size: cover;
+    background-position: center;
+  }
+  .split-hero .hero-1 {
+    background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767048358/Wedding/1_wiw3ti.jpg');
+  }
+  .split-hero .hero-2 {
+    background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767048452/Wedding/2_j6vocu.png');
+  }
+  @media(max-width:900px){
+    .split-hero { grid-template-columns: 1fr; height: 120vh; }
+  }
+</style>
+
+<div class="scrollytelling-section">
+<style>
+  .scrolly-wrapper {
+    position: relative;
+    width: 100%;
+    height: 450vh;
+  }
+  .sticky-visual {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+  }
+  .sticky-visual img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+  }
+  .scrolling-text-overlay {
+    position: relative;
+    z-index: 2;
+    margin-top: -100vh;
+  }
+  .initial-gap { height: 80vh; }
+  .content-card {
+    background: rgba(255, 255, 255, 0.9);
+    color: #222;
+    max-width: 400px;
+    margin-left: 5%;
+    margin-bottom: 100vh;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  .content-card h3 {
+    margin: 0;
+    font-family: serif;
+    font-style: italic;
+    line-height: 1.4;
+    font-size: 1.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .content-card {
+      view-timeline-name: --card;
+      view-timeline-axis: block;
+      animation-timeline: --card;
+      animation-name: fade-in;
+      animation-range: entry 10% cover 30%;
+      animation-fill-mode: both;
+    }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @media (max-width: 600px) {
+    .content-card { margin-left: auto; margin-right: auto; max-width: 85%; }
+    .scrolly-wrapper { height: 500vh; }
+  }
+</style>
+
+<div class="scrolly-wrapper">
+  <div class="sticky-visual">
+    <img src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767048358/Wedding/3_poxe5p.jpg" alt="Wedding Photo">
+  </div>
+  <div class="scrolling-text-overlay">
+    <div class="initial-gap"></div>
+    <div class="content-card">
+      <h3>Promises matter most when everything else falls apart.</h3>
+    </div>
+    <div class="content-card">
+      <h3>Before the wedding, they have to figure out who they really are.</h3>
+    </div>
+    <div class="content-card">
+      <h3>They promised forever—but now forever feels farther than ever.</h3>
+    </div>
+    <div style="height: 50vh;"></div>
+  </div>
+</div>
+</div>
+
+<style>
+  .promo-hero {
+    position: relative;
+    padding: 6rem 1.5rem 5rem;
+    background: radial-gradient(circle at top, #1a1a1a 0%, #050505 45%, #000 100%);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .promo-hero::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%),
+      radial-gradient(circle at bottom right, rgba(255, 179, 71, 0.18), transparent 60%);
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .promo-inner {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .promo-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: promoFadeUp 0.7s 0.1s forwards;
+  }
+
+  .promo-pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ffb347;
+    box-shadow: 0 0 12px rgba(255, 179, 71, 0.9);
+  }
+
+  .promo-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 1.4rem;
+    text-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: promoFadeUp 0.8s 0.25s forwards;
+  }
+
+  .promo-title span {
+    display: inline-block;
+    padding: 0.15em 0.4em;
+    border-radius: 0.3em;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    );
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+  }
+
+  .promo-divider {
+    width: 90px;
+    height: 2px;
+    margin: 0 auto 1.7rem;
+    background: linear-gradient(to right, #ffb347, #ffe29f);
+    box-shadow: 0 0 18px rgba(255, 179, 71, 0.7);
+    opacity: 0;
+    transform: scaleX(0.4);
+    animation: dividerGrow 0.7s 0.5s forwards;
+  }
+
+  .promo-meta {
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f5e9ff;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: promoFadeUp 0.75s 0.55s forwards;
+  }
+
+  .promo-time {
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffe7c2;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: promoFadeUp 0.8s 0.7s forwards;
+  }
+
+  .promo-subline {
+    margin-top: 1.5rem;
+    font-size: 0.98rem;
+    color: #dcdcdc;
+    opacity: 0.85;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: promoFadeUp 0.8s 0.85s forwards;
+  }
+
+  .wedding-video-wrapper {
+  margin: 3rem auto 5rem;
+  max-width: 900px;
+  text-align: center;
+}
+
+.wedding-video-frame {
+  position: relative;
+  padding: 2.5rem;
+  border: 2px solid #d4c59c;
+  border-radius: 14px;
+  background: rgba(255, 250, 245, 0.85);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.15),
+    inset 0 0 24px rgba(212, 197, 156, 0.45);
+}
+
+.wedding-video-frame iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+/* Ornate gold filigree corners */
+.ornate-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.8;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.ornate-corner.tl { top: -10px; left: -10px; }
+.ornate-corner.tr { top: -10px; right: -10px; transform: scaleX(-1); }
+.ornate-corner.bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+.ornate-corner.br { bottom: -10px; right: -10px; transform: scale(-1, -1); }
+
+.wedding-video-caption {
+  margin-top: 1.25rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: #6b5e44;
+}
+
+  @keyframes promoFadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes dividerGrow {
+    0% {
+      opacity: 0;
+      transform: scaleX(0.3);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .promo-hero {
+      padding: 4.5rem 1.25rem 3.5rem;
+    }
+    .promo-subline {
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<section class="promo-hero" id="promise-promo">
+  <div class="promo-inner">
+    <div class="promo-pill">
+      <span class="promo-pill-dot"></span>
+      New Series Event
+    </div>
+
+    <h1 class="promo-title">
+      <span>Promise Me This</span>
+    </h1>
+
+    <div class="promo-divider"></div>
+
+    <div class="promo-meta">
+      Premiering Fall 2026
+    </div>
+    <div class="promo-time">
+      Tuesdays @ 8/7c
+    </div>
+
+    <p class="promo-subline">
+      The wedding is the easy part. It’s everything leading up to it that gets… interesting.
+    </p>
+  </div>
+</section>
+
+
+
+<style>
+  /* ========== ORNATE VIDEO CONTAINER ========== */
+  .ornate-video-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 1rem 2rem;
+    background: radial-gradient(circle at top, #fdf5f7 0, #f3e3e7 40%, #e2d2d9 100%);
+  }
+
+  .ornate-video-frame {
+    position: relative;
+    max-width: 720px;
+    width: 100%;
+    padding: 1.75rem;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 0 0, rgba(255,255,255,0.9), transparent 60%),
+      radial-gradient(circle at 100% 0, rgba(255,255,255,0.8), transparent 60%),
+      linear-gradient(135deg, #f9d9e0, #f1c4e3, #d8b6f0);
+    box-shadow:
+      0 18px 45px rgba(0,0,0,0.25),
+      0 0 0 2px rgba(255,255,255,0.8);
+  }
+
+  .ornate-video-inner {
+    position: relative;
+    border-radius: 18px;
+    padding: 1.5rem;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.2));
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.7),
+      0 12px 30px rgba(0,0,0,0.35);
+  }
+
+  .ornate-video-inner::before,
+  .ornate-video-inner::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 16px;
+    border: 1px dashed rgba(255,255,255,0.65);
+    pointer-events: none;
+  }
+
+  .ornate-video-inner::after {
+    inset: 18px;
+    border-style: solid;
+    border-width: 1px;
+    border-image: linear-gradient(
+      120deg,
+      rgba(255,255,255,0.9),
+      rgba(255,215,230,0.8),
+      rgba(210,190,255,0.8)
+    ) 1;
+    opacity: 0.9;
+  }
+
+  .ornate-video-label {
+    position: absolute;
+    top: -0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.35rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    font-family: "Georgia", serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .ornate-video-inner iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: 12px;
+    display: block;
+    background: #000;
+  }
+
+  @media (max-width: 768px) {
+    .ornate-video-wrapper {
+      padding: 2.5rem 1rem 1.5rem;
+    }
+    .ornate-video-frame {
+      padding: 1.25rem;
+      border-radius: 20px;
+    }
+    .ornate-video-inner {
+      padding: 1rem;
+    }
+  }
+</style>
+  <style>
+  .story-wrapper {
+    position: relative;
+    background: #000;
+    height: 100vh;
+    /* overflow: hidden;  <-- REMOVED TO FIX STICKY BEHAVIOR */
+    display: block;
+  }
+
+
+  .horizontal-scroll {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden; /* This keeps the horizontal track clipped correctly */
+    z-index: 10;
+  }
+
+  .horizontal-track {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+    transform: translateX(0);
+    transition: transform 0.1s linear;
+  }
+
+  .scrolly-panel {
+    position: relative;
+    flex: 0 0 100vw;  /* one full viewport width per panel */
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 8%;
+    box-sizing: border-box;
+  }
+
+  .panel-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* Ensure explicit layering */
+  }
+
+  /* separate dark overlay so the image isn’t just “grey” if anything goes wrong */
+  .panel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.25)
+    );
+    z-index: 2; /* Sit on top of image */
+  }
+
+  .glass-card {
+    position: relative;
+    z-index: 3; /* Sit on top of overlay */
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    padding: 3rem;
+    max-width: 450px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: "Georgia", serif;
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .scrolly-panel.show-text .glass-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glass-card h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: normal;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .glass-card h2 {
+    margin: 0;
+    font-size: 2.2rem;
+  }
+
+  .glass-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .scrolly-panel {
+      padding-left: 0;
+      justify-content: center;
+    }
+    .glass-card {
+      width: 85%;
+      padding: 1.75rem;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="story-wrapper" id="promise-scroll">
+  <div class="horizontal-scroll">
+    <div class="horizontal-track">
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052629/Wedding/4_dqille.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>For one couple, everything is about to change.</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052631/Wedding/5_fr6cdl.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Watch as they face the beautiful, terrifying waters of engagement and discover whether love can truly carry them to the altar.</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052629/Wedding/6_hsjbgw.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Critics are calling it "A show that definitely does not exist."</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052631/Wedding/7_iewtwe.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Against all odds, they're renewed for two more seasons.</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052700/Wedding/8_d3sehm.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>This new series explores big questions like:</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052632/Wedding/9_jdzh3m.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Can two people grow without growing apart?</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052700/Wedding/10_xpdwut.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>How much truth can a relationship survive?</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052631/Wedding/11_xthe9x.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>What does it mean to choose someone, forever, when you're still figuring out who you are?</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052635/Wedding/12_k4bsrg.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Filmed on location in Michael's imagination.</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052631/Wedding/13_iefxbq.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>Can their love withstand the storms ahead...</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052635/Wedding/14_bgpnpq.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>... and will anyone tune in to watch it?</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052633/Wedding/15_xtknyh.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <p>“I still have no idea what the plot is, but the cinematography is gorgeous.”</p>
+          <strong style="display:block;margin-top:10px;">— Variety</strong>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052633/Wedding/16_kw9w6g.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <p>“Is it a drama? A comedy? A romance? Yes. And the only thing more turbulent than their engagement is the lake they keep having emotional conversations beside.”</p>
+          <strong style="display:block;margin-top:10px;">— TV Guide</strong>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052635/Wedding/17_nk2ohk.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <p>“A show that proves a wedding timeline can feel genuinely high-stakes. The pacing is chaotic, the budget is questionable, and the lead actors are constantly stressed. It’s a masterpiece.”</p>
+          <strong style="display:block;margin-top:10px;">— People Magazine</strong>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052633/Wedding/18_rc5xug.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card">
+          <h3>The finale you won't want to miss.</h3>
+        </div>
+      </div>
+
+      <div class="scrolly-panel">
+        <div class="panel-bg" style="
+          background-image: url('https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767052634/Wedding/19_lwzjov.jpg');
+        "></div>
+        <div class="panel-overlay"></div>
+        <div class="glass-card" style="text-align:center;">
+          <h2>Promise Me This</h2>
+          <p>Coming This Fall (Check local mailboxes for listings)</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const wrapper = document.getElementById('promise-scroll');
+    if (!wrapper) return;
+
+    const track = wrapper.querySelector('.horizontal-track');
+    const panels = wrapper.querySelectorAll('.scrolly-panel');
+    if (!track || !panels.length) return;
+
+    const panelCount = panels.length;
+
+    function setWrapperHeight() {
+      // Total horizontal distance we need to travel
+      const totalScrollWidth = panelCount * window.innerWidth;
+      const extraScroll = totalScrollWidth - window.innerWidth;
+      // Height of the wrapper = viewport height + extra scroll distance
+      wrapper.style.height = (window.innerHeight + extraScroll) + 'px';
+    }
+
+    setWrapperHeight();
+    window.addEventListener('resize', setWrapperHeight);
+
+    function updateScroll() {
+      const rect = wrapper.getBoundingClientRect();
+      const wrapperTop = rect.top + window.scrollY;
+      const maxScroll = wrapper.offsetHeight - window.innerHeight;
+
+      if (maxScroll <= 0) return;
+
+      const currentScroll = window.scrollY - wrapperTop;
+      let progress = currentScroll / maxScroll;
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      const translateX = progress * (panelCount - 1) * window.innerWidth;
+      track.style.transform = `translateX(-${translateX}px)`;
+    }
+
+    window.addEventListener('scroll', updateScroll);
+
+    // Reveal text with IntersectionObserver (cards not stuck invisible)
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show-text');
+            } else {
+              entry.target.classList.remove('show-text');
+            }
+          });
+        },
+        {
+          threshold: 0.85
+        }
+      );
+
+      panels.forEach((panel) => observer.observe(panel));
+    } else {
+      // Fallback: just show all text if IntersectionObserver isn't supported
+      panels.forEach((panel) => panel.classList.add('show-text'));
+    }
+  })();
+</script>
+
+
+
+
+
+
+
+<style>
+  /* Startling Statistic Section */
+  .stat-section {
+    background: radial-gradient(circle at top, #1a1a1a 0%, #000 60%, #050509 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1.5rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-section::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0.4;
+    top: -120px;
+    right: -120px;
+    filter: blur(0.5px);
+  }
+
+  .stat-card {
+    position: relative;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem clamp(2.2rem, 4vw, 3.5rem);
+    border-radius: 24px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    overflow: hidden;
+
+    /* initial "hidden" state for scroll pop-in */
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+      radial-gradient(circle at bottom right, rgba(255, 204, 153, 0.16) 0%, transparent 55%);
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .stat-card-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f0e6ff;
+    margin-bottom: 1.4rem;
+  }
+
+  .stat-tag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ffb347;
+    box-shadow: 0 0 10px rgba(255, 179, 71, 0.9);
+  }
+
+  .stat-eyebrow {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f2dede;
+    opacity: 0.9;
+    margin-bottom: 0.45rem;
+  }
+
+  .stat-headline-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-percentage {
+    font-size: clamp(3.6rem, 6vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #ffb347;
+    text-shadow: 0 0 20px rgba(255, 179, 71, 0.6);
+    transform-origin: center;
+  }
+
+  .stat-headline-text {
+    font-size: 1.1rem;
+    max-width: 220px;
+    color: #f7f7f7;
+    opacity: 0.9;
+  }
+
+  .stat-divider {
+    height: 1px;
+    width: 100%;
+    margin: 1.75rem 0 1.25rem;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.0),
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.0)
+    );
+  }
+
+  .stat-body {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #f7f7f7;
+  }
+
+  .stat-body p {
+    margin: 0 0 0.9rem;
+  }
+
+  .stat-body p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .stat-footnote {
+    margin-top: 1.5rem;
+    font-size: 0.86rem;
+    color: #d0d0d0;
+    opacity: 0.9;
+  }
+
+  .stat-footnote span {
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  /* Scroll-in state */
+  .stat-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* One-time punchy keyframe for the percentage */
+  .stat-card.visible .stat-percentage {
+    animation: stat-pop 0.85s ease-out both;
+  }
+
+  @keyframes stat-pop {
+    0%   { transform: scale(0.7);   opacity: 0; }
+    40%  { transform: scale(1.08);  opacity: 1; }
+    70%  { transform: scale(0.96); }
+    100% { transform: scale(1);    }
+  }
+
+  @media (max-width: 768px) {
+    .stat-section {
+      padding: 4.5rem 1.25rem;
+      min-height: 80vh;
+    }
+    .stat-card {
+      padding: 2.25rem 1.8rem;
+      border-radius: 20px;
+    }
+    .stat-headline-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .stat-headline-text {
+      max-width: none;
+    }
+  }
+</style>
+
+<section class="stat-section">
+  <div class="stat-card" id="marriage-stat-card">
+    <div class="stat-card-inner">
+      <div class="stat-tag">
+        <span class="stat-tag-dot"></span>
+        Relationship Risk Report
+      </div>
+
+      <div class="stat-eyebrow">Marriage is a scary thing.</div>
+
+      <div class="stat-headline-row">
+        <div class="stat-percentage">99.9%</div>
+        <div class="stat-headline-text">
+          of divorces begin with one alarming common factor.
+        </div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat-body">
+        <p>A recent study has found that <strong>99.9% of divorces begin with marriage.</strong></p>
+        <p>Marriage counselors lovingly call this phenomenon <strong>“job security.”</strong></p>
+        <p>Scientists are still working tirelessly to find a safer alternative.</p>
+        <p>So let’s be careful — <strong>I’d hate for us to become another statistic.</strong></p>
+      </div>
+
+      <div class="stat-footnote">
+        Warning: <span>correlation does not imply causation. </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll-triggered reveal for the statistic card
+  (function () {
+    const card = document.getElementById("marriage-stat-card");
+    if (!card || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            card.classList.add("visible");
+            // If you want it to only trigger once, unobserve after:
+            observer.unobserve(card);
+          }
+        });
+      },
+      {
+        threshold: 0.45,                // about half the card in view
+        rootMargin: "0px 0px -10% 0px", // small bottom margin
+      }
+    );
+
+    observer.observe(card);
+  })();
+</script>
+
+
+
+<section id="welcome-section" style="padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto;">
+
+  <h2>Welcome</h2>
+
+  <p>
+    Hi! You’ve found our little corner of the internet for all things wedding-related.
+    We’ll keep this page updated as details are finalized, so you can always check back here for the latest info.
+  </p>
+
+  <hr />
+
+  <h2>The Big Day</h2>
+  <p><strong>Date:</strong> Saturday, September 23, 2028</p>
+  <p><strong>Location:</strong> [City / Region, State] <em>(exact venue details coming soon)</em></p>
+  <p>
+    Expect a cozy early-fall celebration with good food, music, and plenty of time to talk, laugh, and dance.
+  </p>
+
+  <hr />
+
+  <h2>Schedule <span style="font-weight: normal; opacity: .8;">(Tentative)</span></h2>
+  <ul style="list-style: none; padding: 0;">
+    <li><strong>Ceremony</strong> — Time TBD</li>
+    <li><strong>Cocktail Hour</strong> — Time TBD</li>
+    <li><strong>Reception</strong> — Time TBD</li>
+  </ul>
+
+  <p>As we lock in exact times with our venue and vendors, we’ll update this section.</p>
+
+  <hr />
+
+  <h2>Travel &amp; Lodging</h2>
+  <p>We know many of you will be traveling to celebrate with us.</p>
+  <p>If necessary, we’ll share:</p>
+  <ul>
+    <li>Recommended hotels (and any room blocks)</li>
+    <li>Notes on transportation / parking</li>
+    <li>Local coffee &amp; food suggestions</li>
+  </ul>
+  <p>…as we get closer to the date.</p>
+
+  <hr />
+
+  <h2>Registry</h2>
+  <p>
+    We haven’t set up our registry yet.
+    For now, please know that your presence and support mean the most to us. 💛
+  </p>
+  <p>We’ll add registry links here once they’re ready.</p>
+
+  <hr />
+
+  <h2>FAQ</h2>
+
+  <blockquote style="opacity: .8;">
+    This is to let our guests clearly know what the expectations are so they don’t have to fret.
+  </blockquote>
+
+  <p><strong>Will kids be invited?</strong><br>
+  TBD — we’ll include this information with formal invitations.</p>
+
+  <p><strong>Gifts?</strong><br>
+  TBD — we’ll add guidance once registry links are live.</p>
+
+  <p><strong>Cost?</strong><br>
+    You don't have to pay anything for attendance. Just look good and show up.  
+    I <em>want</em> to do a mandatory fit check as part of the RSVP to ensure dress-code compliance,  
+    but we’ll see if Mackenzie or reality lets that happen.
+  </p>
+
+  <p><strong>What should I wear?</strong><br>
+    We’re planning on a formal / semi-formal / cocktail dress code with an autumn palette.  
+    More details to come once we’ve finalized venue and timing.
+  </p>
+
+  <p><strong>Is there parking at the venue?</strong><br>
+    We’ll add details about parking, rideshare, and public transit here once our venue is confirmed.
+  </p>
+
+  <hr />
+
+  <h2>Stay in the Loop</h2>
+  <p>
+    If you have questions, you can always reach out to me or Mackenzie.
+  </p>
+
+  <p>
+    We’re so grateful to have you in our lives and can’t wait to celebrate together on  
+    <strong>September 23, 2028.</strong>
+  </p>
+
+</section>
+
+
+
+
+
+
+<section class="event-details">
+  <div class="container-lg">
+    <h2 class="text-center">Celebration Details</h2>
+
+    <div class="event-grid">
+      <div class="event-card">
+        <h3>Ceremony</h3>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+          <div>
+            <h4>Date</h4>
+            <p style="color: #6B5A4C;">Saturday, September 23, 2028</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <h4>Time</h4>
+            <p style="color: #6B5A4C;">TBD</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <h4>Location</h4>
+            <p style="color: #6B5A4C;">
+              TBD<br>
+              TBD<br>
+              TBD
+            </p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <div>
+            <h4>Attire</h4>
+            <p style="color: #6B5A4C;">Semi-Formal / Cocktail</p>
+            <p style="color: #6B5A4C; margin-top: 0.25rem;">Autumn tones encouraged!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <h3>Reception</h3>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+          <div>
+            <h4>Date</h4>
+            <p style="color: #6B5A4C;">Saturday, September 23, 2028</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <h4>Time</h4>
+            <p style="color: #6B5A4C;">TBD</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <svg class="event-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <h4>Location</h4>
+            <p style="color: #6B5A4C;">
+              TBD<br>
+              TBD<br>
+              Light refreshments during cocktail hour
+            </p>
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 0.25rem; margin-top: 1.5rem;">
+          <p style="color: #6B5A4C;">
+            Dinner, dancing, and celebration to follow. Signature autumn cocktails and seasonal menu featuring local fare.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="event-note">
+        <p>Please note: The ceremony and reception will be held outdoors and indoors. We recommend bringing a light jacket for the evening as temperatures may drop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="container-lg">
+    <h2 class="text-center">Gallery</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767291723/Wedding/YKMA2133_wlr1ja.jpg" alt="Autumn foliage">
+      </div>
+      <div class="gallery-item">
+        <img src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767292538/Wedding/a_dubp91.jpg" alt="Golden autumn leaves">
+      </div>
+      <div class="gallery-item">
+        <img src="https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767292261/Wedding/IMG_5203_ar2nuf.jpg" alt="Wedding venue">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="travel">
+  <div class="container-lg">
+    <h2 class="text-center">Travel & Accommodations</h2>
+
+    <div class="travel-grid">
+      <div class="travel-card">
+        <svg class="travel-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+        </svg>
+        <h3>Getting There</h3>
+        <p>The nearest airport is blah blah blah, approximately X minutes from the venue. Yadda yadda yadda is also nearby.</p>
+      </div>
+
+      <div class="travel-card">
+        <svg class="travel-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M3 21h18"/>
+          <path d="M9 8h1"/>
+          <path d="M9 12h1"/>
+          <path d="M9 16h1"/>
+          <path d="M14 8h1"/>
+          <path d="M14 12h1"/>
+          <path d="M14 16h1"/>
+          <path d="M6 4v17"/>
+          <path d="M18 4v17"/>
+          <path d="M6 4h12"/>
+        </svg>
+        <h3>Where to Stay</h3>
+        <div>
+          <p>TBD</p>
+          <p style="font-size: 0.875rem;">(000) 000-0000</p>
+          <p style="font-size: 0.875rem;">Group rate available?</p>
+          <div class="hotel-info">
+            <p>TBD 2</p>
+            <p style="font-size: 0.875rem;">(000) 000-0000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="travel-card">
+        <svg class="travel-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+          <circle cx="7" cy="17" r="2"/>
+          <path d="M9 17h6"/>
+          <circle cx="17" cy="17" r="2"/>
+        </svg>
+        <h3>Transportation</h3>
+        <p>We recommend renting a car for easy access to the venue. Limited shuttle service will be available from select hotels. More details to follow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rsvp">
+  <div class="rsvp-container">
+    <div class="text-center">
+      <svg style="width: 2rem; height: 2rem; color: var(--color-autumn-rust); margin: 0 auto 1.5rem; display: block;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <rect width="20" height="16" x="2" y="4" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      <h2>RSVP</h2>
+    </div>
+
+    <div class="rsvp-form">
+      <p style="margin-bottom: 1.5rem; text-align: center;">We hope you can join us on our special day! Enter your uniquely secret special RSVP code. Please respond by January 1, 2028.</p>
+      <p>Google embeds need certain cookies to display content. When prompted, choose Allow cookies so the embed can load correctly. If you're using Incognito / private browsing, third-party cookies may be blocked—enable them to make the embed visible.</p>
+
+<div class="google-form-embed">
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSckcV_78GVUzi1PzlLJhtsyS5oicC6LIrp-cDAEn4FRrrnFpw/viewform?embedded=true"
+    width="100%"
+    height="900"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0"
+  >
+    Loading…
+  </iframe>
+</div>
+
+    </div>
+
+    <p class="contact-info text-center">
+      Questions? Hit our line.
+    </p>
+  </div>
+
+  <div class="wedding-video-wrapper">
+  <div class="wedding-video-frame">
+    <div class="ornate-corner tl"></div>
+    <div class="ornate-corner tr"></div>
+    <div class="ornate-corner bl"></div>
+    <div class="ornate-corner br"></div>
+
+<section class="ornate-video-wrapper">
+  <div class="ornate-video-frame">
+    <div class="ornate-video-inner">
+      <div class="ornate-video-label">Official Trailer</div>
+      <iframe
+        src="https://res.cloudinary.com/dtf8hxbjn/video/upload/v1767207783/Wedding/engraving_vccooh.mp4"
+        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="wedding-video-caption">A moment worth reliving</p>
+  </div>
+</section>
+
+</section>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-divider">
+    <div class="footer-line"></div>
+    <svg style="width: 1.5rem; height: 1.5rem; color: var(--color-autumn-gold);" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <div class="footer-line"></div>
+  </div>
+  <h3>M&M</h3>
+  <p>September 23, 2028</p>
+  <p class="footer-note">We can't wait to celebrate with you!</p>
+</footer>
+
+<script>
+  // Parallax scrollytelling effect
+  document.addEventListener('DOMContentLoaded', function() {
+    const parallaxSections = document.querySelectorAll('[data-parallax]');
+    const fadeInElements = document.querySelectorAll('[data-fade-in]');
+    
+    function handleScroll() {
+      const scrollPos = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Parallax background effect
+      parallaxSections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const bg = section.querySelector('.parallax-bg');
+        
+        // Only apply parallax when section is in view
+        if (scrollPos + windowHeight > sectionTop && scrollPos < sectionTop + sectionHeight) {
+          const offset = (scrollPos - sectionTop) * 0.5;
+          bg.style.transform = `translateY(${offset}px)`;
+        }
+      });
+      
+      // Fade in text content
+      fadeInElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        
+        // Trigger fade-in when element enters viewport
+        if (elementTop < windowHeight * 0.75 && elementBottom > 0) {
+          element.classList.add('visible');
+        }
+      });
+    }
+    
+    // Run on scroll with throttling for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    // Initial check on page load
+    handleScroll();
+  });
+</script>

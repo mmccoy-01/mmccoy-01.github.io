@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      /* Important: Do NOT put overflow: hidden on html/body, 
+         or it will break position: sticky deep in the page */
+    }
+  </style>
+
+  {{ page.head }}
+</head>
+<body class="wedding-page">
+  {{ content }}
+</body>
+</html>

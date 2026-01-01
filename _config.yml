@@ -8,8 +8,8 @@ show_hero: true
 menu:
   - title: Home
     url: /
-  - title: "Wedding"
-    url: /wedding/
+  - title: Wedding
+    url: /wedding
   - title: Archive
     url: /archive
   - title: About
