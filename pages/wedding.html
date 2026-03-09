@@ -643,12 +643,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div style="margin-top: 2rem;">
       <p style="font-size: 1.25rem;">September 23, 2028</p>
+
+      <!-- Countdown text -->
+      <p id="countdown" style="font-size: 1.1rem; font-style: italic;"></p>
+
       <p style="font-size: 1.25rem;">Location: TBD</p>
     </div>
 
     <div class="divider" style="margin-top: 3rem;"></div>
   </div>
 </section>
+
+<script>
+  const weddingDate = new Date("2028-09-23");
+  const today = new Date();
+
+  const diffTime = weddingDate - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  document.getElementById("countdown").textContent = diffDays + " days to go!";
+</script>
+
 
 <h4 class="wedding-banner">
   Continue scrolling below to enjoy their love story. The experience is best enjoyed if you click that audio icon at the bottom right of the screen. If you've already watched this experience, click 
