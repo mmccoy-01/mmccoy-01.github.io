@@ -1,26 +1,41 @@
 <!doctype html>
-  <head>
-    <meta charset="utf-8">
-    <title>CV for Michael F. McCoy III</title>
-    <meta name="description" content="CV for Michael F. McCoy III.">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-      }
-      iframe {
-        width: 80%;
-        height: 100vh;
-        border: 0px solid #ccc;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe src="https://raw.githubusercontent.com/mmccoy-01/cv/main/cv-mfm.pdf"></iframe>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title | default: "Curriculum Vitae" }}</title>
+  <meta name="description" content="{{ page.description | default: "CV for Michael F. McCoy III." }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .cv-page {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    .cv-page iframe {
+      width: min(1000px, 96vw);
+      height: 100vh;
+      border: 0;
+    }
+
+    .fallback {
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+  </style>
+</head>
+<body>
+  {{ content }}
+</body>
 </html>
