@@ -15,7 +15,7 @@ menu:
   - title: About
     url: /about
   - title: CV
-    url: https://mmccoy-01.github.io/cv/cv-mfm.pdf
+    url: "https://mmccoy-01.github.io/cv/cv-mfm.pdf"
   - title: Contact
     url: /contact
   - title: Feed
