@@ -1,0 +1,63 @@
+---
+layout: cv
+menu: false
+date: '2026-03-16 11:00:00'
+title: Curriculum Vitae
+description: This page is for my CV.
+image: TBD
+permalink: /cv/
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curriculum Vitae | Michael F. McCoy III</title>
+  <meta name="description" content="Curriculum Vitae for Michael F. McCoy III.">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    .cv-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    iframe {
+      width: min(1000px, 96vw);
+      height: 100vh;
+      border: none;
+    }
+
+    .fallback {
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="cv-wrapper">
+    <iframe
+      src="https://mmccoy-01.github.io/cv/cv-mfm.pdf"
+      title="Curriculum Vitae for Michael F. McCoy III">
+    </iframe>
+  </main>
+
+  <noscript>
+    <div class="fallback">
+      <p>Your browser does not support embedded PDFs.</p>
+      <p><a href="https://mmccoy-01.github.io/cv/cv-mfm.pdf">Download the CV here</a>.</p>
+    </div>
+  </noscript>
+</body>
+</html>
