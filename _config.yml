@@ -8,10 +8,14 @@ show_hero: true
 menu:
   - title: Home
     url: /
+  - title: Wedding
+    url: /wedding
   - title: Archive
     url: /archive
   - title: About
     url: /about
+  - title: CV
+    url: "https://mmccoy-01.github.io/cv/cv-mfm.pdf"
   - title: Contact
     url: /contact
   - title: Feed
