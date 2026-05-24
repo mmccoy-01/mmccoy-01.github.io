@@ -12,6 +12,8 @@ menu:
     url: /wedding
   - title: Archive
     url: /archive
+  - title: PhD Dashboard
+    url: /PhD_Dashboard
   - title: About
     url: /about
   - title: CV
