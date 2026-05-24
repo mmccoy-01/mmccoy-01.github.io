@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Literature Signal Dashboard</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: #eef2ff;
+      --muted: #aab3d6;
+      --line: rgba(255,255,255,0.14);
+      --accent: #8bd3ff;
+      --accent2: #b8ffda;
+      --danger: #ffaaa5;
+      --warn: #ffd98a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(139,211,255,0.24), transparent 32rem),
+        radial-gradient(circle at top right, rgba(184,255,218,0.16), transparent 28rem),
+        linear-gradient(160deg, #070b16, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 64px; }
+    header { display: grid; gap: 20px; margin-bottom: 24px; }
+    .hero {
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06));
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+    .eyebrow { color: var(--accent2); font-size: 0.82rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+    h1 { font-size: clamp(2rem, 5vw, 4.4rem); line-height: .95; margin: 12px 0 14px; letter-spacing: -0.06em; }
+    .subtitle { color: var(--muted); max-width: 760px; line-height: 1.6; font-size: 1.02rem; }
+    .toolbar {
+      display: grid; grid-template-columns: minmax(150px,.4fr) 1.2fr repeat(3, minmax(145px, .35fr)); gap: 12px; align-items: center;
+    }
+    input, select, button {
+      width: 100%; border: 1px solid var(--line); background: rgba(255,255,255,0.08); color: var(--text);
+      border-radius: 15px; padding: 12px 14px; outline: none; font: inherit;
+    }
+    select option { color: #0b1020; }
+    button { cursor: pointer; transition: transform .15s ease, background .15s ease; }
+    button:hover { transform: translateY(-1px); background: rgba(255,255,255,0.13); }
+    .file-row { display: flex; gap: 12px; align-items: center; color: var(--muted); flex-wrap: wrap; }
+    .file-row input { width: auto; min-width: 260px; }
+    .file-row { min-height: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0 20px; }
+    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
+    .stat .num { font-size: 1.65rem; font-weight: 800; letter-spacing: -0.04em; }
+    .stat .lab { color: var(--muted); font-size: .86rem; margin-top: 4px; }
+    .section-title { display:flex; justify-content: space-between; align-items: baseline; margin: 26px 0 12px; }
+    h2 { margin: 0; font-size: 1.3rem; letter-spacing: -0.02em; }
+    .hint { color: var(--muted); font-size: .9rem; }
+    .cards { display: grid; gap: 14px; }
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055));
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    .paper-top { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; }
+    .title { font-size: 1.08rem; font-weight: 800; line-height: 1.32; letter-spacing: -0.02em; }
+    .meta { color: var(--muted); margin-top: 8px; font-size: .9rem; line-height: 1.45; }
+    .score { text-align: right; min-width: 92px; }
+    .score .value { font-size: 2rem; font-weight: 900; letter-spacing: -0.06em; }
+    .score .label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .badges { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0; }
+    .badge { border: 1px solid var(--line); background: rgba(255,255,255,.07); border-radius: 999px; padding: 5px 9px; font-size: .78rem; color: var(--muted); }
+    .badge.source { color: var(--accent2); border-color: rgba(184,255,218,.3); }
+    .badge.warn { color: var(--warn); border-color: rgba(255,217,138,.35); }
+    .body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+    .mini { background: rgba(0,0,0,.16); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 13px; }
+    .mini h3 { margin: 0 0 8px; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+    .mini ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.45; }
+    .links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+    .links a, .links button { width: auto; text-decoration: none; font-size: .86rem; border-radius: 999px; padding: 8px 11px; }
+    details { margin-top: 12px; color: var(--muted); }
+    summary { cursor: pointer; color: var(--text); font-weight: 700; }
+    .breakdown { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+    .bar-row { display: grid; grid-template-columns: 155px 1fr 44px; gap: 8px; align-items: center; font-size: .82rem; }
+    .bar { height: 8px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 999px; }
+    .empty { color: var(--muted); padding: 36px; text-align: center; border: 1px dashed var(--line); border-radius: var(--radius); }
+    @media (max-width: 860px) {
+      .toolbar, .stats, .body-grid, .breakdown { grid-template-columns: 1fr; }
+      .paper-top { grid-template-columns: 1fr; }
+      .score { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="hero">
+        <div class="eyebrow">Personal literature signal</div>
+        <h1>Hedgehog / Taste Digest</h1>
+        <p class="subtitle">A lightweight dashboard for your weekly ontology-scored literature feed. Browse weekly digest JSON files from GitHub, filter by source, score, tags, and copy paper-specific ChatGPT prompts for deeper synthesis.</p>
+      </div>
+      <div class="toolbar">
+        <select id="weekFilter"><option value="">Loading weeks…</option></select>
+        <input id="search" placeholder="Search title, abstract, journal, author, tag…" />
+        <select id="sourceFilter"><option value="all">All sources</option></select>
+        <select id="labelFilter"><option value="all">All labels</option></select>
+        <select id="tagFilter"><option value="all">All tags</option></select>
+      </div>
+      <div class="file-row">
+        <span id="loadStatus">Fetching weekly digests from GitHub…</span>
+      </div>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <div class="section-title">
+      <h2>Editor Digest</h2>
+      <span class="hint">Top 5 by local score</span>
+    </div>
+    <section class="cards" id="editorCards"></section>
+
+    <div class="section-title">
+      <h2>Full Weekly Digest</h2>
+      <span class="hint" id="countHint"></span>
+    </div>
+    <section class="cards" id="paperCards"></section>
+  </div>
+
+<script>
+const GITHUB_OWNER = 'mmccoy-01';
+const GITHUB_REPO = 'pubmed';
+const GITHUB_BRANCH = 'main';
+const OUTPUT_PATH = 'output';
+
+let digest = null;
+let records = [];
+let availableWeeks = [];
+
+const $ = (id) => document.getElementById(id);
+const esc = (s='') => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uniq = arr => [...new Set(arr.filter(Boolean))].sort();
+
+function getScore(record) { return Number(record.analysis?.overall_recommendation_score ?? 0); }
+function getLabel(record) { return record.analysis?.recommendation_label || 'unlabeled'; }
+function getSource(record) { return record.paper?.source_db || 'unknown'; }
+function getTags(record) { return record.analysis?.tags || []; }
+
+function shortDate(iso) {
+  if (!iso) return 'Unknown';
+  try { return new Date(iso).toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' }); }
+  catch { return iso; }
+}
+
+function setOptions(select, values, allLabel) {
+  select.innerHTML = `<option value="all">${allLabel}</option>` + values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+}
+
+function hydrateFilters() {
+  setOptions($('sourceFilter'), uniq(records.map(getSource)), 'All sources');
+  setOptions($('labelFilter'), uniq(records.map(getLabel)), 'All labels');
+  setOptions($('tagFilter'), uniq(records.flatMap(getTags)), 'All tags');
+}
+
+function renderStats(filtered) {
+  const sources = uniq(records.map(getSource)).join(', ') || 'n/a';
+  const generated = digest?.generated_at ? shortDate(digest.generated_at) : 'n/a';
+  const top = records.length ? Math.max(...records.map(getScore)) : 0;
+  $('stats').innerHTML = [
+    ['Papers', records.length],
+    ['Query window', `${digest?.days_back ?? 'n/a'} days`],
+    ['Sources', sources],
+    ['Top score', top]
+  ].map(([lab,num]) => `<div class="stat"><div class="num">${esc(num)}</div><div class="lab">${esc(lab)}</div></div>`).join('');
+}
+
+function scoreBadgeClass(label) {
+  if (/false|low|peripheral/i.test(label)) return 'warn';
+  return '';
+}
+
+function paperText(record) {
+  const p = record.paper || {}, a = record.analysis || {};
+  return [p.title, p.abstract, p.journal, p.authors?.join(' '), getTags(record).join(' '), a.why_it_matters?.join(' '), a.concerns?.join(' ')].join(' ').toLowerCase();
+}
+
+function chatPrompt(record) {
+  const p = record.paper, a = record.analysis;
+  return `Evaluate this paper for my Hedgehog/Gas1/taste-organ developmental biology interests.\n\nTitle: ${p.title}\nJournal: ${p.journal}\nDate: ${p.pubdate}\nSource: ${p.source_db}\nScore: ${a.overall_recommendation_score} (${a.recommendation_label})\nTop signals: ${(a.why_it_matters || []).join('; ')}\nConcerns: ${(a.concerns || []).join('; ')}\n\nAbstract:\n${p.abstract || 'No abstract available.'}\n\nPlease tell me whether to deeply read, skim, or ignore it, and explain the mechanistic relevance.`;
+}
+
+async function copyPrompt(idx) {
+  const text = chatPrompt(records[idx]);
+  await navigator.clipboard.writeText(text);
+  alert('ChatGPT prompt copied.');
+}
+
+function card(record, idx, compact=false) {
+  const p = record.paper || {}, a = record.analysis || {};
+  const score = getScore(record), label = getLabel(record), source = getSource(record);
+  const authors = (p.authors || []).slice(0, 6).join(', ') + ((p.authors || []).length > 6 ? ' et al.' : '');
+  const topSignals = Object.entries(a.score_breakdown?.positive_categories || {})
+    .filter(([,v]) => Number(v) > 0)
+    .sort((x,y) => y[1]-x[1]).slice(0,4);
+  const maxSignal = Math.max(1, ...topSignals.map(([,v]) => Number(v)));
+  const why = (a.why_it_matters || []).slice(0, compact ? 3 : 5);
+  const concerns = (a.concerns || []).slice(0, compact ? 2 : 4);
+  const tags = getTags(record).slice(0, compact ? 4 : 8);
+  return `<article class="card">
+    <div class="paper-top">
+      <div>
+        <div class="title">${esc(p.title)}</div>
+        <div class="meta">${esc(p.journal || 'Unknown journal')} · ${esc(p.pubdate || 'Unknown date')}<br>${esc(authors || 'Unknown authors')}</div>
+      </div>
+      <div class="score"><div class="value">${score}</div><div class="label">${esc(label)}</div></div>
+    </div>
+    <div class="badges">
+      <span class="badge source">${esc(source)}</span>
+      ${(a.promotion_flags || []).map(x => `<span class="badge">⬆ ${esc(x)}</span>`).join('')}
+      ${tags.map(t => `<span class="badge">${esc(t)}</span>`).join('')}
+      ${concerns.some(c => !/No major/i.test(c)) ? '<span class="badge warn">concerns</span>' : ''}
+    </div>
+    ${compact ? '' : `<div class="body-grid">
+      <div class="mini"><h3>Why it matters</h3><ul>${why.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="mini"><h3>Concerns</h3><ul>${concerns.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    </div>`}
+    <div class="links">
+      ${p.entry_url ? `<a href="${esc(p.entry_url)}" target="_blank" rel="noopener">Open ${esc(p.link_label || 'source')}</a>` : ''}
+      ${p.doi ? `<a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener">DOI</a>` : ''}
+      ${p.pmc_url ? `<a href="${esc(p.pmc_url)}" target="_blank" rel="noopener">Full text</a>` : ''}
+      <button onclick="copyPrompt(${idx})">Copy ChatGPT prompt</button>
+    </div>
+    ${compact ? '' : `<details><summary>Score breakdown</summary><div class="breakdown">${topSignals.map(([name,val]) => `<div class="bar-row"><span>${esc(name.replaceAll('_',' '))}</span><span class="bar"><span class="fill" style="width:${Math.round(Number(val)/maxSignal*100)}%"></span></span><span>${val}</span></div>`).join('')}</div></details>`}
+  </article>`;
+}
+
+function filteredRecords() {
+  const q = $('search').value.trim().toLowerCase();
+  const source = $('sourceFilter').value;
+  const label = $('labelFilter').value;
+  const tag = $('tagFilter').value;
+  return records.filter(r =>
+    (!q || paperText(r).includes(q)) &&
+    (source === 'all' || getSource(r) === source) &&
+    (label === 'all' || getLabel(r) === label) &&
+    (tag === 'all' || getTags(r).includes(tag))
+  );
+}
+
+function render() {
+  if (!digest) return;
+  renderStats(records);
+  const filtered = filteredRecords();
+  const topFive = records.slice(0,5);
+  $('editorCards').innerHTML = topFive.length ? topFive.map((r,i) => card(r, records.indexOf(r), true)).join('') : '<div class="empty">No editor picks yet.</div>';
+  $('paperCards').innerHTML = filtered.length ? filtered.map((r) => card(r, records.indexOf(r), false)).join('') : '<div class="empty">No papers match the current filters.</div>';
+  $('countHint').textContent = `${filtered.length} of ${records.length} papers shown`;
+}
+
+function loadDigest(obj, name='digest.json') {
+  digest = obj;
+  records = (obj.records || []).slice().sort((a,b) => getScore(b) - getScore(a));
+  $('loadStatus').textContent = `Loaded ${name} · generated ${shortDate(obj.generated_at)}`;
+  hydrateFilters();
+  render();
+}
+
+async function discoverWeeks() {
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${OUTPUT_PATH}?ref=${GITHUB_BRANCH}`;
+  const response = await fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } });
+  if (!response.ok) throw new Error(`Could not list GitHub output folders (${response.status})`);
+  const items = await response.json();
+  availableWeeks = items
+    .filter(item => item.type === 'dir' && /^\d{4}-\d{2}-\d{2}$/.test(item.name))
+    .map(item => item.name)
+    .sort()
+    .reverse();
+  if (!availableWeeks.length) throw new Error('No dated output folders found.');
+  $('weekFilter').innerHTML = availableWeeks.map(week => `<option value="${esc(week)}">${esc(week)}</option>`).join('');
+  await loadWeek(availableWeeks[0]);
+}
+
+async function loadWeek(week) {
+  if (!week) return;
+  $('loadStatus').textContent = `Loading ${week} digest from GitHub…`;
+  const rawUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${OUTPUT_PATH}/${week}/digest.json`;
+  const response = await fetch(rawUrl, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Could not load ${week}/digest.json (${response.status})`);
+  const obj = await response.json();
+  loadDigest(obj, `${week}/digest.json`);
+}
+
+$('weekFilter').addEventListener('change', async (e) => {
+  try {
+    await loadWeek(e.target.value);
+  } catch (err) {
+    $('loadStatus').textContent = err.message;
+  }
+});
+
+['search','sourceFilter','labelFilter','tagFilter'].forEach(id => $(id).addEventListener('input', render));
+
+discoverWeeks().catch(err => {
+  $('weekFilter').innerHTML = '<option value="">No weeks found</option>';
+  $('loadStatus').textContent = `${err.message} Check that the repo is public and output/YYYY-MM-DD/digest.json exists.`;
+});
+</script>
+</body>
+</html>
