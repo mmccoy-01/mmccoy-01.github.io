@@ -1,7 +1,6 @@
 ---
-layout: page
+layout: phd_dashboard
 menu: false
-date: '2026-05-23 11:00:00'
 title: Gustatory Development & Signaling Digest
 description: A weekly ontology-scored literature digest for taste organ development, Hedgehog signaling, and tissue homeostasis.
 permalink: /PhD_Dashboard/
@@ -608,8 +607,15 @@ permalink: /PhD_Dashboard/
       .replace(/\b\w/g, char => char.toUpperCase());
   }
 
+  function cleanOntologySummary(text) {
+    return String(text || "")
+      .replace(/^Locally scored against the [^.]+ ontology\.\s*/i, "")
+      .replace(/^Strongest signals:\s*/i, "")
+      .trim();
+  }
+
   function firstSentence(text, fallback = "Ontology-selected high signal paper.") {
-    const clean = String(text || "").trim();
+    const clean = cleanOntologySummary(text);
     if (!clean) return fallback;
     const match = clean.match(/^(.{25,220}?[.!?])\s/);
     return match ? match[1] : clean.slice(0, 190) + (clean.length > 190 ? "…" : "");
@@ -631,8 +637,12 @@ permalink: /PhD_Dashboard/
     );
   }
 
+  function isPreprintSignal(record) {
+    const src = record.paper?.source_db;
+    return src === "biorxiv" || src === "arxiv" || isPubMedHostedPreprint(record);
+  }
+
   function sourceLabel(record) {
-    if (isPubMedHostedPreprint(record)) return "PubMed preprint";
     const src = record.paper?.source_db || "unknown";
     if (src === "pubmed") return "PubMed";
     if (src === "biorxiv") return "bioRxiv";
@@ -709,7 +719,7 @@ permalink: /PhD_Dashboard/
   function renderStats() {
     const searched = (digest.search_metadata?.sources || []).map(s => s === "pubmed" ? "PubMed" : s === "biorxiv" ? "bioRxiv" : s === "arxiv" ? "arXiv" : s).join(", ") || "n/a";
     const represented = [...new Set(records.map(sourceLabel))].join(", ") || "n/a";
-    const preprints = records.filter(r => r.paper?.source_db === "biorxiv" || r.paper?.source_db === "arxiv" || isPubMedHostedPreprint(r)).length;
+    const preprints = records.filter(isPreprintSignal).length;
     stats.innerHTML = `
       <div class="stat"><span class="value">${records.length}</span><span class="label">Papers in digest</span></div>
       <div class="stat"><span class="value">${digest.days_back || "—"}</span><span class="label">Day query window</span></div>
@@ -733,7 +743,7 @@ permalink: /PhD_Dashboard/
     if (index === 0) return "Top signal";
     if (tags.some(t => /method|mechanistic/i.test(t))) return "Mechanistic/methods";
     if (tags.some(t => /bridge/i.test(t))) return "Bridge paper";
-    if (isPubMedHostedPreprint(record) || record.paper?.source_db !== "pubmed") return "Preprint signal";
+    if (isPreprintSignal(record)) return "Preprint signal";
     if ((record.analysis?.concerns || []).some(c => !/No major/i.test(c))) return "Caution-worthy";
     return "High relevance";
   }
@@ -750,7 +760,7 @@ permalink: /PhD_Dashboard/
           <div class="badges" style="margin-top:0">
             <span class="badge label">${escapeHtml(editorCategory(record, idx))}</span>
             <span class="badge source">${escapeHtml(sourceLabel(record))}</span>
-            ${isPubMedHostedPreprint(record) ? `<span class="badge preprint">Preprint</span>` : ""}
+            ${isPreprintSignal(record) ? `<span class="badge preprint">Preprint</span>` : ""}
           </div>
           <span class="editor-title">${escapeHtml(p.title)}</span>
           <p class="editor-reason">${escapeHtml(firstSentence(record.analysis?.why_it_matters?.[0] || record.analysis?.one_paragraph_summary))}</p>
@@ -775,7 +785,7 @@ permalink: /PhD_Dashboard/
               <div class="meta">${escapeHtml(p.journal || "Unknown journal")} · ${escapeHtml(p.pubdate || "No date")} · ${(p.authors || []).slice(0, 5).map(escapeHtml).join(", ")}${(p.authors || []).length > 5 ? " et al." : ""}</div>
               <div class="badges">
                 <span class="badge source">${escapeHtml(sourceLabel(record))}</span>
-                ${isPubMedHostedPreprint(record) ? `<span class="badge preprint">Preprint</span>` : ""}
+                ${isPreprintSignal(record) ? `<span class="badge preprint">Preprint</span>` : ""}
                 <span class="badge label">${escapeHtml(label(record))}</span>
                 ${concerns.length ? `<span class="badge concern">${concerns.length} concern${concerns.length > 1 ? "s" : ""}</span>` : ""}
               </div>
@@ -783,7 +793,7 @@ permalink: /PhD_Dashboard/
             <div class="score-badge"><div>${score(record)}<small>score</small></div></div>
           </div>
 
-          <p class="why">${escapeHtml(firstSentence(a.one_paragraph_summary, "No local summary available."))}</p>
+          <p class="why">${escapeHtml(firstSentence((a.why_it_matters || []).join(". ") || a.one_paragraph_summary, "No local summary available."))}</p>
 
           <div class="chips">${chips.map(chip => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}</div>
 
