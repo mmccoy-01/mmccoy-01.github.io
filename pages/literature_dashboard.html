@@ -1,458 +1,926 @@
----
-layout: wedding
-menu: false
-date: '2026-05-23 11:00:00'
-title: PhD_Dashboard
-description: This page is for my PhD literature dashboard.
-image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1767297709/Wedding/preview_mjeyfx.png
-permalink: /PhD_Dashboard/
----
+<style>
+  #phd-lit-dashboard {
+    --bg: #f7f7f4;
+    --panel: rgba(255, 255, 255, 0.86);
+    --panel-solid: #ffffff;
+    --ink: #1d2424;
+    --muted: #66706d;
+    --soft: #e8ebe6;
+    --line: rgba(29, 36, 36, 0.12);
+    --accent: #496b5b;
+    --accent-2: #7d9b88;
+    --gold: #b58a44;
+    --danger: #9f4b45;
+    --blue: #4f6f89;
+    --purple: #6f5f8f;
+    --shadow: 0 18px 60px rgba(20, 30, 25, 0.10);
+    --shadow-soft: 0 10px 28px rgba(20, 30, 25, 0.08);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2.25rem 1rem 4rem;
+  }
 
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PhD Literature Signal Dashboard</title>
-  <style>
-    :root {
-      --bg: #09111f;
-      --panel: rgba(255,255,255,0.08);
-      --panel-strong: rgba(255,255,255,0.13);
-      --text: #eef4ff;
-      --muted: #aab8d8;
-      --line: rgba(255,255,255,0.14);
-      --accent: #8bd3ff;
-      --accent2: #b8ffda;
-      --danger: #ffaaa5;
-      --warn: #ffd98a;
-      --violet: #d8c7ff;
-      --shadow: 0 22px 70px rgba(0,0,0,0.38);
-      --radius: 24px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at top left, rgba(139,211,255,0.24), transparent 34rem),
-        radial-gradient(circle at top right, rgba(184,255,218,0.15), transparent 28rem),
-        radial-gradient(circle at 50% 12%, rgba(216,199,255,0.10), transparent 32rem),
-        linear-gradient(160deg, #050814, var(--bg));
-      color: var(--text);
-      min-height: 100vh;
-    }
-    a { color: inherit; }
-    .wrap { width: min(1220px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 72px; }
-    header { display: grid; gap: 18px; margin-bottom: 22px; }
-    .hero {
-      padding: clamp(22px, 4vw, 36px);
-      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.055));
-      border: 1px solid var(--line);
-      border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero:after {
-      content: "";
-      position: absolute;
-      inset: auto -6rem -8rem auto;
-      width: 22rem;
-      height: 22rem;
-      border-radius: 999px;
-      background: rgba(139,211,255,0.12);
-      filter: blur(10px);
-      pointer-events: none;
-    }
-    .eyebrow { color: var(--accent2); font-size: 0.78rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
-    h1 { font-size: clamp(2.1rem, 5.6vw, 4.8rem); line-height: .92; margin: 12px 0 14px; letter-spacing: -0.065em; max-width: 900px; }
-    .subtitle { color: var(--muted); max-width: 820px; line-height: 1.62; font-size: 1.02rem; margin: 0; }
-    .toolbar {
-      display: grid;
-      grid-template-columns: minmax(150px,.4fr) 1.2fr repeat(3, minmax(145px, .35fr)) auto;
-      gap: 12px;
-      align-items: center;
-    }
-    input, select, button {
-      width: 100%; border: 1px solid var(--line); background: rgba(255,255,255,0.08); color: var(--text);
-      border-radius: 15px; padding: 12px 14px; outline: none; font: inherit;
-    }
-    select option { color: #0b1020; }
-    button { cursor: pointer; transition: transform .15s ease, background .15s ease, border-color .15s ease; white-space: nowrap; }
-    button:hover { transform: translateY(-1px); background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,.24); }
-    .ghost { width: auto; min-width: 95px; }
-    .file-row { display: flex; gap: 12px; align-items: center; color: var(--muted); flex-wrap: wrap; min-height: 24px; }
-    .pill-soft { border: 1px solid var(--line); background: rgba(255,255,255,.06); border-radius: 999px; padding: 6px 10px; font-size: .82rem; }
-    .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 18px 0 20px; }
-    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px; min-height: 88px; }
-    .stat .num { font-size: 1.55rem; font-weight: 900; letter-spacing: -0.045em; overflow-wrap: anywhere; }
-    .stat .lab { color: var(--muted); font-size: .84rem; margin-top: 5px; }
-    .section-title { display:flex; justify-content: space-between; align-items: baseline; gap: 14px; margin: 28px 0 12px; }
-    h2 { margin: 0; font-size: 1.28rem; letter-spacing: -0.02em; }
-    .hint { color: var(--muted); font-size: .9rem; text-align: right; }
-    .cards { display: grid; gap: 14px; }
-    .editor-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-    .editor-card {
-      background: linear-gradient(145deg, rgba(139,211,255,0.16), rgba(255,255,255,0.065));
-      border: 1px solid rgba(139,211,255,.26);
-      border-radius: 22px;
-      padding: 15px;
-      min-height: 220px;
-      box-shadow: 0 10px 34px rgba(0,0,0,.18);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .pick-kicker { display:flex; justify-content: space-between; align-items:center; gap: 8px; }
-    .pick-label { color: var(--accent2); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 850; }
-    .pick-score { font-weight: 950; font-size: 1.25rem; }
-    .pick-title { font-weight: 850; line-height: 1.25; letter-spacing: -.025em; }
-    .pick-meta { color: var(--muted); font-size: .8rem; line-height: 1.38; margin-top: auto; }
-    .card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055));
-      border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.18);
-    }
-    .paper-top { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; }
-    .title { font-size: 1.08rem; font-weight: 850; line-height: 1.32; letter-spacing: -0.02em; }
-    .meta { color: var(--muted); margin-top: 8px; font-size: .9rem; line-height: 1.45; }
-    .score { text-align: right; min-width: 105px; }
-    .score .value { font-size: 2.05rem; font-weight: 950; letter-spacing: -0.065em; }
-    .score .label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .085em; max-width: 130px; }
-    .scorebar { height: 8px; background: rgba(255,255,255,.10); border-radius: 999px; overflow: hidden; margin-top: 8px; }
-    .scorebar span { display:block; height:100%; border-radius:999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-    .badges { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0; }
-    .badge { border: 1px solid var(--line); background: rgba(255,255,255,.07); border-radius: 999px; padding: 5px 9px; font-size: .78rem; color: var(--muted); }
-    .badge.source { color: var(--accent2); border-color: rgba(184,255,218,.3); }
-    .badge.source.biorxiv { color: var(--violet); border-color: rgba(216,199,255,.35); }
-    .badge.source.arxiv { color: var(--accent); border-color: rgba(139,211,255,.35); }
-    .badge.warn { color: var(--warn); border-color: rgba(255,217,138,.35); }
-    .badge.bad { color: var(--danger); border-color: rgba(255,170,165,.36); }
-    .body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
-    .mini { background: rgba(0,0,0,.16); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 13px; }
-    .mini h3 { margin: 0 0 8px; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
-    .mini ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.47; }
-    .links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
-    .links a, .links button { width: auto; text-decoration: none; font-size: .84rem; border-radius: 999px; padding: 8px 11px; }
-    details { margin-top: 12px; color: var(--muted); }
-    summary { cursor: pointer; color: var(--text); font-weight: 800; }
-    .details-panel { margin-top: 12px; display: grid; gap: 12px; }
-    .breakdown { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .bar-row { display: grid; grid-template-columns: 180px 1fr 48px; gap: 8px; align-items: center; font-size: .82rem; }
-    .bar { height: 8px; background: rgba(255,255,255,.1); border-radius: 999px; overflow: hidden; }
-    .fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 999px; }
-    .terms { display:flex; flex-wrap:wrap; gap: 6px; }
-    .term { font-size: .76rem; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); }
-    .abstract { color: var(--muted); line-height: 1.58; max-height: 260px; overflow: auto; padding-right: 6px; }
-    .empty { color: var(--muted); padding: 36px; text-align: center; border: 1px dashed var(--line); border-radius: var(--radius); }
-    @media (max-width: 1050px) { .editor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .toolbar { grid-template-columns: 1fr 1fr; } .stats { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 720px) {
-      .toolbar, .stats, .body-grid, .breakdown, .editor-grid { grid-template-columns: 1fr; }
-      .paper-top { grid-template-columns: 1fr; }
-      .score { text-align: left; }
-      .bar-row { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="hero">
-        <div class="eyebrow">Personal literature signal</div>
-        <h1>Hedgehog / Taste Literature Dashboard</h1>
-        <p class="subtitle">A weekly ontology-scored literature feed for Hedgehog signaling, Gas1/co-receptor biology, epithelial morphogenesis, taste-organ development, and mechanistic bridge papers.</p>
-      </div>
-      <div class="toolbar">
-        <select id="weekFilter"><option value="">Loading weeks…</option></select>
-        <input id="search" placeholder="Search title, abstract, journal, author, tag…" />
-        <select id="sourceFilter"><option value="all">All sources</option></select>
-        <select id="labelFilter"><option value="all">All labels</option></select>
-        <select id="tagFilter"><option value="all">All tags</option></select>
-        <button class="ghost" id="resetBtn">Reset</button>
-      </div>
-      <div class="file-row">
-        <span id="loadStatus">Fetching weekly digests from GitHub…</span>
-        <span class="pill-soft" id="queryWindow"></span>
-      </div>
-    </header>
+  #phd-lit-dashboard * { box-sizing: border-box; }
 
-    <section class="stats" id="stats"></section>
+  #phd-lit-dashboard a { color: inherit; }
 
-    <div class="section-title">
-      <h2>Editor Digest</h2>
-      <span class="hint">Top 5 signals this week, with quick copy/export actions in the full cards below</span>
+  #phd-lit-dashboard .hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: clamp(1.35rem, 4vw, 3rem);
+    background:
+      radial-gradient(circle at top left, rgba(125, 155, 136, 0.30), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(181, 138, 68, 0.18), transparent 38%),
+      linear-gradient(135deg, rgba(255,255,255,0.94), rgba(245,248,242,0.78));
+    box-shadow: var(--shadow);
+  }
+
+  #phd-lit-dashboard .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .42rem .7rem;
+    border-radius: 999px;
+    background: rgba(73, 107, 91, .10);
+    color: var(--accent);
+    border: 1px solid rgba(73, 107, 91, .20);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  #phd-lit-dashboard h1 {
+    font-size: clamp(2.1rem, 6vw, 4.8rem);
+    line-height: .96;
+    letter-spacing: -0.065em;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+
+  #phd-lit-dashboard .subtitle {
+    max-width: 820px;
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.22rem);
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  #phd-lit-dashboard .top-controls {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr auto;
+    gap: .75rem;
+    align-items: end;
+    margin: 1.25rem 0 1.5rem;
+  }
+
+  #phd-lit-dashboard label {
+    display: block;
+    font-size: .77rem;
+    font-weight: 800;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .055em;
+    margin-bottom: .35rem;
+  }
+
+  #phd-lit-dashboard input,
+  #phd-lit-dashboard select,
+  #phd-lit-dashboard button {
+    font: inherit;
+  }
+
+  #phd-lit-dashboard input,
+  #phd-lit-dashboard select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: .78rem .9rem;
+    background: rgba(255,255,255,.85);
+    color: var(--ink);
+    outline: none;
+    transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+
+  #phd-lit-dashboard input:focus,
+  #phd-lit-dashboard select:focus {
+    border-color: rgba(73, 107, 91, .42);
+    box-shadow: 0 0 0 4px rgba(73, 107, 91, .10);
+    background: #fff;
+  }
+
+  #phd-lit-dashboard .btn {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: .78rem 1rem;
+    background: var(--panel-solid);
+    color: var(--ink);
+    cursor: pointer;
+    font-weight: 800;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    white-space: nowrap;
+  }
+
+  #phd-lit-dashboard .btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(73, 107, 91, .34);
+    box-shadow: var(--shadow-soft);
+  }
+
+  #phd-lit-dashboard .btn.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  #phd-lit-dashboard .status {
+    margin: 1rem 0;
+    padding: .9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255,255,255,.72);
+    color: var(--muted);
+  }
+
+  #phd-lit-dashboard .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .85rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  #phd-lit-dashboard .stat {
+    padding: 1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  #phd-lit-dashboard .stat .value {
+    display: block;
+    font-size: 1.6rem;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -.05em;
+  }
+
+  #phd-lit-dashboard .stat .label {
+    display: block;
+    color: var(--muted);
+    margin-top: .35rem;
+    font-size: .83rem;
+  }
+
+  #phd-lit-dashboard .note {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.55;
+    margin: -.25rem 0 1.25rem;
+  }
+
+  #phd-lit-dashboard .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem;
+    margin: 1.7rem 0 .9rem;
+  }
+
+  #phd-lit-dashboard h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 3vw, 2.1rem);
+    letter-spacing: -.045em;
+  }
+
+  #phd-lit-dashboard .section-subtitle {
+    margin: .22rem 0 0;
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  #phd-lit-dashboard .editor-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: .85rem;
+  }
+
+  #phd-lit-dashboard .editor-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 1rem;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.94), rgba(249,250,246,.82));
+    box-shadow: var(--shadow-soft);
+    transition: transform .20s ease, box-shadow .20s ease, border-color .20s ease;
+  }
+
+  #phd-lit-dashboard .editor-card:hover {
+    transform: translateY(-5px) scale(1.012);
+    box-shadow: var(--shadow);
+    border-color: rgba(73, 107, 91, .35);
+  }
+
+  #phd-lit-dashboard .editor-title {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.22;
+    font-weight: 900;
+    letter-spacing: -.025em;
+    margin: .7rem 0 .55rem;
+    transition: color .18s ease, transform .18s ease;
+    transform-origin: left center;
+  }
+
+  #phd-lit-dashboard .editor-card:hover .editor-title {
+    color: var(--accent);
+    transform: scale(1.025);
+  }
+
+  #phd-lit-dashboard .editor-reason {
+    color: var(--muted);
+    font-size: .84rem;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  #phd-lit-dashboard .paper-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .95rem;
+  }
+
+  #phd-lit-dashboard .paper-card {
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    background: var(--panel);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+
+  #phd-lit-dashboard .paper-main {
+    padding: 1.15rem;
+  }
+
+  #phd-lit-dashboard .paper-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  #phd-lit-dashboard .paper-title {
+    display: inline-block;
+    text-decoration: none;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    line-height: 1.22;
+    font-weight: 900;
+    letter-spacing: -.035em;
+    color: var(--ink);
+    transition: transform .18s ease, color .18s ease, text-shadow .18s ease;
+    transform-origin: left center;
+  }
+
+  #phd-lit-dashboard .paper-title:hover {
+    color: var(--accent);
+    transform: scale(1.018);
+    text-shadow: 0 10px 24px rgba(73,107,91,.16);
+  }
+
+  #phd-lit-dashboard .meta {
+    color: var(--muted);
+    font-size: .9rem;
+    margin-top: .45rem;
+    line-height: 1.45;
+  }
+
+  #phd-lit-dashboard .score-badge {
+    display: grid;
+    place-items: center;
+    min-width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(73,107,91,.14), rgba(181,138,68,.12));
+    border: 1px solid rgba(73,107,91,.20);
+    color: var(--accent);
+    font-weight: 950;
+    letter-spacing: -.05em;
+    font-size: 1.6rem;
+  }
+
+  #phd-lit-dashboard .score-badge small {
+    display: block;
+    font-size: .58rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: -.1rem;
+  }
+
+  #phd-lit-dashboard .badges,
+  #phd-lit-dashboard .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin-top: .75rem;
+  }
+
+  #phd-lit-dashboard .badge,
+  #phd-lit-dashboard .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    border-radius: 999px;
+    padding: .34rem .58rem;
+    font-size: .75rem;
+    font-weight: 800;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.76);
+    color: var(--muted);
+  }
+
+  #phd-lit-dashboard .badge.source { color: var(--blue); background: rgba(79,111,137,.10); border-color: rgba(79,111,137,.22); }
+  #phd-lit-dashboard .badge.preprint { color: var(--purple); background: rgba(111,95,143,.10); border-color: rgba(111,95,143,.22); }
+  #phd-lit-dashboard .badge.concern { color: var(--danger); background: rgba(159,75,69,.10); border-color: rgba(159,75,69,.22); }
+  #phd-lit-dashboard .badge.label { color: var(--accent); background: rgba(73,107,91,.10); border-color: rgba(73,107,91,.22); }
+
+  #phd-lit-dashboard .why {
+    margin: .9rem 0 0;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  #phd-lit-dashboard .signals {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .55rem;
+    margin-top: .9rem;
+  }
+
+  #phd-lit-dashboard .signal {
+    padding: .7rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255,255,255,.58);
+  }
+
+  #phd-lit-dashboard .signal span {
+    display: block;
+    font-size: .75rem;
+    color: var(--muted);
+    margin-bottom: .28rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #phd-lit-dashboard .bar {
+    position: relative;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(29, 36, 36, .09);
+  }
+
+  #phd-lit-dashboard .bar > i {
+    display: block;
+    height: 100%;
+    width: var(--w, 0%);
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+
+  #phd-lit-dashboard .signal strong {
+    display: block;
+    margin-top: .32rem;
+    font-size: .82rem;
+  }
+
+  #phd-lit-dashboard .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin-top: 1rem;
+  }
+
+  #phd-lit-dashboard .actions .btn {
+    padding: .56rem .72rem;
+    border-radius: 13px;
+    font-size: .82rem;
+  }
+
+  #phd-lit-dashboard details {
+    border-top: 1px solid var(--line);
+    background: rgba(255,255,255,.45);
+  }
+
+  #phd-lit-dashboard summary {
+    cursor: pointer;
+    padding: .85rem 1.15rem;
+    font-weight: 850;
+    color: var(--accent);
+  }
+
+  #phd-lit-dashboard .detail-body {
+    padding: 0 1.15rem 1.15rem;
+  }
+
+  #phd-lit-dashboard .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .65rem;
+    margin-top: .85rem;
+  }
+
+  #phd-lit-dashboard .breakdown-row {
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) 2fr 46px;
+    gap: .6rem;
+    align-items: center;
+    padding: .45rem 0;
+    border-bottom: 1px dashed rgba(29,36,36,.10);
+    font-size: .84rem;
+  }
+
+  #phd-lit-dashboard .breakdown-row .name {
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #phd-lit-dashboard .breakdown-row .num {
+    text-align: right;
+    font-weight: 900;
+  }
+
+  #phd-lit-dashboard .breakdown-row.penalty .bar > i { background: linear-gradient(90deg, var(--danger), #d18b81); }
+  #phd-lit-dashboard .breakdown-row.bonus .bar > i { background: linear-gradient(90deg, var(--gold), #d7b26a); }
+
+  #phd-lit-dashboard .abstract {
+    color: var(--muted);
+    line-height: 1.65;
+    max-height: 260px;
+    overflow: auto;
+    padding: .9rem;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.58);
+    margin-top: .9rem;
+  }
+
+  #phd-lit-dashboard .empty {
+    padding: 2rem;
+    border: 1px dashed var(--line);
+    border-radius: 22px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  @media (max-width: 980px) {
+    #phd-lit-dashboard .top-controls { grid-template-columns: 1fr 1fr; }
+    #phd-lit-dashboard .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #phd-lit-dashboard .editor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #phd-lit-dashboard .signals { grid-template-columns: 1fr; }
+    #phd-lit-dashboard .breakdown-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    #phd-lit-dashboard { padding: 1rem .4rem 3rem; }
+    #phd-lit-dashboard .top-controls { grid-template-columns: 1fr; }
+    #phd-lit-dashboard .stats { grid-template-columns: 1fr; }
+    #phd-lit-dashboard .editor-grid { grid-template-columns: 1fr; }
+    #phd-lit-dashboard .paper-top { grid-template-columns: 1fr; }
+    #phd-lit-dashboard .score-badge { width: 72px; }
+  }
+</style>
+
+<div id="phd-lit-dashboard">
+  <section class="hero">
+    <div class="eyebrow">Personal PhD Literature Signal</div>
+    <h1>Gustatory Development &amp; Signaling Digest</h1>
+    <p class="subtitle">A weekly, ontology-scored literature digest for taste organ development, Hedgehog signaling, tissue homeostasis, and mechanistic bridge papers.</p>
+  </section>
+
+  <div class="top-controls">
+    <div>
+      <label for="weekSelect">Week</label>
+      <select id="weekSelect"><option>Loading weeks…</option></select>
     </div>
-    <section class="editor-grid" id="editorCards"></section>
-
-    <div class="section-title">
-      <h2>Full Weekly Digest</h2>
-      <span class="hint" id="countHint"></span>
+    <div>
+      <label for="searchInput">Search</label>
+      <input id="searchInput" type="search" placeholder="Title, author, journal, term…" />
     </div>
-    <section class="cards" id="paperCards"></section>
+    <div>
+      <label for="labelFilter">Priority</label>
+      <select id="labelFilter"><option value="all">All priorities</option></select>
+    </div>
+    <button class="btn" id="resetBtn" type="button">Reset filters</button>
   </div>
 
-<script>
-const GITHUB_OWNER = 'mmccoy-01';
-const GITHUB_REPO = 'pubmed';
-const GITHUB_BRANCH = 'main';
-const OUTPUT_PATH = 'output';
+  <div id="status" class="status">Loading digest index from GitHub…</div>
 
-let digest = null;
-let records = [];
-let availableWeeks = [];
+  <section id="summarySection" hidden>
+    <div class="stats" id="stats"></div>
+    <p class="note">Some PubMed records are preprints indexed through the NIH/NLM preprint pilot. Source summaries distinguish sources searched from papers represented in the current digest.</p>
+  </section>
 
-const $ = (id) => document.getElementById(id);
-const esc = (s='') => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-const uniq = arr => [...new Set(arr.filter(Boolean))].sort();
-
-function getScore(record) { return Number(record.analysis?.overall_recommendation_score ?? 0); }
-function getLabel(record) { return record.analysis?.recommendation_label || 'unlabeled'; }
-function getSource(record) { return record.paper?.source_db || 'unknown'; }
-function getTags(record) { return record.analysis?.tags || []; }
-function getDoiUrl(doi) { return doi ? `https://doi.org/${doi}` : ''; }
-
-function shortDate(iso) {
-  if (!iso) return 'Unknown';
-  try { return new Date(iso).toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' }); }
-  catch { return iso; }
-}
-
-function setOptions(select, values, allLabel) {
-  select.innerHTML = `<option value="all">${allLabel}</option>` + values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
-}
-
-function hydrateFilters() {
-  setOptions($('sourceFilter'), uniq(records.map(getSource)), 'All sources');
-  setOptions($('labelFilter'), uniq(records.map(getLabel)), 'All labels');
-  setOptions($('tagFilter'), uniq(records.flatMap(getTags)), 'All tags');
-}
-
-function renderStats() {
-  const sources = digest?.search_metadata?.sources?.join(', ') || uniq(records.map(getSource)).join(', ') || 'n/a';
-  const generated = digest?.generated_at ? shortDate(digest.generated_at) : 'n/a';
-  const top = records.length ? Math.max(...records.map(getScore)) : 0;
-  const preprints = records.filter(r => ['biorxiv','arxiv'].includes(getSource(r))).length;
-  $('stats').innerHTML = [
-    ['Papers', records.length],
-    ['Query window', `${digest?.days_back ?? 'n/a'} days`],
-    ['Sources', sources],
-    ['Preprints', preprints],
-    ['Top score', top]
-  ].map(([lab,num]) => `<div class="stat"><div class="num">${esc(num)}</div><div class="lab">${esc(lab)}</div></div>`).join('');
-  $('queryWindow').textContent = generated ? `Generated ${generated}` : '';
-}
-
-function paperText(record) {
-  const p = record.paper || {}, a = record.analysis || {};
-  return [p.title, p.abstract, p.journal, p.authors?.join(' '), getTags(record).join(' '), a.why_it_matters?.join(' '), a.concerns?.join(' '), Object.values(a.matched_terms || {}).flat().join(' ')].join(' ').toLowerCase();
-}
-
-function getPickType(record, index) {
-  const p = record.paper || {}, a = record.analysis || {}, tags = getTags(record).join(' ').toLowerCase();
-  const title = (p.title || '').toLowerCase();
-  const source = getSource(record);
-  if (index === 0) return 'Top Signal';
-  if (source === 'biorxiv' || source === 'arxiv') return 'Preprint Signal';
-  if (/gas1|boc|cdon|hhip|primary cilia|ciliary/i.test(JSON.stringify(a.matched_terms || {}))) return 'Co-receptor / Cilia';
-  if (/taste|lingual|tongue|papilla|gustatory/i.test(title + ' ' + tags)) return 'Taste / Lingual';
-  if (/method|scrna|single-cell|atac|organoid|imaging|lineage|knockout/i.test(title + ' ' + JSON.stringify(a.matched_terms || {}))) return 'Methods / Mechanism';
-  if (/morphogenesis|patterning|development|homeostasis/i.test(title + ' ' + tags)) return 'Developmental Bridge';
-  return 'Bridge Paper';
-}
-
-function chatPrompt(record) {
-  const p = record.paper, a = record.analysis;
-  return `Evaluate this paper for my Hedgehog/Gas1/taste-organ developmental biology interests.\n\nTitle: ${p.title}\nJournal: ${p.journal}\nDate: ${p.pubdate}\nSource: ${p.source_db}\nScore: ${a.overall_recommendation_score} (${a.recommendation_label})\nTags: ${(a.tags || []).join(', ')}\nTop signals: ${(a.why_it_matters || []).join('; ')}\nConcerns: ${(a.concerns || []).join('; ')}\n\nAbstract:\n${p.abstract || 'No abstract available.'}\n\nPlease tell me whether to deeply read, skim, or ignore it, and explain the mechanistic relevance to Hedgehog signaling, Gas1/co-receptors, epithelial morphogenesis, postnatal/adult homeostasis, or taste-organ biology.`;
-}
-
-async function copyPrompt(idx) {
-  await navigator.clipboard.writeText(chatPrompt(records[idx]));
-  alert('ChatGPT prompt copied.');
-}
-
-async function copyCitation(idx) {
-  const p = records[idx].paper || {};
-  const authors = (p.authors || []).join(', ');
-  const citation = `${authors}. ${p.title} ${p.journal}. ${p.pubdate}. doi:${p.doi || 'n/a'}`;
-  await navigator.clipboard.writeText(citation);
-  alert('Citation copied.');
-}
-
-function risFor(record) {
-  const p = record.paper || {};
-  const yearMatch = String(p.pubdate || '').match(/\d{4}/);
-  const lines = ['TY  - JOUR'];
-  (p.authors || []).forEach(a => lines.push(`AU  - ${a}`));
-  lines.push(`TI  - ${p.title || ''}`);
-  if (p.journal) lines.push(`JO  - ${p.journal}`);
-  if (yearMatch) lines.push(`PY  - ${yearMatch[0]}`);
-  if (p.doi) lines.push(`DO  - ${p.doi}`);
-  if (p.entry_url) lines.push(`UR  - ${p.entry_url}`);
-  if (p.abstract) lines.push(`AB  - ${p.abstract}`);
-  lines.push('ER  -');
-  return lines.join('\n');
-}
-
-function downloadRIS(idx) {
-  const record = records[idx];
-  const p = record.paper || {};
-  const blob = new Blob([risFor(record)], { type: 'application/x-research-info-systems;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${(p.paper_id || 'paper').replace(/[^a-zA-Z0-9_-]/g,'_')}.ris`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
-
-function matchedTermChips(record) {
-  const mt = record.analysis?.matched_terms || {};
-  const chips = [];
-  for (const [cat, terms] of Object.entries(mt)) {
-    (terms || []).slice(0, 8).forEach(t => chips.push(`<span class="term" title="${esc(cat.replaceAll('_',' '))}">${esc(t)}</span>`));
-  }
-  return chips.slice(0, 48).join('');
-}
-
-function editorCard(record, idx, pickIndex) {
-  const p = record.paper || {}, score = getScore(record), label = getLabel(record), source = getSource(record);
-  return `<article class="editor-card">
-    <div class="pick-kicker"><span class="pick-label">${esc(getPickType(record, pickIndex))}</span><span class="pick-score">${score}</span></div>
-    <div class="pick-title">${esc(p.title)}</div>
-    <div class="badges"><span class="badge source ${esc(source)}">${esc(source)}</span><span class="badge">${esc(label)}</span></div>
-    <div class="pick-meta">${esc(p.journal || 'Unknown journal')} · ${esc(p.pubdate || 'Unknown date')}</div>
-  </article>`;
-}
-
-function paperCard(record, idx) {
-  const p = record.paper || {}, a = record.analysis || {};
-  const score = getScore(record), label = getLabel(record), source = getSource(record);
-  const authors = (p.authors || []).slice(0, 7).join(', ') + ((p.authors || []).length > 7 ? ' et al.' : '');
-  const topSignals = Object.entries(a.score_breakdown?.positive_categories || {})
-    .filter(([,v]) => Number(v) > 0)
-    .sort((x,y) => y[1]-x[1]).slice(0,8);
-  const maxSignal = Math.max(1, ...topSignals.map(([,v]) => Number(v)));
-  const why = (a.why_it_matters || []).slice(0, 5);
-  const concerns = (a.concerns || []).slice(0, 4);
-  const tags = getTags(record).slice(0, 10);
-  const hasConcern = concerns.some(c => !/No major/i.test(c));
-  const scorePct = Math.max(0, Math.min(100, score));
-  return `<article class="card">
-    <div class="paper-top">
+  <section id="editorSection" hidden>
+    <div class="section-head">
       <div>
-        <div class="title">${esc(p.title)}</div>
-        <div class="meta">${esc(p.journal || 'Unknown journal')} · ${esc(p.pubdate || 'Unknown date')}<br>${esc(authors || 'Unknown authors')}</div>
+        <h2>Editor Digest</h2>
+        <p class="section-subtitle">Top weekly signals selected from the ontology-ranked digest.</p>
       </div>
-      <div class="score"><div class="value">${score}</div><div class="label">${esc(label)}</div><div class="scorebar"><span style="width:${scorePct}%"></span></div></div>
     </div>
-    <div class="badges">
-      <span class="badge source ${esc(source)}">${esc(source)}</span>
-      ${(a.promotion_flags || []).map(x => `<span class="badge">⬆ ${esc(x)}</span>`).join('')}
-      ${tags.map(t => `<span class="badge">${esc(t)}</span>`).join('')}
-      ${hasConcern ? '<span class="badge warn">concerns</span>' : ''}
-      ${/false positive/i.test(label) ? '<span class="badge bad">possible false positive</span>' : ''}
-    </div>
-    <div class="body-grid">
-      <div class="mini"><h3>Why it matters</h3><ul>${why.map(x => `<li>${esc(x)}</li>`).join('') || '<li>No rationale available.</li>'}</ul></div>
-      <div class="mini"><h3>Concerns</h3><ul>${concerns.map(x => `<li>${esc(x)}</li>`).join('') || '<li>No concerns listed.</li>'}</ul></div>
-    </div>
-    <div class="links">
-      ${p.entry_url ? `<a href="${esc(p.entry_url)}" target="_blank" rel="noopener">Open ${esc(p.link_label || 'source')}</a>` : ''}
-      ${p.doi ? `<a href="${esc(getDoiUrl(p.doi))}" target="_blank" rel="noopener">DOI</a>` : ''}
-      ${p.pmc_url ? `<a href="${esc(p.pmc_url)}" target="_blank" rel="noopener">Full text</a>` : ''}
-      <button onclick="copyPrompt(${idx})">Copy ChatGPT prompt</button>
-      <button onclick="copyCitation(${idx})">Copy citation</button>
-      <button onclick="downloadRIS(${idx})">Export RIS</button>
-    </div>
-    <details>
-      <summary>Open details: score breakdown, matched terms, abstract</summary>
-      <div class="details-panel">
-        <div class="mini"><h3>Score breakdown</h3><div class="breakdown">${topSignals.map(([name,val]) => `<div class="bar-row"><span>${esc(name.replaceAll('_',' '))}</span><span class="bar"><span class="fill" style="width:${Math.round(Number(val)/maxSignal*100)}%"></span></span><span>${val}</span></div>`).join('') || 'No score signals.'}</div></div>
-        <div class="mini"><h3>Matched terms</h3><div class="terms">${matchedTermChips(record) || '<span class="term">No matched terms</span>'}</div></div>
-        <div class="mini"><h3>Abstract</h3><div class="abstract">${esc(p.abstract || 'No abstract available.')}</div></div>
+    <div class="editor-grid" id="editorGrid"></div>
+  </section>
+
+  <section id="papersSection" hidden>
+    <div class="section-head">
+      <div>
+        <h2>Full Weekly Digest</h2>
+        <p class="section-subtitle" id="countLine"></p>
       </div>
-    </details>
-  </article>`;
-}
+    </div>
+    <div class="paper-grid" id="paperGrid"></div>
+  </section>
+</div>
 
-function filteredRecords() {
-  const q = $('search').value.trim().toLowerCase();
-  const source = $('sourceFilter').value;
-  const label = $('labelFilter').value;
-  const tag = $('tagFilter').value;
-  return records.filter(r =>
-    (!q || paperText(r).includes(q)) &&
-    (source === 'all' || getSource(r) === source) &&
-    (label === 'all' || getLabel(r) === label) &&
-    (tag === 'all' || getTags(r).includes(tag))
-  );
-}
+<script>
+(function () {
+  const OWNER = "mmccoy-01";
+  const REPO = "pubmed";
+  const BRANCH = "main";
+  const API_OUTPUT_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/output?ref=${BRANCH}`;
+  const RAW_BASE = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/output`;
+  const CATEGORY_MAX = 24;
+  const INTERACTION_MAX = 18;
+  const PENALTY_MAX = 20;
 
-function render() {
-  if (!digest) return;
-  renderStats();
-  const filtered = filteredRecords();
-  const topFive = records.slice(0,5);
-  $('editorCards').innerHTML = topFive.length ? topFive.map((r,i) => editorCard(r, records.indexOf(r), i)).join('') : '<div class="empty">No editor picks yet.</div>';
-  $('paperCards').innerHTML = filtered.length ? filtered.map((r) => paperCard(r, records.indexOf(r))).join('') : '<div class="empty">No papers match the current filters.</div>';
-  $('countHint').textContent = `${filtered.length} of ${records.length} papers shown`;
-}
+  const root = document.getElementById("phd-lit-dashboard");
+  const weekSelect = root.querySelector("#weekSelect");
+  const searchInput = root.querySelector("#searchInput");
+  const labelFilter = root.querySelector("#labelFilter");
+  const resetBtn = root.querySelector("#resetBtn");
+  const status = root.querySelector("#status");
+  const stats = root.querySelector("#stats");
+  const editorGrid = root.querySelector("#editorGrid");
+  const paperGrid = root.querySelector("#paperGrid");
+  const countLine = root.querySelector("#countLine");
+  const summarySection = root.querySelector("#summarySection");
+  const editorSection = root.querySelector("#editorSection");
+  const papersSection = root.querySelector("#papersSection");
 
-function loadDigest(obj, name='digest.json') {
-  digest = obj;
-  records = (obj.records || []).slice().sort((a,b) => getScore(b) - getScore(a));
-  $('loadStatus').textContent = `Loaded ${name}`;
-  hydrateFilters();
-  render();
-}
+  let weeks = [];
+  let digest = null;
+  let records = [];
 
-async function discoverWeeks() {
-  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${OUTPUT_PATH}?ref=${GITHUB_BRANCH}`;
-  const response = await fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } });
-  if (!response.ok) throw new Error(`Could not list GitHub output folders (${response.status})`);
-  const items = await response.json();
-  availableWeeks = items
-    .filter(item => item.type === 'dir' && /^\d{4}-\d{2}-\d{2}$/.test(item.name))
-    .map(item => item.name)
-    .sort()
-    .reverse();
-  if (!availableWeeks.length) throw new Error('No dated output folders found.');
-  $('weekFilter').innerHTML = availableWeeks.map(week => `<option value="${esc(week)}">${esc(week)}</option>`).join('');
-  await loadWeek(availableWeeks[0]);
-}
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-async function loadWeek(week) {
-  if (!week) return;
-  $('loadStatus').textContent = `Loading ${week} digest from GitHub…`;
-  const rawUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${OUTPUT_PATH}/${week}/digest.json`;
-  const response = await fetch(rawUrl, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`Could not load ${week}/digest.json (${response.status})`);
-  const obj = await response.json();
-  loadDigest(obj, `${week}/digest.json`);
-}
+  function titleCase(value) {
+    return String(value || "")
+      .replace(/_/g, " ")
+      .replace(/\b\w/g, char => char.toUpperCase());
+  }
 
-$('weekFilter').addEventListener('change', async (e) => {
-  try { await loadWeek(e.target.value); }
-  catch (err) { $('loadStatus').textContent = err.message; }
-});
+  function firstSentence(text, fallback = "Ontology-selected high signal paper.") {
+    const clean = String(text || "").trim();
+    if (!clean) return fallback;
+    const match = clean.match(/^(.{25,220}?[.!?])\s/);
+    return match ? match[1] : clean.slice(0, 190) + (clean.length > 190 ? "…" : "");
+  }
 
-$('resetBtn').addEventListener('click', () => {
-  $('search').value = '';
-  $('sourceFilter').value = 'all';
-  $('labelFilter').value = 'all';
-  $('tagFilter').value = 'all';
-  render();
-});
+  function paperUrl(record) {
+    return record?.paper?.entry_url || record?.paper?.pmc_url || record?.paper?.doi && `https://doi.org/${record.paper.doi}` || "#";
+  }
 
-['search','sourceFilter','labelFilter','tagFilter'].forEach(id => $(id).addEventListener('input', render));
+  function isPubMedHostedPreprint(record) {
+    const p = record.paper || {};
+    const text = `${p.journal || ""} ${p.doi || ""} ${p.title || ""}`.toLowerCase();
+    return p.source_db === "pubmed" && (
+      text.includes("research square") ||
+      text.includes("10.21203/") ||
+      text.includes("preprint") ||
+      text.includes("medrxiv") ||
+      text.includes("biorxiv")
+    );
+  }
 
-discoverWeeks().catch(err => {
-  $('weekFilter').innerHTML = '<option value="">No weeks found</option>';
-  $('loadStatus').textContent = `${err.message} Check that the repo is public and output/YYYY-MM-DD/digest.json exists.`;
-});
+  function sourceLabel(record) {
+    if (isPubMedHostedPreprint(record)) return "PubMed preprint";
+    const src = record.paper?.source_db || "unknown";
+    if (src === "pubmed") return "PubMed";
+    if (src === "biorxiv") return "bioRxiv";
+    if (src === "arxiv") return "arXiv";
+    return src;
+  }
+
+  function score(record) {
+    return Number(record.analysis?.overall_recommendation_score ?? 0);
+  }
+
+  function label(record) {
+    return record.analysis?.recommendation_label || "unlabeled";
+  }
+
+  function topSignals(record, limit = 3) {
+    const positives = record.analysis?.score_breakdown?.positive_categories || {};
+    return Object.entries(positives)
+      .filter(([, value]) => Number(value) > 0)
+      .sort((a, b) => Number(b[1]) - Number(a[1]))
+      .slice(0, limit);
+  }
+
+  function barWidth(value, max) {
+    const n = Math.abs(Number(value) || 0);
+    return Math.max(0, Math.min(100, (n / max) * 100));
+  }
+
+  function makeBar(value, max) {
+    return `<div class="bar"><i style="--w:${barWidth(value, max).toFixed(1)}%"></i></div>`;
+  }
+
+  function citationText(record) {
+    const p = record.paper || {};
+    const authors = (p.authors || []).slice(0, 6).join(", ");
+    return `${authors}${authors ? ". " : ""}${p.title || "Untitled"} ${p.journal || ""}. ${p.pubdate || ""}. ${p.doi ? "doi:" + p.doi : p.entry_url || ""}`.trim();
+  }
+
+  function aiPrompt(record) {
+    const p = record.paper || {};
+    return `Evaluate this paper for relevance to my PhD work on gustatory organ development, Hedgehog/Gas1 signaling, epithelial morphogenesis, postnatal tissue homeostasis, and mechanistic developmental biology.\n\nTitle: ${p.title || ""}\nAuthors: ${(p.authors || []).join(", ")}\nJournal: ${p.journal || ""}\nDate: ${p.pubdate || ""}\nDOI: ${p.doi || ""}\nURL: ${p.entry_url || ""}\n\nAbstract:\n${p.abstract || ""}\n\nPlease score direct relevance, bridge relevance, mechanistic value, methods value, and whether I should deeply read, skim, or ignore it.`;
+  }
+
+  function risText(record) {
+    const p = record.paper || {};
+    const lines = ["TY  - JOUR"];
+    (p.authors || []).forEach(author => lines.push(`AU  - ${author}`));
+    if (p.title) lines.push(`TI  - ${p.title}`);
+    if (p.journal) lines.push(`JO  - ${p.journal}`);
+    if (p.pubdate) lines.push(`PY  - ${String(p.pubdate).match(/\d{4}/)?.[0] || p.pubdate}`);
+    if (p.doi) lines.push(`DO  - ${p.doi}`);
+    if (p.entry_url) lines.push(`UR  - ${p.entry_url}`);
+    if (p.abstract) lines.push(`AB  - ${p.abstract}`);
+    lines.push("ER  -");
+    return lines.join("\n");
+  }
+
+  async function copyText(text) {
+    await navigator.clipboard.writeText(text);
+  }
+
+  function downloadText(filename, text) {
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function renderStats() {
+    const searched = (digest.search_metadata?.sources || []).map(s => s === "pubmed" ? "PubMed" : s === "biorxiv" ? "bioRxiv" : s === "arxiv" ? "arXiv" : s).join(", ") || "n/a";
+    const represented = [...new Set(records.map(sourceLabel))].join(", ") || "n/a";
+    const preprints = records.filter(r => r.paper?.source_db === "biorxiv" || r.paper?.source_db === "arxiv" || isPubMedHostedPreprint(r)).length;
+    stats.innerHTML = `
+      <div class="stat"><span class="value">${records.length}</span><span class="label">Papers in digest</span></div>
+      <div class="stat"><span class="value">${digest.days_back || "—"}</span><span class="label">Day query window</span></div>
+      <div class="stat"><span class="value">${preprints}</span><span class="label">Preprint signals</span></div>
+      <div class="stat"><span class="value">${escapeHtml(digest.generated_at ? digest.generated_at.slice(0,10) : "—")}</span><span class="label">Generated</span></div>
+      <div class="stat"><span class="value" style="font-size:1rem;line-height:1.25;letter-spacing:-.02em">${escapeHtml(searched)}</span><span class="label">Sources searched</span></div>
+      <div class="stat"><span class="value" style="font-size:1rem;line-height:1.25;letter-spacing:-.02em">${escapeHtml(represented)}</span><span class="label">Sources represented</span></div>
+      <div class="stat"><span class="value">${Math.max(...records.map(score), 0)}</span><span class="label">Top score</span></div>
+      <div class="stat"><span class="value">${escapeHtml(digest.scoring_model || "local")}</span><span class="label">Scoring model</span></div>
+    `;
+    summarySection.hidden = false;
+  }
+
+  function renderFilters() {
+    const labels = [...new Set(records.map(label))].sort();
+    labelFilter.innerHTML = `<option value="all">All priorities</option>` + labels.map(l => `<option value="${escapeHtml(l)}">${escapeHtml(l)}</option>`).join("");
+  }
+
+  function editorCategory(record, index) {
+    const tags = record.analysis?.tags || [];
+    if (index === 0) return "Top signal";
+    if (tags.some(t => /method|mechanistic/i.test(t))) return "Mechanistic/methods";
+    if (tags.some(t => /bridge/i.test(t))) return "Bridge paper";
+    if (isPubMedHostedPreprint(record) || record.paper?.source_db !== "pubmed") return "Preprint signal";
+    if ((record.analysis?.concerns || []).some(c => !/No major/i.test(c))) return "Caution-worthy";
+    return "High relevance";
+  }
+
+  function renderEditors() {
+    const picks = [...records]
+      .filter(r => score(r) > 0)
+      .sort((a,b) => score(b) - score(a))
+      .slice(0, 5);
+    editorGrid.innerHTML = picks.map((record, idx) => {
+      const p = record.paper;
+      return `
+        <a class="editor-card" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener">
+          <div class="badges" style="margin-top:0">
+            <span class="badge label">${escapeHtml(editorCategory(record, idx))}</span>
+            <span class="badge source">${escapeHtml(sourceLabel(record))}</span>
+            ${isPubMedHostedPreprint(record) ? `<span class="badge preprint">Preprint</span>` : ""}
+          </div>
+          <span class="editor-title">${escapeHtml(p.title)}</span>
+          <p class="editor-reason">${escapeHtml(firstSentence(record.analysis?.why_it_matters?.[0] || record.analysis?.one_paragraph_summary))}</p>
+          <div style="margin-top:auto;padding-top:.9rem">${makeBar(score(record), Math.max(100, score(picks[0]) || 100))}<strong style="display:block;margin-top:.35rem">Score ${score(record)}</strong></div>
+        </a>`;
+    }).join("");
+    editorSection.hidden = picks.length === 0;
+  }
+
+  function renderPaper(record, index) {
+    const p = record.paper || {};
+    const a = record.analysis || {};
+    const concerns = (a.concerns || []).filter(c => !/No major local rule-based concerns/i.test(c));
+    const signals = topSignals(record, 3);
+    const chips = (a.tags || []).slice(0, 7);
+    return `
+      <article class="paper-card" data-index="${index}">
+        <div class="paper-main">
+          <div class="paper-top">
+            <div>
+              <a class="paper-title" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener">${escapeHtml(p.title || "Untitled")}</a>
+              <div class="meta">${escapeHtml(p.journal || "Unknown journal")} · ${escapeHtml(p.pubdate || "No date")} · ${(p.authors || []).slice(0, 5).map(escapeHtml).join(", ")}${(p.authors || []).length > 5 ? " et al." : ""}</div>
+              <div class="badges">
+                <span class="badge source">${escapeHtml(sourceLabel(record))}</span>
+                ${isPubMedHostedPreprint(record) ? `<span class="badge preprint">Preprint</span>` : ""}
+                <span class="badge label">${escapeHtml(label(record))}</span>
+                ${concerns.length ? `<span class="badge concern">${concerns.length} concern${concerns.length > 1 ? "s" : ""}</span>` : ""}
+              </div>
+            </div>
+            <div class="score-badge"><div>${score(record)}<small>score</small></div></div>
+          </div>
+
+          <p class="why">${escapeHtml(firstSentence(a.one_paragraph_summary, "No local summary available."))}</p>
+
+          <div class="chips">${chips.map(chip => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}</div>
+
+          <div class="signals">
+            ${signals.map(([name, value]) => `
+              <div class="signal">
+                <span>${escapeHtml(titleCase(name))}</span>
+                ${makeBar(value, CATEGORY_MAX)}
+                <strong>${Number(value).toFixed(1)}</strong>
+              </div>`).join("")}
+          </div>
+
+          <div class="actions">
+            ${p.doi ? `<a class="btn" href="https://doi.org/${escapeHtml(p.doi)}" target="_blank" rel="noopener">DOI</a>` : ""}
+            ${p.pmc_url ? `<a class="btn" href="${escapeHtml(p.pmc_url)}" target="_blank" rel="noopener">Full text</a>` : ""}
+            <button class="btn" type="button" data-action="copy-prompt" data-index="${index}">Copy Prompt</button>
+            <button class="btn" type="button" data-action="copy-citation" data-index="${index}">Copy citation</button>
+            <button class="btn" type="button" data-action="export-ris" data-index="${index}">Export RIS</button>
+          </div>
+        </div>
+        <details>
+          <summary>Score breakdown, matched terms, and abstract</summary>
+          <div class="detail-body">
+            ${renderBreakdown(record)}
+            ${renderMatchedTerms(record)}
+            <div class="abstract"><strong>Abstract</strong><br>${escapeHtml(p.abstract || "No abstract available.")}</div>
+          </div>
+        </details>
+      </article>`;
+  }
+
+  function renderBreakdown(record) {
+    const bd = record.analysis?.score_breakdown || {};
+    const positives = bd.positive_categories || {};
+    const bonuses = bd.interaction_bonuses || {};
+    const penalties = bd.penalties || {};
+    const positiveRows = Object.entries(positives).filter(([,v]) => Number(v) !== 0).map(([k,v]) => breakdownRow(k, v, CATEGORY_MAX, "positive")).join("");
+    const bonusRows = Object.entries(bonuses).filter(([,v]) => Number(v) !== 0).map(([k,v]) => breakdownRow(k, v, INTERACTION_MAX, "bonus")).join("");
+    const penaltyRows = Object.entries(penalties).filter(([,v]) => Number(v) !== 0).map(([k,v]) => breakdownRow(k, v, PENALTY_MAX, "penalty")).join("");
+    return `<div class="breakdown-grid">
+      <div><strong>Positive ontology signals</strong>${positiveRows || `<p class="meta">No positive category scores.</p>`}</div>
+      <div><strong>Bonuses & penalties</strong>${bonusRows || ""}${penaltyRows || ""}<div class="breakdown-row"><span class="name">Source bonus</span>${makeBar(bd.source_bonus || 0, 5)}<span class="num">${Number(bd.source_bonus || 0).toFixed(1)}</span></div></div>
+    </div>`;
+  }
+
+  function breakdownRow(name, value, max, type) {
+    return `<div class="breakdown-row ${type}"><span class="name" title="${escapeHtml(titleCase(name))}">${escapeHtml(titleCase(name))}</span>${makeBar(value, max)}<span class="num">${Number(value).toFixed(1)}</span></div>`;
+  }
+
+  function renderMatchedTerms(record) {
+    const terms = record.analysis?.matched_terms || {};
+    const html = Object.entries(terms)
+      .filter(([, values]) => Array.isArray(values) && values.length)
+      .map(([name, values]) => `<div style="margin-top:.7rem"><strong>${escapeHtml(titleCase(name))}</strong><div class="chips">${values.map(v => `<span class="chip">${escapeHtml(v)}</span>`).join("")}</div></div>`)
+      .join("");
+    return html || `<p class="meta">No matched terms available.</p>`;
+  }
+
+  function filteredRecords() {
+    const q = searchInput.value.trim().toLowerCase();
+    const selectedLabel = labelFilter.value;
+    return records.filter(record => {
+      if (selectedLabel !== "all" && label(record) !== selectedLabel) return false;
+      if (!q) return true;
+      const p = record.paper || {};
+      const a = record.analysis || {};
+      const blob = [p.title, p.journal, p.pubdate, (p.authors || []).join(" "), p.abstract, (a.tags || []).join(" "), JSON.stringify(a.matched_terms || {})].join(" ").toLowerCase();
+      return blob.includes(q);
+    });
+  }
+
+  function renderPapers() {
+    const list = filteredRecords();
+    countLine.textContent = `${list.length} of ${records.length} papers shown.`;
+    paperGrid.innerHTML = list.length ? list.map(renderPaper).join("") : `<div class="empty">No papers match the current filters.</div>`;
+    papersSection.hidden = false;
+  }
+
+  async function loadWeeks() {
+    try {
+      const res = await fetch(API_OUTPUT_URL);
+      if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+      const items = await res.json();
+      weeks = items
+        .filter(item => item.type === "dir" && /^\d{4}-\d{2}-\d{2}$/.test(item.name))
+        .map(item => item.name)
+        .sort()
+        .reverse();
+      if (!weeks.length) throw new Error("No dated output folders found.");
+      weekSelect.innerHTML = weeks.map(w => `<option value="${w}">${w}</option>`).join("");
+      await loadDigest(weeks[0]);
+    } catch (err) {
+      status.textContent = `Could not load GitHub output folders: ${err.message}`;
+      weekSelect.innerHTML = `<option>Unable to load weeks</option>`;
+    }
+  }
+
+  async function loadDigest(week) {
+    status.textContent = `Loading ${week}/digest.json…`;
+    summarySection.hidden = true;
+    editorSection.hidden = true;
+    papersSection.hidden = true;
+    try {
+      const res = await fetch(`${RAW_BASE}/${week}/digest.json`, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Could not fetch digest.json (${res.status})`);
+      digest = await res.json();
+      records = (digest.records || []).slice().sort((a,b) => score(b) - score(a));
+      status.textContent = `Loaded ${week}.`;
+      renderStats();
+      renderFilters();
+      renderEditors();
+      renderPapers();
+    } catch (err) {
+      status.textContent = `Could not load digest for ${week}: ${err.message}`;
+    }
+  }
+
+  weekSelect.addEventListener("change", () => loadDigest(weekSelect.value));
+  searchInput.addEventListener("input", renderPapers);
+  labelFilter.addEventListener("change", renderPapers);
+  resetBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    labelFilter.value = "all";
+    renderPapers();
+  });
+
+  paperGrid.addEventListener("click", async (event) => {
+    const btn = event.target.closest("button[data-action]");
+    if (!btn) return;
+    const record = filteredRecords()[Number(btn.dataset.index)];
+    if (!record) return;
+    const action = btn.dataset.action;
+    try {
+      if (action === "copy-prompt") await copyText(aiPrompt(record));
+      if (action === "copy-citation") await copyText(citationText(record));
+      if (action === "export-ris") downloadText(`${record.paper?.paper_id || "paper"}.ris`, risText(record));
+      if (action !== "export-ris") {
+        const old = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(() => btn.textContent = old, 900);
+      }
+    } catch (err) {
+      alert(`Action failed: ${err.message}`);
+    }
+  });
+
+  loadWeeks();
+})();
 </script>
-</body>
-</html>
