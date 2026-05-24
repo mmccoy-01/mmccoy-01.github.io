@@ -513,6 +513,63 @@ permalink: /PhD_Dashboard/
     #phd-lit-dashboard .paper-top { grid-template-columns: 1fr; }
     #phd-lit-dashboard .score-badge { width: 72px; }
   }
+
+
+  /* v7 readability overrides: keep the dashboard glass style dark inside the site layout */
+  #phd-lit-dashboard .editor-card,
+  #phd-lit-dashboard .paper-card,
+  #phd-lit-dashboard .signal,
+  #phd-lit-dashboard details,
+  #phd-lit-dashboard .abstract {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(8, 13, 28, 0.72)) !important;
+    border-color: rgba(148, 163, 184, 0.22) !important;
+    color: var(--ink) !important;
+  }
+
+  #phd-lit-dashboard .editor-card {
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255,255,255,0.08) !important;
+  }
+
+  #phd-lit-dashboard .editor-title,
+  #phd-lit-dashboard .paper-title,
+  #phd-lit-dashboard .signal strong,
+  #phd-lit-dashboard .breakdown-row .num {
+    color: #f8fafc !important;
+  }
+
+  #phd-lit-dashboard .editor-reason,
+  #phd-lit-dashboard .why,
+  #phd-lit-dashboard .meta,
+  #phd-lit-dashboard .signal span,
+  #phd-lit-dashboard .breakdown-row .name,
+  #phd-lit-dashboard .abstract {
+    color: #cbd5e1 !important;
+  }
+
+  #phd-lit-dashboard .badge,
+  #phd-lit-dashboard .chip {
+    background: rgba(15, 23, 42, 0.66) !important;
+    color: #cbd5e1 !important;
+    border-color: rgba(148, 163, 184, 0.26) !important;
+  }
+
+  #phd-lit-dashboard .badge.source { color: var(--blue) !important; }
+  #phd-lit-dashboard .badge.preprint { color: var(--purple) !important; }
+  #phd-lit-dashboard .badge.concern { color: var(--danger) !important; }
+  #phd-lit-dashboard .badge.label { color: var(--accent) !important; }
+
+  #phd-lit-dashboard .bar {
+    background: rgba(148, 163, 184, 0.16) !important;
+  }
+
+  #phd-lit-dashboard details {
+    border-top-color: rgba(148, 163, 184, 0.20) !important;
+  }
+
+  #phd-lit-dashboard .breakdown-row {
+    border-bottom-color: rgba(148, 163, 184, 0.16) !important;
+  }
+
 </style>
 
 <div id="phd-lit-dashboard"><div class="dashboard-shell">
