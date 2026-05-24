@@ -1,92 +1,151 @@
 <!DOCTYPE html>
 <html lang="{{ site.language }}" class="no-js">
-    {% include head.html %}
-    <body class="has-push-menu phd-dashboard-page">
-        {% include svg-icons.html %}
-        {% include header.html %}
+  {% include head.html %}
 
-        <style>
-            body.phd-dashboard-page {
-                background:
-                    radial-gradient(circle at top left, rgba(139,211,255,0.24), transparent 34rem),
-                    radial-gradient(circle at top right, rgba(184,255,218,0.15), transparent 28rem),
-                    radial-gradient(circle at 50% 12%, rgba(216,199,255,0.10), transparent 32rem),
-                    linear-gradient(160deg, #050814, #09111f) !important;
-                color: #eef4ff !important;
-            }
+  <body class="has-push-menu phd-dashboard-page">
+    {% include svg-icons.html %}
+    {% include header.html %}
 
-            body.phd-dashboard-page .phd-dashboard-content {
-                min-height: calc(100vh - 160px);
-                padding: 0;
-                background: transparent !important;
-            }
+    <main class="phd-dashboard-shell" role="main">
+      {{ content }}
+    </main>
 
-            body.phd-dashboard-page .post,
-            body.phd-dashboard-page .post-content,
-            body.phd-dashboard-page article {
-                background: transparent !important;
-            }
+    {% include footer.html %}
 
-            /* Keep the site header dark on load and after scroll. */
-            body.phd-dashboard-page header,
-            body.phd-dashboard-page .header,
-            body.phd-dashboard-page .site-header,
-            body.phd-dashboard-page .bar-header,
-            body.phd-dashboard-page .main-header,
-            body.phd-dashboard-page .nav,
-            body.phd-dashboard-page .navbar,
-            body.phd-dashboard-page .has-push-menu header,
-            body.phd-dashboard-page header.is-fixed,
-            body.phd-dashboard-page header.is-visible,
-            body.phd-dashboard-page header.is-active,
-            body.phd-dashboard-page header.fixed,
-            body.phd-dashboard-page header.scrolled,
-            body.phd-dashboard-page .header.is-fixed,
-            body.phd-dashboard-page .header.is-visible,
-            body.phd-dashboard-page .header.is-active,
-            body.phd-dashboard-page .header.fixed,
-            body.phd-dashboard-page .header.scrolled {
-                background: rgba(5, 8, 20, 0.96) !important;
-                color: #eef4ff !important;
-                border-bottom-color: rgba(148, 163, 184, 0.18) !important;
-                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24) !important;
-            }
+    <style>
+      /*
+        PhD dashboard layout overrides
+        Goal: keep the normal site header/footer, but prevent scroll-state styles
+        from turning icons/text dark against the dashboard background.
+      */
 
-            body.phd-dashboard-page header a,
-            body.phd-dashboard-page .header a,
-            body.phd-dashboard-page .site-header a,
-            body.phd-dashboard-page .bar-header a,
-            body.phd-dashboard-page .main-header a,
-            body.phd-dashboard-page .nav a,
-            body.phd-dashboard-page .navbar a {
-                color: #eef4ff !important;
-            }
+      html,
+      body.phd-dashboard-page {
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.18), transparent 34rem),
+          radial-gradient(circle at 80% 12%, rgba(168, 85, 247, 0.14), transparent 30rem),
+          linear-gradient(135deg, #020617 0%, #07111f 42%, #0f172a 100%) !important;
+        color: #e5e7eb !important;
+      }
 
-            /* Make the footer match the dashboard instead of appearing as a white block. */
-            body.phd-dashboard-page footer,
-            body.phd-dashboard-page .footer,
-            body.phd-dashboard-page .site-footer,
-            body.phd-dashboard-page .main-footer,
-            body.phd-dashboard-page .page-footer {
-                background: rgba(5, 8, 20, 0.96) !important;
-                color: #cbd5e1 !important;
-                border-top: 1px solid rgba(148, 163, 184, 0.18) !important;
-                box-shadow: none !important;
-            }
+      body.phd-dashboard-page .phd-dashboard-shell {
+        min-height: calc(100vh - 120px);
+        background: transparent !important;
+      }
 
-            body.phd-dashboard-page footer a,
-            body.phd-dashboard-page .footer a,
-            body.phd-dashboard-page .site-footer a,
-            body.phd-dashboard-page .main-footer a,
-            body.phd-dashboard-page .page-footer a {
-                color: #cbd5e1 !important;
-            }
-        </style>
+      /* Header background should stay dark/glassy before and after scroll. */
+      body.phd-dashboard-page header,
+      body.phd-dashboard-page .header,
+      body.phd-dashboard-page .site-header,
+      body.phd-dashboard-page .main-header,
+      body.phd-dashboard-page .bar-header,
+      body.phd-dashboard-page .topbar,
+      body.phd-dashboard-page .navbar,
+      body.phd-dashboard-page .menu-wrapper,
+      body.phd-dashboard-page .fixed,
+      body.phd-dashboard-page .is-fixed,
+      body.phd-dashboard-page .is-visible,
+      body.phd-dashboard-page .is-active {
+        background: rgba(2, 6, 23, 0.94) !important;
+        border-color: rgba(148, 163, 184, 0.18) !important;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22) !important;
+        backdrop-filter: blur(14px);
+      }
 
-        <main class="phd-dashboard-content" role="main">
-            {{ content }}
-        </main>
+      /* Keep header text/icons readable after scroll-state classes fire. */
+      body.phd-dashboard-page header *,
+      body.phd-dashboard-page .header *,
+      body.phd-dashboard-page .site-header *,
+      body.phd-dashboard-page .main-header *,
+      body.phd-dashboard-page .topbar *,
+      body.phd-dashboard-page .navbar *,
+      body.phd-dashboard-page .menu-wrapper *,
+      body.phd-dashboard-page .site-title,
+      body.phd-dashboard-page .site-title *,
+      body.phd-dashboard-page .logo,
+      body.phd-dashboard-page .logo *,
+      body.phd-dashboard-page .search,
+      body.phd-dashboard-page .search *,
+      body.phd-dashboard-page .search-icon,
+      body.phd-dashboard-page .search-icon *,
+      body.phd-dashboard-page .menu-icon,
+      body.phd-dashboard-page .menu-icon *,
+      body.phd-dashboard-page .icon-menu,
+      body.phd-dashboard-page .icon-search,
+      body.phd-dashboard-page .btn-mobile-menu,
+      body.phd-dashboard-page .btn-mobile-menu *,
+      body.phd-dashboard-page .nav a,
+      body.phd-dashboard-page .navigation a {
+        color: #e5e7eb !important;
+        fill: #e5e7eb !important;
+        stroke: #e5e7eb !important;
+      }
 
-        {% include footer.html %}
-    </body>
+      body.phd-dashboard-page header a:hover,
+      body.phd-dashboard-page .header a:hover,
+      body.phd-dashboard-page .site-header a:hover,
+      body.phd-dashboard-page .main-header a:hover,
+      body.phd-dashboard-page .topbar a:hover,
+      body.phd-dashboard-page .navbar a:hover {
+        color: #93c5fd !important;
+      }
+
+      body.phd-dashboard-page header a:hover *,
+      body.phd-dashboard-page .header a:hover *,
+      body.phd-dashboard-page .site-header a:hover *,
+      body.phd-dashboard-page .main-header a:hover * {
+        color: #93c5fd !important;
+        fill: #93c5fd !important;
+        stroke: #93c5fd !important;
+      }
+
+      /* Footer should visually belong to the dashboard, not sit in a white block. */
+      body.phd-dashboard-page footer,
+      body.phd-dashboard-page .footer,
+      body.phd-dashboard-page .site-footer,
+      body.phd-dashboard-page .main-footer {
+        background: rgba(2, 6, 23, 0.96) !important;
+        border-top: 1px solid rgba(148, 163, 184, 0.18) !important;
+        color: #cbd5e1 !important;
+        box-shadow: none !important;
+      }
+
+      body.phd-dashboard-page footer *,
+      body.phd-dashboard-page .footer *,
+      body.phd-dashboard-page .site-footer *,
+      body.phd-dashboard-page .main-footer * {
+        color: #cbd5e1 !important;
+        fill: #cbd5e1 !important;
+        stroke: #cbd5e1 !important;
+      }
+
+      body.phd-dashboard-page footer a,
+      body.phd-dashboard-page .footer a,
+      body.phd-dashboard-page .site-footer a,
+      body.phd-dashboard-page .main-footer a {
+        color: #e5e7eb !important;
+        text-decoration-color: rgba(147, 197, 253, 0.55) !important;
+      }
+
+      body.phd-dashboard-page footer a:hover,
+      body.phd-dashboard-page .footer a:hover,
+      body.phd-dashboard-page .site-footer a:hover,
+      body.phd-dashboard-page .main-footer a:hover {
+        color: #93c5fd !important;
+      }
+
+      /* Some themes place page-nav links outside footer with generic classes. */
+      body.phd-dashboard-page .footer-links,
+      body.phd-dashboard-page .footer-links *,
+      body.phd-dashboard-page .social-links,
+      body.phd-dashboard-page .social-links *,
+      body.phd-dashboard-page .site-nav,
+      body.phd-dashboard-page .site-nav * {
+        color: #cbd5e1 !important;
+        fill: #cbd5e1 !important;
+        stroke: #cbd5e1 !important;
+      }
+    </style>
+  </body>
 </html>
