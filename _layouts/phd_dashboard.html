@@ -5,23 +5,32 @@
         {% include svg-icons.html %}
         {% include header.html %}
 
+        <style>
+            body.phd-dashboard-page {
+                background:
+                    radial-gradient(circle at top left, rgba(139,211,255,0.24), transparent 34rem),
+                    radial-gradient(circle at top right, rgba(184,255,218,0.15), transparent 28rem),
+                    radial-gradient(circle at 50% 12%, rgba(216,199,255,0.10), transparent 32rem),
+                    linear-gradient(160deg, #050814, #09111f) !important;
+                color: #eef4ff;
+            }
+
+            body.phd-dashboard-page .phd-dashboard-content {
+                min-height: calc(100vh - 160px);
+                padding: 0;
+            }
+
+            body.phd-dashboard-page .post,
+            body.phd-dashboard-page .post-content,
+            body.phd-dashboard-page article {
+                background: transparent !important;
+            }
+        </style>
+
         <main class="phd-dashboard-content" role="main">
             {{ content }}
         </main>
 
         {% include footer.html %}
-
-        {% if page.math %}
-        <script>
-            MathJax = {
-                tex: {
-                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                }
-            };
-        </script>
-        <script type="text/javascript" id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-        </script>
-        {% endif %}
     </body>
 </html>
