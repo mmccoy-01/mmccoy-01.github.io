@@ -1,0 +1,34 @@
+.epigraph-page {
+  max-width: 650px;
+  margin: 30vh auto 0 auto;
+}
+
+.epigraph-quote {
+  text-align: center;
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.epigraph-author {
+  text-align: right;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.copyright-page {
+  max-width: 680px;
+  margin: 8rem auto 0 auto;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.publisher-logo {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.publisher-logo img {
+  max-width: 120px;
+  height: auto;
+}
