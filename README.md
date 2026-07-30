@@ -2,9 +2,10 @@
 
 ## Highlight-triggered GitHub collaboration
 
-The rendered Quarto book in `book/` shows a compact collaboration menu only
-after a reader selects meaningful text inside
-`main.content#quarto-document-content`. It offers:
+Jekyll posts and the rendered Quarto book in `book/` show a compact
+collaboration menu only after a reader selects meaningful article text. The
+single shared implementation supports `article.post-content` for posts and
+`main.content#quarto-document-content` for book chapters. It offers:
 
 - **Suggest edit**, which opens a GitHub issue with the rendered page, mapped
   `.qmd` source path, exact passage, nearby paragraph context, and a place for
@@ -17,23 +18,36 @@ used.
 
 ### Configuration
 
-Configuration constants are at the top of `book/github-highlight.js`:
+Configuration constants are at the top of
+`assets/js/github-highlight.js`:
 
 | Setting | Current value | Notes |
 |---|---|---|
 | Repository | `mmccoy-01/mmccoy-01.github.io` | Taken from this repository's Git remote. |
+| Public site URL | `https://katalepsara.com/` | Fallback for Jekyll posts; rendered posts also receive their canonical URL as metadata. |
 | Public book URL | `https://katalepsara.com/book/` | Taken from the repository homepage/CNAME and the deployed `/book/` path. |
 | Discussion category | `general` | Discussions are enabled and this category currently exists. |
 | Minimum selection | 8 characters | Short or non-word selections do not show the menu. |
 | Maximum selection | 1,200 characters | Bounds GitHub issue URL size and clipboard content; longer selections show guidance instead of a menu. |
-| Content selector | `main.content#quarto-document-content` | Matches the rendered Quarto pages checked into this repository. |
+| Content selectors | Quarto `main.content#quarto-document-content`; Jekyll `article.post-content[role='article']` | Prevents selections elsewhere on the site from triggering the menu. |
 | Issue label | empty | The repository does not currently have a `suggested-edit` label. Create it first, then set `issueLabel: "suggested-edit"`. |
 
 Confirm the public book URL if the canonical deployment changes. The only
 currently missing optional value is the issue label: create `suggested-edit` in
 GitHub before enabling it in the script.
 
-### Source mapping and future Quarto renders
+### Jekyll loader and source mapping
+
+`_includes/head.html` conditionally loads
+`assets/css/github-highlight.css` and `assets/js/github-highlight.js` for every
+page whose layout is `post`. It also emits the post's Markdown source path from
+Jekyll's `page.path` and its canonical public URL. Adding another
+`_posts/*.md` file therefore requires no feature-specific HTML or front matter.
+
+Post titles, publication details, cover images, pagination, controls, forms,
+code, and surrounding site navigation are excluded from selection handling.
+
+### Quarto loader and source mapping
 
 The repository contains rendered HTML but does not contain the book's Quarto
 source project, `_quarto.yml`, or `.qmd` files. The integration script therefore
@@ -44,21 +58,21 @@ example, `chapters/04-introduction.html` to
 `scripts/integrate-book-highlight.ps1` injects the source path as per-page
 metadata and regenerates `book/page-source-map.json` as a fallback. If any
 rendered pathname differs from its source pathname, add that exception to the
-script's `$sourceOverrides` table. The `.qmd` paths should be confirmed against
-the separate source project before treating them as authoritative.
+script's `$sourceOverrides` table.
 
 After each future Quarto render:
 
-1. Copy `github-highlight.js` into the new `_book/` root.
-2. Ensure the source project's stylesheet includes the collaboration rules from
-   `book/styles.css`. In `_quarto.yml`, this normally means
-   `format: html: css: styles.css`.
-3. Copy the rendered `_book/` directory to this repository as `book/`.
-4. From this repository root, run:
+1. Copy the rendered `_book/` directory to this repository as `book/`.
+2. From this repository root, run:
 
    ```powershell
    powershell -ExecutionPolicy Bypass -File scripts/integrate-book-highlight.ps1
    ```
+
+The script injects references to the same canonical `/assets/` JS and CSS used
+by Jekyll, so no implementation is copied into individual book pages. Each
+rendered HTML page only receives a loader reference and its source-path
+metadata.
 
 For a source project under active maintenance, the preferred long-term setup is
 to load the script during rendering (for example with a Quarto
@@ -121,24 +135,31 @@ responsive device emulation as an initial check, then verify native long-press
 selection on iOS Safari and Android Chrome. Also test while logged out of
 GitHub, and deny clipboard permission once to exercise the fallback.
 
-This output-only repository can be checked without rebuilding the absent source
-project:
+To preview Jekyll posts from this repository on a system with Ruby and the
+bundle installed:
 
 ```powershell
-node --check book/github-highlight.js
+bundle exec jekyll serve
+```
+
+The shared implementation and output-only Quarto integration can be checked
+without rebuilding either source system:
+
+```powershell
+node --check assets/js/github-highlight.js
 node tests/github-highlight-static.test.mjs
 ```
 
 For an automated browser smoke test, run Chrome or Edge headlessly against
-`tests/github-highlight.browser.html` and confirm that `#test-results` has
-`data-status="passed"`.
+`tests/github-highlight.browser.html` and
+`tests/github-highlight-jekyll.browser.html`; confirm that each
+`#test-results` element has `data-status="passed"`.
 
-### Deploying `/book/`
+### Deployment
 
 Render in the source project, copy the contents of its `_book/` directory into
-this website repository's `book/` directory, copy the collaboration JavaScript
-and CSS rules if the source project does not yet own them, and run the
-integration script above. Review `git diff`, run the static checks, commit the
-updated `book/` output plus `book/github-highlight.js`,
-`book/page-source-map.json`, and push `main`. GitHub Pages serves the checked-in
-folder at `/book/`; no server configuration or secret is required.
+this website repository's `book/` directory, and run the integration script
+above. Commit the updated `book/` output, shared `assets/`, source map, loader,
+and documentation, then push `main`. GitHub Pages serves the checked-in book at
+`/book/` and Jekyll automatically applies the shared loader to every post. No
+server configuration or secret is required.

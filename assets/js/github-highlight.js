@@ -1,8 +1,8 @@
 /**
- * Highlight-triggered GitHub collaboration for the rendered Quarto book.
+ * Highlight-triggered GitHub collaboration for Jekyll posts and Quarto chapters.
  *
- * This file is intentionally dependency-free. Keep configuration values in this
- * block so the same asset can be copied into future Quarto renders.
+ * This shared asset is intentionally dependency-free. Jekyll loads it from the
+ * post head; rendered Quarto pages reference the same root-relative asset.
  */
 (() => {
   "use strict";
@@ -11,10 +11,12 @@
     repositoryOwner: "mmccoy-01",
     repositoryName: "mmccoy-01.github.io",
     discussionCategory: "general",
+    publicSiteUrl: "https://katalepsara.com/",
     publicBookUrl: "https://katalepsara.com/book/",
     minimumSelectionLength: 8,
     maximumSelectionLength: 1200,
-    allowedContentSelector: "main.content#quarto-document-content",
+    allowedContentSelector:
+      "main.content#quarto-document-content, article.post-content[role='article']",
     excludedSelectors: [
       "nav",
       "header",
@@ -34,6 +36,16 @@
       ".sourceCode",
       ".code-with-filename",
       ".cell",
+      ".post-info",
+      ".post-title",
+      ".post-subtitle",
+      ".post-cover",
+      ".pagination",
+      ".progress-bar",
+      ".share",
+      ".subscription",
+      ".buy-card",
+      ".purchase-card",
       ".github-highlight-menu",
       ".github-highlight-toast",
     ].join(","),
@@ -99,12 +111,22 @@
     return relativePath.endsWith("/") ? `${relativePath}index.html` : relativePath;
   };
 
-  const publicPageUrl = () =>
-    new URL(currentBookPath(), CONFIG.publicBookUrl).toString();
+  const publicPageUrl = () => {
+    const metadataUrl = document.querySelector(
+      'meta[name="github-highlight-public-url"]'
+    )?.content;
+    if (metadataUrl) {
+      return metadataUrl;
+    }
+    if (state.content?.matches("article.post-content[role='article']")) {
+      return new URL(window.location.pathname, CONFIG.publicSiteUrl).toString();
+    }
+    return new URL(currentBookPath(), CONFIG.publicBookUrl).toString();
+  };
 
   const pageTitle = () => {
     const heading = state.content?.querySelector(
-      ".quarto-title h1.title, .quarto-title h1, h1.title"
+      ".quarto-title h1.title, .quarto-title h1, h1.title, h1.post-title"
     );
     if (heading?.textContent?.trim()) {
       return normalizeWhitespace(heading.textContent);
@@ -701,7 +723,12 @@
     }
     createInterface();
     bindEvents();
-    loadSourceMap();
+    if (
+      !document.querySelector('meta[name="github-highlight-source"]') &&
+      state.content.matches("main.content#quarto-document-content")
+    ) {
+      loadSourceMap();
+    }
   };
 
   const api = {

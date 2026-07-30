@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="github-highlight-source" content="_posts/2026-07-21-browser-fixture.md">
+    <meta name="github-highlight-public-url" content="https://katalepsara.com/browser-fixture/">
+    <title>Jekyll browser fixture | Katalepsara</title>
+    <link rel="stylesheet" href="../assets/css/github-highlight.css">
+    <script src="../assets/js/github-highlight.js" defer></script>
+  </head>
+  <body>
+    <article role="article" class="post-content">
+      <p class="post-info">Publication details are excluded.</p>
+      <h1 class="post-title">Jekyll browser fixture</h1>
+      <p id="passage">
+        A Jekyll post passage can invite a useful editorial conversation.
+      </p>
+      <nav class="pagination">Post navigation is excluded.</nav>
+    </article>
+    <output id="test-results">waiting</output>
+    <script>
+      window.addEventListener("load", () => {
+        const results = [];
+        const openedUrls = [];
+        window.open = (url) => {
+          openedUrls.push(url);
+          return {};
+        };
+        const wait = (milliseconds) =>
+          new Promise((resolve) => setTimeout(resolve, milliseconds));
+        const check = (condition, message) => {
+          if (!condition) throw new Error(message);
+          results.push(message);
+        };
+        const selectNode = (selector) => {
+          const node = document.querySelector(selector);
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          document.dispatchEvent(new Event("selectionchange"));
+        };
+
+        (async () => {
+          selectNode("#passage");
+          await wait(500);
+          const menu = document.querySelector(".github-highlight-menu");
+          check(!menu.hidden, "Jekyll post passage shows menu");
+
+          menu.querySelector("button").click();
+          await wait(50);
+          const issueUrl = new URL(openedUrls.at(-1));
+          const issueBody = issueUrl.searchParams.get("body");
+          check(
+            issueBody.includes("`_posts/2026-07-21-browser-fixture.md`"),
+            "issue contains the Jekyll source path"
+          );
+          check(
+            issueBody.includes("https://katalepsara.com/browser-fixture/"),
+            "issue contains the canonical public post URL"
+          );
+          check(
+            issueUrl.searchParams.get("title") ===
+              "Suggested edit: Jekyll browser fixture",
+            "issue uses the Jekyll post title"
+          );
+
+          selectNode(".post-title");
+          await wait(500);
+          check(menu.hidden, "post title selection stays excluded");
+
+          selectNode(".post-info");
+          await wait(500);
+          check(menu.hidden, "post metadata selection stays excluded");
+
+          const result = document.getElementById("test-results");
+          result.dataset.status = "passed";
+          result.textContent = results.join(" | ");
+        })().catch((error) => {
+          const result = document.getElementById("test-results");
+          result.dataset.status = "failed";
+          result.textContent = error.stack || error.message;
+        });
+      });
+    </script>
+  </body>
+</html>

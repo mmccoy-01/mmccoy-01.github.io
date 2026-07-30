@@ -13,6 +13,15 @@ if (-not $resolvedBookDirectory.StartsWith($repositoryRoot, [System.StringCompar
     throw "BookDirectory must resolve inside the repository."
 }
 
+$sharedScriptPath = Join-Path $repositoryRoot "assets\js\github-highlight.js"
+$sharedStylePath = Join-Path $repositoryRoot "assets\css\github-highlight.css"
+if (-not (Test-Path -LiteralPath $sharedScriptPath)) {
+    throw "Missing shared collaboration script: $sharedScriptPath"
+}
+if (-not (Test-Path -LiteralPath $sharedStylePath)) {
+    throw "Missing shared collaboration stylesheet: $sharedStylePath"
+}
+
 $sourceOverrides = @{
     # Add exceptions here when a rendered pathname does not mirror its source.
     # "chapters/rendered-name.html" = "chapters/source-name.qmd"
@@ -47,7 +56,6 @@ foreach ($file in $htmlFiles) {
     if (-not $offsetMatch.Success) {
         throw "Missing quarto:offset metadata in $relativePath"
     }
-    $offset = $offsetMatch.Groups[1].Value
 
     $sourceMeta = '<meta name="github-highlight-source" content="' +
         [System.Net.WebUtility]::HtmlEncode($sourcePath) + '">'
@@ -66,7 +74,28 @@ foreach ($file in $htmlFiles) {
         )
     }
 
-    $scriptTag = '<script src="' + $offset + 'github-highlight.js" defer></script>'
+    $styleTag = '<link rel="stylesheet" href="/assets/css/github-highlight.css">'
+    if ($html -match '<link rel="stylesheet" href="[^"]*github-highlight\.css">') {
+        $html = [regex]::Replace(
+            $html,
+            '<link rel="stylesheet" href="[^"]*github-highlight\.css">',
+            $styleTag,
+            1
+        )
+    }
+    else {
+        $bookStylePattern = '<link rel="stylesheet" href="[^"]*styles\.css">'
+        $bookStyleMatch = [regex]::Match($html, $bookStylePattern)
+        if (-not $bookStyleMatch.Success) {
+            throw "Could not find the Quarto stylesheet link in $relativePath"
+        }
+        $html = $html.Replace(
+            $bookStyleMatch.Value,
+            $bookStyleMatch.Value + [Environment]::NewLine + $styleTag
+        )
+    }
+
+    $scriptTag = '<script src="/assets/js/github-highlight.js" defer></script>'
     if ($html -match '<script src="[^"]*github-highlight\.js" defer></script>') {
         $html = [regex]::Replace(
             $html,
@@ -76,14 +105,9 @@ foreach ($file in $htmlFiles) {
         )
     }
     else {
-        $stylePattern = '<link rel="stylesheet" href="[^"]*styles\.css">'
-        $styleMatch = [regex]::Match($html, $stylePattern)
-        if (-not $styleMatch.Success) {
-            throw "Could not find the Quarto stylesheet link in $relativePath"
-        }
         $html = $html.Replace(
-            $styleMatch.Value,
-            $styleMatch.Value + [Environment]::NewLine + $scriptTag
+            $styleTag,
+            $styleTag + [Environment]::NewLine + $scriptTag
         )
     }
 

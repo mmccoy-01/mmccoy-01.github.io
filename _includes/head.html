@@ -93,6 +93,14 @@
     <link rel="canonical" href="{{ url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
 
+    {% if page.layout == 'post' %}
+        <!-- Highlight-triggered GitHub collaboration for Jekyll posts -->
+        <meta name="github-highlight-source" content="{{ page.path | escape }}">
+        <meta name="github-highlight-public-url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+        <link rel="stylesheet" href="{{ '/assets/css/github-highlight.css' | prepend: site.baseurl }}">
+        <script src="{{ '/assets/js/github-highlight.js' | prepend: site.baseurl }}" defer></script>
+    {% endif %}
+
     <!-- Include extra styles -->
     {% include extra-css.html %}
 

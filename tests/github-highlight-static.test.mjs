@@ -6,8 +6,10 @@ import { fileURLToPath } from "node:url";
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(testDirectory, "..");
 const book = path.join(root, "book");
-const scriptPath = path.join(book, "github-highlight.js");
+const scriptPath = path.join(root, "assets", "js", "github-highlight.js");
+const stylePath = path.join(root, "assets", "css", "github-highlight.css");
 const sourceMapPath = path.join(book, "page-source-map.json");
+const jekyllHeadPath = path.join(root, "_includes", "head.html");
 
 const walk = (directory) =>
   fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -18,6 +20,8 @@ const walk = (directory) =>
 const htmlFiles = walk(book).filter((file) => file.endsWith(".html"));
 const sourceMap = JSON.parse(fs.readFileSync(sourceMapPath, "utf8"));
 const script = fs.readFileSync(scriptPath, "utf8");
+const style = fs.readFileSync(stylePath, "utf8");
+const jekyllHead = fs.readFileSync(jekyllHeadPath, "utf8");
 
 assert.ok(htmlFiles.length > 0, "book must contain rendered HTML pages");
 assert.equal(
@@ -47,14 +51,33 @@ for (const htmlPath of htmlFiles) {
     1,
     `${relative} must load the feature exactly once`
   );
-
-  const offset =
-    html.match(/<meta name="quarto:offset" content="([^"]*)">/)?.[1] ?? "./";
-  assert.ok(
-    fs.existsSync(path.resolve(path.dirname(htmlPath), offset, "github-highlight.js")),
-    `${relative} script reference must resolve`
+  assert.match(
+    html,
+    /<script src="\/assets\/js\/github-highlight\.js" defer><\/script>/,
+    `${relative} must load the canonical shared script`
+  );
+  assert.match(
+    html,
+    /<link rel="stylesheet" href="\/assets\/css\/github-highlight\.css">/,
+    `${relative} must load the canonical shared stylesheet`
   );
 }
+
+assert.match(
+  jekyllHead,
+  /{% if page\.layout == 'post' %}[\s\S]*github-highlight-source[\s\S]*github-highlight-public-url[\s\S]*github-highlight\.css[\s\S]*github-highlight\.js[\s\S]*{% endif %}/,
+  "Jekyll post head must emit source/public metadata and shared asset loaders"
+);
+assert.match(
+  script,
+  /main\.content#quarto-document-content, article\.post-content/,
+  "shared script must support Quarto chapters and Jekyll posts"
+);
+assert.match(
+  style,
+  /\.github-highlight-menu[\s\S]*min-height: 44px/,
+  "shared stylesheet must include the menu and minimum touch target"
+);
 
 for (const requiredBehavior of [
   "selectionchange",
