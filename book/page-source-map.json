@@ -1,0 +1,23 @@
+{
+    "index.html":  "index.qmd",
+    "chapters/01-foreword.html":  "chapters/01-foreword.qmd",
+    "chapters/02-preface.html":  "chapters/02-preface.qmd",
+    "chapters/03-acknowledgments.html":  "chapters/03-acknowledgments.qmd",
+    "chapters/04-introduction.html":  "chapters/04-introduction.qmd",
+    "chapters/05-navigating-self-and-circumstance.html":  "chapters/05-navigating-self-and-circumstance.qmd",
+    "chapters/06-dichotomy-of-control-for-freedom.html":  "chapters/06-dichotomy-of-control-for-freedom.qmd",
+    "chapters/07-emotional-resonance-regulation.html":  "chapters/07-emotional-resonance-regulation.qmd",
+    "chapters/08-the-struggle-against-disruption.html":  "chapters/08-the-struggle-against-disruption.qmd",
+    "chapters/09-a-grave-threat-to-mental-health.html":  "chapters/09-a-grave-threat-to-mental-health.qmd",
+    "chapters/10-if-the-threat-wins.html":  "chapters/10-if-the-threat-wins.qmd",
+    "chapters/11-resolves-to-an-imperiled-perception.html":  "chapters/11-resolves-to-an-imperiled-perception.qmd",
+    "chapters/12-integration-and-transcendence.html":  "chapters/12-integration-and-transcendence.qmd",
+    "chapters/13-duty-and-death.html":  "chapters/13-duty-and-death.qmd",
+    "chapters/14-shore-of-ignorance.html":  "chapters/14-shore-of-ignorance.qmd",
+    "chapters/15-conclusion.html":  "chapters/15-conclusion.qmd",
+    "chapters/16-glossary.html":  "chapters/16-glossary.qmd",
+    "chapters/17-about-the-author.html":  "chapters/17-about-the-author.qmd",
+    "frontmatter/copyright.html":  "frontmatter/copyright.qmd",
+    "frontmatter/dedication.html":  "frontmatter/dedication.qmd",
+    "frontmatter/epigraph.html":  "frontmatter/epigraph.qmd"
+}
