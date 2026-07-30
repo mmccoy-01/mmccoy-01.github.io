@@ -2,6 +2,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Apply the saved/system color scheme before paint to avoid a theme flash. -->
+    <script src="{{ '/assets/js/site-theme.js' | prepend: site.baseurl }}"></script>
 
     {% assign title = '' %}
     {% if page.layout == 'author' %}
@@ -90,6 +92,7 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ '/assets/css/site-theme.css' | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
 

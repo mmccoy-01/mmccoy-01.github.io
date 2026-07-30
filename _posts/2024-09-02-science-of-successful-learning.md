@@ -207,7 +207,17 @@ This process transforms what you are learning by making it meaningful and engagi
 
 ## Depth of Processing MATTERS!
 
-![How to Get the Most Out of Studying: Part 2 of 5, "What Students Should Know About How People Learn"](https://www.youtube.com/embed/9O7y7XEC66M?autoplay=1&rel=0)
+<div class="youtube-video" style="width: 100%; max-width: 800px; aspect-ratio: 16 / 9; margin: 2rem auto; overflow: hidden;">
+  <iframe
+    src="https://www.youtube.com/embed/9O7y7XEC66M?autoplay=1&amp;rel=0"
+    title="How to Get the Most Out of Studying: Part 2 of 5, What Students Should Know About How People Learn"
+    loading="lazy"
+    style="width: 100%; height: 100%; margin: 0; padding: 0; border: 0;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
 ![](https://res.cloudinary.com/dtf8hxbjn/image/upload/v1725314662/Science%20of%20Successful%20Learning/Screenshot_2024-09-02_180405_hdjylp.png)
 

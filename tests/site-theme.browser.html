@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Site theme browser fixture</title>
+    <script>
+      try {
+        localStorage.removeItem("katalepsara-color-theme");
+      } catch (error) {}
+    </script>
+    <script src="../assets/js/site-theme.js"></script>
+    <link rel="stylesheet" href="../assets/css/site-theme.css">
+    <style>
+      body { margin: 0; }
+      .quarto-secondary-nav {
+        padding: 8px;
+      }
+      .sidebar { max-width: 260px; padding: 8px; }
+      #quarto-search { border: 1px solid currentColor; height: 30px; }
+    </style>
+  </head>
+  <body class="quarto-light">
+    <nav class="quarto-secondary-nav" aria-label="Book tools">
+      <div class="container-fluid d-flex">
+        <button type="button" class="quarto-btn-toggle">Menu</button>
+        <nav class="quarto-page-breadcrumbs">Theme fixture</nav>
+        <a class="flex-grow-1"></a>
+        <button type="button" class="quarto-search-button" aria-label="Search">
+          Search
+        </button>
+      </div>
+    </nav>
+    <aside class="sidebar">
+      <div class="sidebar-search"><div id="quarto-search"></div></div>
+    </aside>
+    <main class="content">
+      <h1>Theme fixture</h1>
+      <p>Readable text used to verify the active color palette.</p>
+    </main>
+    <output id="test-results">waiting</output>
+    <script>
+      window.addEventListener("load", () => {
+        const results = [];
+        const check = (condition, message) => {
+          if (!condition) throw new Error(message);
+          results.push(message);
+        };
+
+        try {
+          const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+          const root = document.documentElement;
+          const search = document.querySelector(".quarto-search-button");
+          const button = document.querySelector(
+            '[data-site-theme-location="quarto-toolbar"]'
+          );
+          const sidebarButton = document.querySelector(
+            '[data-site-theme-location="quarto-sidebar"]'
+          );
+
+          check(root.dataset.theme === systemTheme, "initial mode follows the system");
+          check(button instanceof HTMLButtonElement, "toolbar uses a real button");
+          check(button.nextElementSibling === search, "toggle is adjacent to search");
+          check(
+            sidebarButton instanceof HTMLButtonElement &&
+              sidebarButton.previousElementSibling.id === "quarto-search",
+            "desktop sidebar toggle is adjacent to search"
+          );
+          check(
+            button.getBoundingClientRect().width >= 44 &&
+              button.getBoundingClientRect().height >= 44 &&
+              sidebarButton.getBoundingClientRect().width >= 44 &&
+              sidebarButton.getBoundingClientRect().height >= 44,
+            "both toggles meet the 44px touch target"
+          );
+          check(
+            button.getAttribute("aria-label") ===
+              (systemTheme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode"),
+            "accessible label describes the action"
+          );
+
+          button.click();
+          const toggledTheme = systemTheme === "dark" ? "light" : "dark";
+          check(root.dataset.theme === toggledTheme, "click toggles the theme");
+          check(
+            localStorage.getItem("katalepsara-color-theme") === toggledTheme,
+            "manual choice is persisted"
+          );
+          check(
+            button.getAttribute("aria-pressed") ===
+              (toggledTheme === "dark" ? "true" : "false") &&
+              sidebarButton.getAttribute("aria-pressed") ===
+                (toggledTheme === "dark" ? "true" : "false"),
+            "synchronized pressed states report dark-mode status"
+          );
+          check(
+            document.body.classList.contains("quarto-light"),
+            "Quarto base styling remains active"
+          );
+          check(
+            document.body.classList.contains("quarto-dark") ===
+              (toggledTheme === "dark"),
+            "Quarto dark marker tracks the active theme"
+          );
+
+          window.SiteTheme.useSystemPreference();
+          check(root.dataset.theme === systemTheme, "system mode can be restored");
+          check(
+            localStorage.getItem("katalepsara-color-theme") === null,
+            "restoring system mode clears the override"
+          );
+
+          const result = document.getElementById("test-results");
+          result.dataset.status = "passed";
+          result.textContent = results.join(" | ");
+        } catch (error) {
+          const result = document.getElementById("test-results");
+          result.dataset.status = "failed";
+          result.textContent = error.stack || error.message;
+        }
+      });
+    </script>
+  </body>
+</html>

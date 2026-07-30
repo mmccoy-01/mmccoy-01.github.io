@@ -51,13 +51,14 @@
           menu.querySelector("button").click();
           await wait(50);
           const issueUrl = new URL(openedUrls.at(-1));
-          const issueBody = issueUrl.searchParams.get("body");
           check(
-            issueBody.includes("`_posts/2026-07-21-browser-fixture.md`"),
+            issueUrl.searchParams.get("source_path") ===
+              "_posts/2026-07-21-browser-fixture.md",
             "issue contains the Jekyll source path"
           );
           check(
-            issueBody.includes("https://katalepsara.com/browser-fixture/"),
+            issueUrl.searchParams.get("page_url") ===
+              "https://katalepsara.com/browser-fixture/",
             "issue contains the canonical public post URL"
           );
           check(

@@ -1,5 +1,42 @@
 # mmccoy-01.github.io
 
+## Dynamic color theme
+
+The site and rendered book automatically use the visitor's operating-system
+light/dark preference on their first visit. A moon/sun button appears beside
+the search control in both the Jekyll header and Quarto chapter toolbar. The
+button is keyboard accessible, has a visible focus state, and provides a
+44&nbsp;px touch target on mobile and desktop.
+
+After a reader uses the button, the selected mode is stored in
+`localStorage` under `katalepsara-color-theme` and follows them between posts
+and book chapters. The controller also synchronizes changes between open tabs.
+Post comments receive the matching high-contrast Giscus theme.
+To return to automatic system behavior, remove that storage entry in browser
+site settings or run this in the browser console:
+
+```js
+window.SiteTheme.useSystemPreference();
+```
+
+The shared files are `assets/js/site-theme.js` and
+`assets/css/site-theme.css`. Jekyll loads them globally from
+`_includes/head.html`; the book integration script adds root-relative loaders
+to every rendered chapter. No theme service, account, cookie, token, or backend
+is used.
+
+After replacing `book/` with a newly rendered Quarto `_book/`, run the existing
+integration command so both the color theme and highlighting feature are
+restored:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/integrate-book-highlight.ps1
+```
+
+Static and browser checks for the theme are available at
+`tests/site-theme-static.test.mjs`, `tests/site-theme.browser.html`, and
+`tests/site-theme-jekyll.browser.html`.
+
 ## Highlight-triggered GitHub collaboration
 
 Jekyll posts and the rendered Quarto book in `book/` show a compact
@@ -30,11 +67,10 @@ Configuration constants are at the top of
 | Minimum selection | 8 characters | Short or non-word selections do not show the menu. |
 | Maximum selection | 1,200 characters | Bounds GitHub issue URL size and clipboard content; longer selections show guidance instead of a menu. |
 | Content selectors | Quarto `main.content#quarto-document-content`; Jekyll `article.post-content[role='article']` | Prevents selections elsewhere on the site from triggering the menu. |
-| Issue label | empty | The repository does not currently have a `suggested-edit` label. Create it first, then set `issueLabel: "suggested-edit"`. |
+| Issue template | `suggested-edit.yml` | Receives the dynamic source, page, passage, and context fields. |
+| Issue label | `suggested-edit` | Applied automatically by the repository issue form. |
 
-Confirm the public book URL if the canonical deployment changes. The only
-currently missing optional value is the issue label: create `suggested-edit` in
-GitHub before enabling it in the script.
+Confirm the public book URL if the canonical deployment changes.
 
 ### Jekyll loader and source mapping
 
@@ -84,11 +120,13 @@ workflow without redesigning the menu.
 
 ### GitHub behavior and limitations
 
-[GitHub officially supports `title`, `body`, and `labels` query parameters for a
-new issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue#creating-an-issue-from-a-url-query).
-A label parameter also requires the reader to have permission to use that label;
-this implementation sends no label until an existing label is explicitly
-configured.
+[GitHub officially supports URL parameters for opening issues and prefilling
+issue-form fields](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue#creating-an-issue-from-a-url-query).
+The `labels` URL parameter requires the reader to have label permission, so this
+implementation does not use it. Instead,
+`.github/ISSUE_TEMPLATE/suggested-edit.yml` applies the existing
+`suggested-edit` label automatically and defines the structured source, page,
+passage, context, replacement, and explanation fields.
 
 GitHub documents defaults supplied by repository-owned
 [Discussion category forms](https://docs.github.com/en/discussions/managing-discussions-for-your-community/syntax-for-discussion-category-forms),
@@ -150,6 +188,8 @@ without rebuilding either source system:
 ```powershell
 node --check assets/js/github-highlight.js
 node tests/github-highlight-static.test.mjs
+node --check assets/js/site-theme.js
+node tests/site-theme-static.test.mjs
 ```
 
 For an automated browser smoke test, run Chrome or Edge headlessly against

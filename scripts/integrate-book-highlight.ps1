@@ -15,11 +15,19 @@ if (-not $resolvedBookDirectory.StartsWith($repositoryRoot, [System.StringCompar
 
 $sharedScriptPath = Join-Path $repositoryRoot "assets\js\github-highlight.js"
 $sharedStylePath = Join-Path $repositoryRoot "assets\css\github-highlight.css"
+$themeScriptPath = Join-Path $repositoryRoot "assets\js\site-theme.js"
+$themeStylePath = Join-Path $repositoryRoot "assets\css\site-theme.css"
 if (-not (Test-Path -LiteralPath $sharedScriptPath)) {
     throw "Missing shared collaboration script: $sharedScriptPath"
 }
 if (-not (Test-Path -LiteralPath $sharedStylePath)) {
     throw "Missing shared collaboration stylesheet: $sharedStylePath"
+}
+if (-not (Test-Path -LiteralPath $themeScriptPath)) {
+    throw "Missing shared color theme script: $themeScriptPath"
+}
+if (-not (Test-Path -LiteralPath $themeStylePath)) {
+    throw "Missing shared color theme stylesheet: $themeStylePath"
 }
 
 $sourceOverrides = @{
@@ -95,6 +103,22 @@ foreach ($file in $htmlFiles) {
         )
     }
 
+    $themeStyleTag = '<link rel="stylesheet" href="/assets/css/site-theme.css">'
+    if ($html -match '<link rel="stylesheet" href="[^"]*site-theme\.css">') {
+        $html = [regex]::Replace(
+            $html,
+            '<link rel="stylesheet" href="[^"]*site-theme\.css">',
+            $themeStyleTag,
+            1
+        )
+    }
+    else {
+        $html = $html.Replace(
+            $styleTag,
+            $styleTag + [Environment]::NewLine + $themeStyleTag
+        )
+    }
+
     $scriptTag = '<script src="/assets/js/github-highlight.js" defer></script>'
     if ($html -match '<script src="[^"]*github-highlight\.js" defer></script>') {
         $html = [regex]::Replace(
@@ -106,8 +130,24 @@ foreach ($file in $htmlFiles) {
     }
     else {
         $html = $html.Replace(
-            $styleTag,
-            $styleTag + [Environment]::NewLine + $scriptTag
+            $themeStyleTag,
+            $themeStyleTag + [Environment]::NewLine + $scriptTag
+        )
+    }
+
+    $themeScriptTag = '<script src="/assets/js/site-theme.js"></script>'
+    if ($html -match '<script src="[^"]*site-theme\.js"></script>') {
+        $html = [regex]::Replace(
+            $html,
+            '<script src="[^"]*site-theme\.js"></script>',
+            $themeScriptTag,
+            1
+        )
+    }
+    else {
+        $html = $html.Replace(
+            $scriptTag,
+            $themeScriptTag + [Environment]::NewLine + $scriptTag
         )
     }
 
@@ -126,5 +166,5 @@ $mapJson = $mapping | ConvertTo-Json -Depth 3
     [System.Text.UTF8Encoding]::new($false)
 )
 
-Write-Host "Integrated GitHub highlighting into $($htmlFiles.Count) pages."
+Write-Host "Integrated GitHub highlighting and the color theme into $($htmlFiles.Count) pages."
 Write-Host "Wrote source mapping to $mapPath."

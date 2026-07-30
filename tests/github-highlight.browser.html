@@ -174,16 +174,22 @@
               "Suggested edit: Browser fixture",
             "issue title is prefilled"
           );
-          const issueBody = issueUrl.searchParams.get("body");
           check(
-            issueBody.includes("`tests/browser-fixture.qmd`") &&
-              issueBody.includes("A sufficiently long passage") &&
-              issueBody.includes("Proposed replacement text"),
-            "issue body contains source, exact passage, and replacement field"
+            issueUrl.searchParams.get("template") === "suggested-edit.yml",
+            "Suggested edit uses the labeled issue form"
+          );
+          check(
+            issueUrl.searchParams.get("source_path") ===
+              "tests/browser-fixture.qmd" &&
+              issueUrl.searchParams
+                .get("selected_passage")
+                .includes("> A sufficiently long passage") &&
+              issueUrl.searchParams.get("page_title") === "Browser fixture",
+            "issue form fields contain source, page, and exact passage"
           );
           check(
             !issueUrl.searchParams.has("labels"),
-            "nonexistent optional label is omitted"
+            "label is applied by the issue form, not a permission-limited URL parameter"
           );
 
           selectNode("passage");

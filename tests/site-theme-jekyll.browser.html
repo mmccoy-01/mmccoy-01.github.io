@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jekyll site theme browser fixture</title>
+    <script>
+      try {
+        localStorage.removeItem("katalepsara-color-theme");
+      } catch (error) {}
+    </script>
+    <script src="../assets/js/site-theme.js"></script>
+    <style>
+      body { margin: 0; }
+      .bar-header {
+        background: #141414;
+        box-sizing: border-box;
+        height: 62px;
+        left: 0;
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+      }
+      .bar-header .logo {
+        display: inline-block;
+        line-height: 32px;
+        margin: 0;
+      }
+      .bar-header .logo a { color: #fff; text-decoration: none; }
+      .bar-header .icon-menu {
+        float: left;
+        height: 20px;
+        margin: 5px 20px 5px 25px;
+        stroke: #fff;
+        width: 20px;
+      }
+      .bar-header .dosearch {
+        cursor: pointer;
+        float: right;
+        height: 30px;
+        margin-right: 20px;
+        width: 30px;
+      }
+      #search svg { height: 20px; width: 20px; }
+      #test-results { display: block; margin-top: 100px; }
+    </style>
+    <link rel="stylesheet" href="../assets/css/site-theme.css">
+  </head>
+  <body class="has-push-menu">
+    <header class="bar-header">
+      <a id="menu" role="button" aria-label="Menu">
+        <svg class="icon-menu" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </a>
+      <h1 class="logo"><a href="#">Katalepsara</a></h1>
+      <button
+        type="button"
+        class="site-theme-toggle"
+        data-site-theme-toggle
+        data-site-theme-location="jekyll-toolbar"
+        aria-label="Switch color theme">
+        <svg class="site-theme-icon site-theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.7 14.1A8.5 8.5 0 0 1 9.9 3.3 8.7 8.7 0 1 0 20.7 14.1Z"></path>
+        </svg>
+        <svg class="site-theme-icon site-theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+        </svg>
+      </button>
+      <a id="search" class="dosearch" role="button" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10" cy="10" r="6"></circle>
+          <path d="m15 15 6 6"></path>
+        </svg>
+      </a>
+    </header>
+    <main class="content"><h1>Jekyll theme fixture</h1></main>
+    <output id="test-results">waiting</output>
+    <script>
+      window.addEventListener("load", () => {
+        const results = [];
+        const check = (condition, message) => {
+          if (!condition) throw new Error(message);
+          results.push(message);
+        };
+
+        try {
+          const root = document.documentElement;
+          const button = document.querySelector("[data-site-theme-toggle]");
+          const search = document.getElementById("search");
+          const initialTheme = root.dataset.theme;
+          const buttonRect = button.getBoundingClientRect();
+          const searchRect = search.getBoundingClientRect();
+
+          check(
+            document.querySelectorAll("[data-site-theme-toggle]").length === 1,
+            "existing Jekyll control is initialized without duplication"
+          );
+          check(button.nextElementSibling === search, "toggle remains next to search");
+          check(
+            Math.min(
+              Math.abs(buttonRect.left - searchRect.right),
+              Math.abs(searchRect.left - buttonRect.right)
+            ) <= 4,
+            `controls render directly beside each other in the real header CSS (${JSON.stringify({
+              button: [buttonRect.left, buttonRect.right],
+              search: [searchRect.left, searchRect.right],
+            })})`
+          );
+          check(
+            button.getBoundingClientRect().width >= 44 &&
+              button.getBoundingClientRect().height >= 44,
+            "Jekyll toggle meets the 44px touch target"
+          );
+          check(
+            button.dataset.siteThemeReady === "true",
+            "static Jekyll control receives behavior"
+          );
+
+          button.click();
+          check(
+            root.dataset.theme === (initialTheme === "dark" ? "light" : "dark"),
+            "Jekyll toggle changes the active theme"
+          );
+
+          const result = document.getElementById("test-results");
+          result.dataset.status = "passed";
+          result.textContent = results.join(" | ");
+        } catch (error) {
+          const result = document.getElementById("test-results");
+          result.dataset.status = "failed";
+          result.textContent = error.stack || error.message;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+name: Suggested edit
+description: Suggest a precise change to a highlighted passage
+title: "Suggested edit: "
+labels:
+  - suggested-edit
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve this writing. The page information and highlighted passage below were supplied by the website.
+
+  - type: input
+    id: source_path
+    attributes:
+      label: Source file
+      description: The authoring source associated with the rendered page.
+    validations:
+      required: true
+
+  - type: input
+    id: page_title
+    attributes:
+      label: Rendered page
+    validations:
+      required: true
+
+  - type: input
+    id: page_url
+    attributes:
+      label: Public page URL
+    validations:
+      required: true
+
+  - type: textarea
+    id: selected_passage
+    attributes:
+      label: Exact selected passage
+      description: The passage selected on the rendered page.
+    validations:
+      required: true
+
+  - type: textarea
+    id: surrounding_context
+    attributes:
+      label: Surrounding context
+      description: Nearby wording supplied when reliable context was available.
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed_replacement
+    attributes:
+      label: Proposed replacement text
+      description: Enter the wording that should replace the selected passage.
+      placeholder: Type the proposed replacement here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Additional explanation
+      description: Optionally explain why this change would improve the passage.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        If accepted, this suggestion can be implemented as a source commit or pull request by a repository maintainer. Highlighting rendered HTML does not itself modify the source or create a pull request.

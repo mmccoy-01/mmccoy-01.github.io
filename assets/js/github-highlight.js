@@ -13,6 +13,8 @@
     discussionCategory: "general",
     publicSiteUrl: "https://katalepsara.com/",
     publicBookUrl: "https://katalepsara.com/book/",
+    issueTemplate: "suggested-edit.yml",
+    issueLabel: "suggested-edit",
     minimumSelectionLength: 8,
     maximumSelectionLength: 1200,
     allowedContentSelector:
@@ -49,8 +51,6 @@
       ".github-highlight-menu",
       ".github-highlight-toast",
     ].join(","),
-    // Set only after this exact label exists in the configured repository.
-    issueLabel: "",
   });
 
   const INSTANCE_KEY = "__githubHighlightCollaboration";
@@ -468,6 +468,25 @@
     ].join("\n");
   };
 
+  const buildIssueContext = (selection) => {
+    const context = [];
+    if (selection.contextBefore) {
+      context.push(
+        "Immediately before:",
+        markdownBlockquote(selection.contextBefore)
+      );
+    }
+    if (selection.contextAfter) {
+      context.push(
+        "Immediately after:",
+        markdownBlockquote(selection.contextAfter)
+      );
+    }
+    return context.length
+      ? context.join("\n\n")
+      : "No reliable surrounding paragraph context was available.";
+  };
+
   const suggestEdit = () => {
     const selection = state.storedSelection;
     if (!selection) {
@@ -477,10 +496,19 @@
     const sourcePath = sourcePathForPage();
     const params = new URLSearchParams({
       title: `Suggested edit: ${selection.title}`,
-      body: buildIssueBody(selection, sourcePath),
     });
-    if (CONFIG.issueLabel) {
-      params.set("labels", CONFIG.issueLabel);
+    if (CONFIG.issueTemplate) {
+      params.set("template", CONFIG.issueTemplate);
+      params.set("source_path", sourcePath);
+      params.set("page_title", selection.title);
+      params.set("page_url", selection.pageUrl);
+      params.set("selected_passage", markdownBlockquote(selection.text));
+      params.set("surrounding_context", buildIssueContext(selection));
+    } else {
+      params.set("body", buildIssueBody(selection, sourcePath));
+      if (CONFIG.issueLabel) {
+        params.set("labels", CONFIG.issueLabel);
+      }
     }
 
     openGitHub(

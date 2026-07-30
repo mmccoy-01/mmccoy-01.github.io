@@ -10,6 +10,12 @@ const scriptPath = path.join(root, "assets", "js", "github-highlight.js");
 const stylePath = path.join(root, "assets", "css", "github-highlight.css");
 const sourceMapPath = path.join(book, "page-source-map.json");
 const jekyllHeadPath = path.join(root, "_includes", "head.html");
+const issueFormPath = path.join(
+  root,
+  ".github",
+  "ISSUE_TEMPLATE",
+  "suggested-edit.yml"
+);
 
 const walk = (directory) =>
   fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -22,6 +28,7 @@ const sourceMap = JSON.parse(fs.readFileSync(sourceMapPath, "utf8"));
 const script = fs.readFileSync(scriptPath, "utf8");
 const style = fs.readFileSync(stylePath, "utf8");
 const jekyllHead = fs.readFileSync(jekyllHeadPath, "utf8");
+const issueForm = fs.readFileSync(issueFormPath, "utf8");
 
 assert.ok(htmlFiles.length > 0, "book must contain rendered HTML pages");
 assert.equal(
@@ -78,6 +85,11 @@ assert.match(
   /\.github-highlight-menu[\s\S]*min-height: 44px/,
   "shared stylesheet must include the menu and minimum touch target"
 );
+assert.match(
+  issueForm,
+  /labels:\s*\n\s+- suggested-edit[\s\S]*id: source_path[\s\S]*id: selected_passage[\s\S]*id: proposed_replacement/,
+  "Suggested edit issue form must apply the label and define structured fields"
+);
 
 for (const requiredBehavior of [
   "selectionchange",
@@ -87,6 +99,7 @@ for (const requiredBehavior of [
   "navigator.clipboard",
   'document.execCommand("copy")',
   "URLSearchParams",
+  "issueTemplate",
   "issueLabel",
   "discussionCategory",
   "maximumSelectionLength",
