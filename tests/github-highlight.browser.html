@@ -85,6 +85,11 @@
           check(!menu.hidden, "meaningful content selection shows menu");
           check(buttons.length === 2, "menu exposes two real buttons");
           check(
+            buttons[1].querySelector(".github-highlight-action-hint")
+              .textContent === "Copies for paste",
+            "Discussion action explains the clipboard workflow"
+          );
+          check(
             buttons.every((button) => button.getBoundingClientRect().height >= 44),
             "buttons meet 44px touch target"
           );
@@ -183,8 +188,22 @@
 
           selectNode("passage");
           await wait(500);
+          const opensBeforeTouch = openedUrls.length;
+          buttons[1].dispatchEvent(
+            new PointerEvent("pointerup", {
+              bubbles: true,
+              cancelable: true,
+              pointerType: "touch",
+            })
+          );
+          // Mobile browsers can emit a delayed synthetic click after pointerup.
+          // It must not activate the action a second time.
           buttons[1].click();
           await wait(100);
+          check(
+            openedUrls.length === opensBeforeTouch + 1,
+            "first touch release opens Discussion exactly once"
+          );
           const discussionUrl = new URL(openedUrls.at(-1));
           check(
             discussionUrl.pathname.endsWith("/discussions/new") &&

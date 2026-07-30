@@ -555,6 +555,9 @@
     const template = discussionTemplate(selection);
     const copyPromise = copyText(template);
     const category = encodeURIComponent(CONFIG.discussionCategory);
+    showToast(
+      "Opening GitHub Discussions. Paste the copied passage context into the form."
+    );
     openGitHub(
       `https://github.com/${encodeURIComponent(
         CONFIG.repositoryOwner
@@ -567,9 +570,41 @@
     const copied = await copyPromise;
     showToast(
       copied
-        ? "Passage context copied. Paste it into the new GitHub Discussion."
+        ? "Passage context copied. Paste it into the GitHub Discussion form."
         : "GitHub opened, but the browser could not copy the passage context."
     );
+  };
+
+  const addActionLabel = (button, label, hint) => {
+    const primary = document.createElement("span");
+    primary.className = "github-highlight-action-label";
+    primary.textContent = label;
+
+    const secondary = document.createElement("span");
+    secondary.className = "github-highlight-action-hint";
+    secondary.textContent = hint;
+    button.append(primary, secondary);
+  };
+
+  const bindAction = (button, action) => {
+    let lastTouchActivation = -Infinity;
+
+    button.addEventListener("pointerup", (event) => {
+      if (event.pointerType !== "touch") {
+        return;
+      }
+      event.preventDefault();
+      lastTouchActivation = performance.now();
+      action();
+    });
+
+    button.addEventListener("click", (event) => {
+      if (performance.now() - lastTouchActivation < 800) {
+        event.preventDefault();
+        return;
+      }
+      action();
+    });
   };
 
   const createInterface = () => {
@@ -582,7 +617,7 @@
     const suggestButton = document.createElement("button");
     suggestButton.type = "button";
     suggestButton.className = "github-highlight-action";
-    suggestButton.textContent = "Suggest edit";
+    addActionLabel(suggestButton, "Suggest edit", "Prefills issue");
     suggestButton.setAttribute(
       "aria-label",
       "Suggest an edit to the selected passage on GitHub"
@@ -591,10 +626,10 @@
     const discussButton = document.createElement("button");
     discussButton.type = "button";
     discussButton.className = "github-highlight-action";
-    discussButton.textContent = "Discuss passage";
+    addActionLabel(discussButton, "Discuss passage", "Copies for paste");
     discussButton.setAttribute(
       "aria-label",
-      "Discuss the selected passage on GitHub"
+      "Copy the selected passage context, open GitHub Discussions, then paste it into the form"
     );
 
     menu.append(suggestButton, discussButton);
@@ -622,8 +657,8 @@
         state.menuInteraction = false;
       }, 0);
     });
-    suggestButton.addEventListener("click", suggestEdit);
-    discussButton.addEventListener("click", discussPassage);
+    bindAction(suggestButton, suggestEdit);
+    bindAction(discussButton, discussPassage);
   };
 
   const onDocumentKeyDown = (event) => {

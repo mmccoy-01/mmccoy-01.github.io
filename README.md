@@ -118,7 +118,9 @@ navigation, headers, footers, controls, forms, or code, and it closes on an
 outside press, Escape, a collapsed selection, substantial scrolling, or page
 navigation. Press Tab while the menu is visible to move keyboard focus into its
 actions. Controls use real buttons, visible focus rings, screen-reader labels,
-and 44 px minimum touch targets.
+and 44 px minimum touch targets. On touch devices, actions activate directly on
+the first touch release and suppress the browser's delayed synthetic click. The
+Discussion action visibly notes that it copies context for the reader to paste.
 
 ### Local testing
 
