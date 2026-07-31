@@ -6,6 +6,7 @@
     "artist": "Staind",
     "album": "Break the Cycle",
     "release_date": "May 22, 2001",
+    "release_date_iso": "2001-05-22",
     "apple_url": "https://music.apple.com/us/song/263065402",
     "embed_url": "https://embed.music.apple.com/us/song/263065402",
     "track_id": "263065402",
@@ -13,12 +14,7 @@
     "interest": [
       "My musical interests are eclectic, but a recent attempt to name the genre of some new music turned into a deeper conversation about why it resonates with me. I realized that I’m drawn less to depressive themes than to a dreamy, isolated atmosphere—a mixture of shoegaze, ambient, slowcore, and horror.",
       "That led me to mono no aware, the Japanese idea of finding beauty in impermanence. I made a playlist and an eerie cover around that feeling, with a solitary figure representing the shadow impermanence casts over life. A great deal of the music, art, and philosophy I love seems to revolve around finding beauty in things precisely because they cannot last."
-    ],
-    "history": {
-      "text": "When this album arrived on May 22, 2001, 127 countries adopted the Stockholm Convention to limit persistent organic pollutants; astronomers also discovered 28978 Ixion beyond Neptune.",
-      "source_url": "https://en.wikipedia.org/wiki/2001",
-      "source_label": "Events of 2001 on Wikipedia"
-    }
+    ]
   },
   "playlists": [
     {

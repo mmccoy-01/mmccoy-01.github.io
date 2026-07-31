@@ -222,46 +222,66 @@ only for this page.
 
 The five playlist controls use the supplied personalized Apple Music URLs.
 Selecting one lazy-loads Apple's official embedded web player into a single
-shared panel, so the page never loads five players at once. Desktop loads the
-first playlist when the browser is idle; mobile waits for a deliberate tap to
-save data and space. Every playlist also has a direct Apple Music link.
-The featured song has its own compact, lazy-loaded Apple player.
+shared panel, so the page never loads five players at once. No playlist opens
+by default. Selecting a Roman-numeral tab opens that playlist; selecting the
+same tab again collapses it, and another selection reopens or switches it. The
+featured song has its own compact, lazy-loaded Apple player. The players
+themselves provide Apple Music navigation, so the page does not add duplicate
+outbound links.
 
 Apple controls the embedded track list, regional availability, sign-in, and
 playback. Apple states that visitors who are not signed in may hear 30-second
 previews, while subscribers may sign in for full playback. Personalized
-playlist embeds can still vary by storefront or Apple account, so the direct
-links are the dependable fallback. The page never autoplays audio and requires
-no MusicKit token or secret.
+playlist embeds can still vary by storefront or Apple account. Playback and
+outbound navigation remain Apple-managed. The page never autoplays audio and
+requires no MusicKit token or secret.
 
-### Featured-song and historical refresh
+Apple does not document a light/dark theme parameter for its cross-origin
+embedded player, so the site does not invent one. The page passes the active
+site theme as a standards-based `color-scheme` hint and themes the surrounding
+panel, but Apple ultimately controls the contents of its iframe. The hint is
+updated when the site theme toggle changes.
+
+### Featured-song and historical context
 
 The committed JSON is the page's durable source of truth. An optional,
 dependency-free build-time helper looks up the Apple track by its numeric ID
-and searches Wikipedia's “On this day” feed for an event on, or within seven
-days of, the catalog release date:
+and refreshes both its displayed and machine-readable catalog release dates:
 
 ```powershell
 # Preview a proposed update without changing files
 node scripts/update-now.mjs
 
-# Apply it after reviewing the proposed sentence
+# Apply the verified Apple metadata
 node scripts/update-now.mjs --write
 ```
 
-This is intentionally not a browser-time request: the page remains complete if
-Apple or Wikipedia is unavailable, and a human can review which historical
-event is worth featuring. The date is the Apple catalog release date, not a
-claim about a separate single release.
+For a future song, replace `music.apple_url` in `_data/now.json` and run the
+helper. It reads either a direct `/song/{id}` URL or the `?i={track-id}` form
+used by Apple album links, then updates the stored ID, title, artist, album,
+embed URL, and catalog dates together.
+
+The “In the world then” card reads `release_date_iso` and calls Wikimedia's
+official key-free “On this day” REST feed in the browser. It first looks for an
+event from the release year on the exact release day, then searches outward up
+to seven days. Multiple events are ranked deterministically using broad
+historical signals; the result and its Wikipedia source are cached for 30 days.
+If Wikimedia is unavailable, the card shows a generic release-date message
+rather than a manually maintained historical claim. The date is the Apple
+catalog release date, not a claim about a separate single release.
 
 ### GitHub card
 
 The GitHub card has a complete static fallback and enhances itself in the
-browser with the public GitHub REST API. It shows public repository/follower
-counts and up to three recently updated, non-fork repositories. Responses are
-cached in the visitor's browser for one hour to respect GitHub's unauthenticated
-rate limit. No token, private data, backend, or exposed secret is used; if the
-API is unavailable, the avatar, username, and profile link continue to work.
+browser with the public GitHub REST API. It shows years on GitHub, public
+repositories, stars earned across owned public repositories, an estimated
+public commit count, and up to three recently updated non-fork repositories.
+The commit figure uses GitHub's public commit search and is deliberately marked
+as an estimate because it can omit private work and commits outside indexed
+default branches. Responses are cached in the visitor's browser for one hour
+to respect GitHub's unauthenticated and search rate limits. No token, private
+data, backend, or exposed secret is used; if an endpoint is unavailable, the
+rest of the card and profile link continue to work.
 
 Run the page's dependency-free checks with:
 
@@ -273,5 +293,5 @@ node tests/now-page-static.test.mjs
 
 For a browser smoke test, open `tests/now-page.browser.html` or load it in
 Chrome/Edge headlessly and confirm `#test-results` has
-`data-status="passed"`. The fixture mocks GitHub and uses inert player URLs, so
-it is deterministic and makes no external requests.
+`data-status="passed"`. The fixture mocks GitHub and Wikimedia and uses inert
+player URLs, so it is deterministic and makes no external requests.

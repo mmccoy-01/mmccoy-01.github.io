@@ -1,31 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Now page browser smoke test</title>
+  <link rel="stylesheet" href="../assets/css/now.css">
 </head>
-<body>
-  <main data-now-page data-github-user="mmccoy-01">
+<body class="now-page">
+  <main class="now-shell" data-now-page data-github-user="mmccoy-01">
+    <h2 id="legacy-heading"><a class="anchor" href="#legacy-heading"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="></a>Test heading</h2>
     <section data-playlist-picker>
       <div role="tablist">
         <button id="now-playlist-tab-1"
                 role="tab"
+                aria-selected="false"
+                aria-expanded="false"
+                tabindex="0"
                 data-playlist-title="Heavy Rotation"
-                data-playlist-embed="about:blank?heavy"
-                data-playlist-url="https://example.com/heavy">Heavy Rotation</button>
+                data-playlist-embed="about:blank?heavy">Heavy Rotation</button>
         <button id="now-playlist-tab-2"
                 role="tab"
+                aria-selected="false"
+                aria-expanded="false"
+                tabindex="-1"
                 data-playlist-title="Chill"
-                data-playlist-embed="about:blank?chill"
-                data-playlist-url="https://example.com/chill">Chill</button>
+                data-playlist-embed="about:blank?chill">Chill</button>
       </div>
-      <div id="now-playlist-panel" role="tabpanel">
-        <div data-player-empty>
-          <button data-load-player type="button">Load Heavy Rotation</button>
-        </div>
-        <div data-player-frame hidden></div>
-        <a data-playlist-link><span data-playlist-link-title></span></a>
+      <div id="now-playlist-panel" role="tabpanel" hidden>
+        <div data-player-frame></div>
       </div>
     </section>
 
@@ -33,11 +35,43 @@
       <img data-github-avatar alt="">
       <h2 data-github-name>Fallback Name</h2>
       <p data-github-bio>Fallback bio</p>
+      <span data-github-years>—</span>
       <span data-github-repos>—</span>
-      <span data-github-followers>—</span>
+      <span data-github-stars>—</span>
+      <span data-github-commits>—</span>
       <div data-github-recent hidden><ul data-github-repo-list></ul></div>
       <p data-github-status></p>
     </aside>
+
+    <aside data-history-card data-release-date="2001-05-22">
+      <p data-history-text>Fallback historical context</p>
+      <a data-history-source href="https://en.wikipedia.org/wiki/May_22">Wikipedia</a>
+      <p data-history-status></p>
+    </aside>
+
+    <section class="now-screen-grid">
+      <article class="now-screen-card">
+        <div class="now-screen-summary">
+          <div class="now-poster-wrap">
+            <img alt="Test poster"
+                 width="300"
+                 height="445"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='450'%3E%3Crect width='300' height='450' fill='%239a6a2f'/%3E%3C/svg%3E">
+          </div>
+          <div class="now-screen-copy">
+            <p class="now-overline">Watching</p>
+            <h3>Test title</h3>
+            <p class="now-screen-date">Started today</p>
+            <p class="now-plot">A compact test description for the responsive screen-card layout.</p>
+            <dl class="now-screen-meta"><div><dt>Year</dt><dd>2026</dd></div></dl>
+          </div>
+        </div>
+        <details class="now-notes">
+          <summary>Read my notes</summary>
+          <div><p>Expanded notes must not stretch or narrow the poster.</p></div>
+        </details>
+      </article>
+    </section>
   </main>
 
   <output id="test-results">running</output>
@@ -45,18 +79,41 @@
   <script>
     localStorage.clear();
     window.fetch = function (url) {
+      if (String(url).includes("en.wikipedia.org/api/rest_v1/feed/onthisday/events/05/22")) {
+        return Promise.resolve({
+          ok: true,
+          json: function () {
+            return Promise.resolve({
+              events: [{
+                year: 2001,
+                text: "A test event occurred.",
+                pages: [{
+                  content_urls: {
+                    desktop: { page: "https://en.wikipedia.org/wiki/Test_event" }
+                  }
+                }]
+              }]
+            });
+          }
+        });
+      }
       var isRepos = String(url).includes("/repos?");
-      var value = isRepos
+      var isCommitSearch = String(url).includes("/search/commits?");
+      var value = isCommitSearch
+        ? { total_count: 452, incomplete_results: false }
+        : isRepos
         ? [{
             name: "public-project",
             html_url: "https://github.com/mmccoy-01/public-project",
             updated_at: "2026-07-30T12:00:00Z",
-            fork: false
+            fork: false,
+            stargazers_count: 7
           }]
         : {
             name: "Michael McCoy",
             avatar_url: "https://example.com/avatar.png",
             bio: "Live public bio",
+            created_at: "2020-01-01T00:00:00Z",
             public_repos: 12,
             followers: 4
           };
@@ -71,16 +128,39 @@
     window.setTimeout(function () {
       var result = document.getElementById("test-results");
       try {
+        if (document.querySelector(".anchor")) {
+          throw new Error("Legacy heading link was not removed.");
+        }
+        if (!document.querySelector("[data-history-text]").textContent.includes("May 22, 2001")) {
+          throw new Error("Release-date historical context was not rendered.");
+        }
+        if (!document.querySelector("[data-history-source]").href.includes("Test_event")) {
+          throw new Error("Historical source link was not updated.");
+        }
         var tabs = document.querySelectorAll("[role=tab]");
         var frame = document.querySelector("[data-player-frame]");
-        if (tabs[0].getAttribute("aria-selected") !== "true") {
-          throw new Error("Initial tab was not selected.");
+        var panel = document.querySelector("#now-playlist-panel");
+        if (tabs[0].getAttribute("aria-selected") !== "false" || !panel.hidden) {
+          throw new Error("A playlist was opened by default.");
         }
+        tabs[0].click();
         if (!frame.querySelector("iframe")) {
-          document.querySelector("[data-load-player]").click();
+          throw new Error("Clicking a tab did not create its player.");
         }
-        if (!frame.querySelector("iframe")) {
-          throw new Error("Player iframe was not created.");
+        if (frame.querySelector("iframe").style.colorScheme !== "dark") {
+          throw new Error("Apple player did not receive the active color-scheme hint.");
+        }
+        tabs[0].click();
+        if (!panel.hidden || tabs[0].getAttribute("aria-expanded") !== "false") {
+          throw new Error("Clicking the open tab did not collapse its player.");
+        }
+        if (frame.querySelector("iframe")) {
+          throw new Error("Collapsing a playlist did not unload its player.");
+        }
+        tabs[0].click();
+        if (panel.hidden || tabs[0].getAttribute("aria-expanded") !== "true" ||
+            !frame.querySelector("iframe")) {
+          throw new Error("Clicking the collapsed tab did not reopen its player.");
         }
 
         tabs[1].click();
@@ -95,15 +175,38 @@
           key: "ArrowRight",
           bubbles: true
         }));
-        if (tabs[0].getAttribute("aria-selected") !== "true") {
-          throw new Error("Arrow-key tab navigation failed.");
+        if (document.activeElement !== tabs[0] ||
+            tabs[1].getAttribute("aria-selected") !== "true") {
+          throw new Error("Manual arrow-key tab navigation failed.");
         }
 
         if (document.querySelector("[data-github-repos]").textContent !== "12") {
           throw new Error("GitHub repository count was not rendered.");
         }
+        if (document.querySelector("[data-github-stars]").textContent !== "7") {
+          throw new Error("GitHub star total was not rendered.");
+        }
+        if (!document.querySelector("[data-github-commits]").textContent.includes("452")) {
+          throw new Error("Estimated GitHub commits were not rendered.");
+        }
+        if (document.querySelector("[data-github-years]").textContent === "—") {
+          throw new Error("GitHub account age was not rendered.");
+        }
         if (document.querySelectorAll("[data-github-repo-list] li").length !== 1) {
           throw new Error("Recent GitHub repositories were not rendered.");
+        }
+
+        var poster = document.querySelector(".now-poster-wrap");
+        var notes = document.querySelector(".now-notes");
+        var before = poster.getBoundingClientRect();
+        notes.open = true;
+        var after = poster.getBoundingClientRect();
+        var ratio = after.height / after.width;
+        if (Math.abs(after.height - before.height) > 1 || ratio < 1.45 || ratio > 1.55) {
+          throw new Error("Expanded notes changed the fixed poster geometry.");
+        }
+        if (notes.getBoundingClientRect().width < poster.closest(".now-screen-card").getBoundingClientRect().width - 2) {
+          throw new Error("Expanded notes do not use the full card width.");
         }
 
         result.textContent = "passed";

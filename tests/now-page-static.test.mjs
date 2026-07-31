@@ -23,6 +23,8 @@ const data = JSON.parse(dataText);
 assert.equal(data.last_updated, "July 30, 2026");
 assert.equal(data.music.title, "Warm Safe Place");
 assert.equal(data.music.track_id, "263065402");
+assert.equal(data.music.release_date_iso, "2001-05-22");
+assert.equal(data.music.history, undefined);
 assert.match(data.music.apple_url, /^https:\/\/music\.apple\.com\//);
 assert.match(data.music.embed_url, /^https:\/\/embed\.music\.apple\.com\//);
 assert.equal(data.playlists.length, 5);
@@ -42,9 +44,23 @@ assert.match(page, /permalink:\s*\/now\//);
 assert.match(page, /data-playlist-picker/);
 assert.match(page, /role="tablist"/);
 assert.match(page, /class="now-song-player"/);
+assert.match(page, /data-history-card/);
+assert.match(page, /data-release-date=/);
+assert.match(page, /data-history-text/);
 assert.match(page, /data-github-card/);
+assert.match(page, /data-github-years/);
+assert.match(page, /data-github-stars/);
+assert.match(page, /data-github-commits/);
 assert.match(page, /https:\/\/nownownow\.com\/about/);
 assert.doesNotMatch(page, /;;/);
+assert.doesNotMatch(page, /now-record-art|now-record-label|>BTC</);
+assert.doesNotMatch(page, /Open in Apple Music|data-playlist-link/);
+assert.doesNotMatch(page, /Select a playlist to load|30-second previews/);
+assert.doesNotMatch(page, /I · Audire|II · Videre|III · Opus/);
+assert.doesNotMatch(
+  page,
+  /The music and atmosphere|What I recently watched|The systems, questions/
+);
 
 assert.match(layout, /class="has-push-menu now-page"/);
 assert.match(layout, /assets\/js\/now\.js/);
@@ -53,19 +69,32 @@ assert.match(css, /html\[data-theme="dark"\] \.now-page/);
 assert.match(css, /@media \(max-width:\s*720px\)/);
 assert.match(css, /scroll-snap-type:\s*x mandatory/);
 assert.match(css, /focus-visible/);
+assert.match(css, /\.now-section-heading h2[\s\S]*Dancing Script/);
 
 assert.match(script, /__katalepsaraNowInitialized/);
-assert.match(script, /requestIdleCallback/);
+assert.match(script, /removeLegacyHeadingLinks/);
+assert.doesNotMatch(
+  script,
+  /requestIdleCallback|data-player-empty|data-load-player/
+);
 assert.match(script, /localStorage/);
 assert.match(script, /dataset\.githubApi/);
+assert.match(script, /search\/commits/);
+assert.match(script, /stargazers_count/);
+assert.match(script, /accountAge/);
+assert.match(script, /syncApplePlayerColorScheme/);
+assert.match(script, /findNearbyHistoricalEvent/);
+assert.match(script, /en\.wikipedia\.org\/api\/rest_v1\/feed\/onthisday\/events/);
+assert.match(script, /HISTORY_SEARCH_RADIUS_DAYS\s*=\s*7/);
 assert.match(script, /noopener noreferrer/);
 assert.doesNotMatch(script, /token|authorization/i);
 
 assert.match(config, /- title:\s*Now\s+url:\s*\/now\//);
 assert.match(readme, /## `\/now` page/);
 assert.match(readme, /node scripts\/update-now\.mjs --write/);
-assert.match(updater, /api\.wikimedia\.org/);
+assert.doesNotMatch(updater, /api\.wikimedia\.org|findHistoricalEvent/);
 assert.match(updater, /itunes\.apple\.com\/lookup/);
+assert.match(updater, /release_date_iso/);
 assert.match(updater, /process\.argv\.includes\("--write"\)/);
 
 console.log("now-page static checks passed");

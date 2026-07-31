@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Refresh the featured Apple Music metadata and propose a nearby historical
- * event from Wikipedia. This is deliberately a build-time task: readers never
- * depend on these services, and the generated sentence can be reviewed before
- * publication.
+ * Refresh the featured Apple Music metadata, including the machine-readable
+ * catalog release date used by the page's live Wikimedia enrichment.
  *
  * Preview: node scripts/update-now.mjs
  * Apply:   node scripts/update-now.mjs --write
@@ -77,14 +75,23 @@ function requestJson(url) {
 }
 
 function getTrackId(music) {
+  try {
+    const appleUrl = new URL(String(music.apple_url || ""));
+    const queryTrackId = appleUrl.searchParams.get("i");
+    if (queryTrackId && /^\d+$/.test(queryTrackId)) {
+      return queryTrackId;
+    }
+    const pathMatch = appleUrl.pathname.match(/\/(\d+)\/?$/);
+    if (pathMatch) {
+      return pathMatch[1];
+    }
+  } catch (error) {
+    // Fall back to the stored ID when the URL is temporarily incomplete.
+  }
   if (music.track_id) {
     return String(music.track_id);
   }
-  const match = String(music.apple_url || "").match(/\/(\d+)(?:\?|$)/);
-  if (!match) {
-    throw new Error("The featured Apple Music URL does not contain a track ID.");
-  }
-  return match[1];
+  throw new Error("The featured Apple Music URL does not contain a track ID.");
 }
 
 function formatDate(value) {
@@ -94,77 +101,6 @@ function formatDate(value) {
     year: "numeric",
     timeZone: "UTC"
   }).format(new Date(value));
-}
-
-function scoreEvent(event) {
-  const text = String(event.text || "").toLowerCase();
-  const signals = [
-    ["adopt", 8],
-    ["treaty", 8],
-    ["convention", 8],
-    ["elected", 7],
-    ["launch", 6],
-    ["discover", 6],
-    ["independence", 6],
-    ["first", 4],
-    ["war", 3],
-    ["government", 3]
-  ];
-  return signals.reduce(
-    (score, [term, weight]) => score + (text.includes(term) ? weight : 0),
-    Math.min((event.pages || []).length, 4)
-  );
-}
-
-async function findHistoricalEvent(releaseDate) {
-  const target = new Date(releaseDate);
-  const targetYear = target.getUTCFullYear();
-
-  for (let distance = 0; distance <= 7; distance += 1) {
-    const offsets = distance === 0 ? [0] : [-distance, distance];
-    for (const offset of offsets) {
-      const candidate = new Date(target);
-      candidate.setUTCDate(candidate.getUTCDate() + offset);
-      const month = String(candidate.getUTCMonth() + 1).padStart(2, "0");
-      const day = String(candidate.getUTCDate()).padStart(2, "0");
-      const endpoint =
-        `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${month}/${day}`;
-      const feed = await requestJson(endpoint);
-      const matches = (feed.events || [])
-        .filter((event) => Number(event.year) === targetYear)
-        .sort((left, right) => scoreEvent(right) - scoreEvent(left));
-
-      if (!matches.length) {
-        continue;
-      }
-
-      const event = matches[0];
-      const page = (event.pages || [])[0];
-      const sourceUrl =
-        page &&
-        page.content_urls &&
-        page.content_urls.desktop &&
-        page.content_urls.desktop.page
-          ? page.content_urls.desktop.page
-          : `https://en.wikipedia.org/wiki/${targetYear}`;
-      const lead =
-        offset === 0
-          ? `On this day in ${targetYear}: `
-          : `Within ${Math.abs(offset)} day${Math.abs(offset) === 1 ? "" : "s"} of the release, `;
-
-      return {
-        text: lead + String(event.text || "").replace(/\s+/g, " ").trim(),
-        source_url: sourceUrl,
-        source_label: "Historical context on Wikipedia"
-      };
-    }
-  }
-
-  return {
-    text: `Explore notable events from ${target.getUTCMonth() + 1}/${targetYear} on Wikipedia.`,
-    source_url: `https://en.wikipedia.org/wiki/${targetYear}`,
-    source_label: `Events of ${targetYear} on Wikipedia`
-  };
 }
 
 async function main() {
@@ -182,20 +118,19 @@ async function main() {
   }
 
   const appleUrl = `https://music.apple.com/us/song/${track.trackId}`;
-  const history = await findHistoricalEvent(track.releaseDate);
   const proposal = {
     ...nowData.music,
     title: track.trackName,
     artist: track.artistName,
     album: track.collectionName,
     release_date: formatDate(track.releaseDate),
+    release_date_iso: new Date(track.releaseDate).toISOString().slice(0, 10),
     apple_url: appleUrl,
     embed_url: appleUrl.replace(
       "https://music.apple.com/",
       "https://embed.music.apple.com/"
     ),
-    track_id: String(track.trackId),
-    history
+    track_id: String(track.trackId)
   };
 
   process.stdout.write(
@@ -205,7 +140,7 @@ async function main() {
         featured_song: proposal.title,
         album: proposal.album,
         release_date: proposal.release_date,
-        historical_context: proposal.history
+        release_date_iso: proposal.release_date_iso
       },
       null,
       2
