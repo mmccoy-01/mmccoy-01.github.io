@@ -210,8 +210,8 @@ server configuration or secret is required.
 
 The site-wide navigation links to a modular page at `/now/`. Its writing,
 featured song, personalized Apple Music links, screen notes, “Presently”
-entries, and GitHub username all live in `_data/now.json`. Edit that file for a
-routine update; the layout and responsive presentation do not need to change.
+entries all live in `_data/now.json`. Edit that file for a routine update; the
+layout and responsive presentation do not need to change.
 
 The page uses `_layouts/now.html`, `pages/now.html`, `assets/css/now.css`, and
 `assets/js/now.js`. It follows the site's light/dark preference and uses the
@@ -270,19 +270,6 @@ If Wikimedia is unavailable, the card shows a generic release-date message
 rather than a manually maintained historical claim. The date is the Apple
 catalog release date, not a claim about a separate single release.
 
-### GitHub card
-
-The GitHub card has a complete static fallback and enhances itself in the
-browser with the public GitHub REST API. It shows years on GitHub, public
-repositories, stars earned across owned public repositories, an estimated
-public commit count, and up to three recently updated non-fork repositories.
-The commit figure uses GitHub's public commit search and is deliberately marked
-as an estimate because it can omit private work and commits outside indexed
-default branches. Responses are cached in the visitor's browser for one hour
-to respect GitHub's unauthenticated and search rate limits. No token, private
-data, backend, or exposed secret is used; if an endpoint is unavailable, the
-rest of the card and profile link continue to work.
-
 Run the page's dependency-free checks with:
 
 ```powershell
@@ -293,5 +280,5 @@ node tests/now-page-static.test.mjs
 
 For a browser smoke test, open `tests/now-page.browser.html` or load it in
 Chrome/Edge headlessly and confirm `#test-results` has
-`data-status="passed"`. The fixture mocks GitHub and Wikimedia and uses inert
-player URLs, so it is deterministic and makes no external requests.
+`data-status="passed"`. The fixture mocks Wikimedia and uses inert player URLs,
+so it is deterministic and makes no external requests.

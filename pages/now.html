@@ -6,7 +6,7 @@ permalink: /now/
 ---
 {% assign now = site.data.now %}
 
-<article class="now-shell" data-now-page data-github-user="{{ now.github.username | escape }}">
+<article class="now-shell" data-now-page>
   <header class="now-hero">
     <div class="now-hero-orbit" aria-hidden="true"></div>
     <h1>Now</h1>
@@ -22,89 +22,25 @@ permalink: /now/
     </svg>
   </div>
 
-  <section class="now-section" aria-labelledby="now-music-title">
+  <section class="now-section now-workshop" aria-labelledby="now-workshop-title">
     <div class="now-section-heading">
-      <h2 id="now-music-title">Heavy Rotation</h2>
+      <h2 id="now-workshop-title">The Workshop</h2>
     </div>
 
-    <div class="now-feature-grid">
-      <div class="now-record-card">
-        <div class="now-record-copy">
-          <p class="now-overline">Current favorite song</p>
-          <h3>{{ now.music.title }}</h3>
-          <p class="now-byline">{{ now.music.artist }} <span aria-hidden="true">·</span> <cite>{{ now.music.album }}</cite></p>
-          <dl class="now-inline-meta">
-            <div>
-              <dt>Catalog release</dt>
-              <dd>{{ now.music.release_date }}</dd>
-            </div>
-          </dl>
-          <blockquote>{{ now.music.note }}</blockquote>
-          <iframe class="now-song-player"
-                  src="{{ now.music.embed_url }}"
-                  title="{{ now.music.title }} by {{ now.music.artist }} on Apple Music"
-                  loading="lazy"
-                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                  referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-      </div>
-
-      <aside class="now-history-card"
-             data-history-card
-             data-release-date="{{ now.music.release_date_iso | escape }}">
-        <p class="now-overline">In the world then</p>
-        <p data-history-text>A notable event near {{ now.music.release_date }} will load from Wikipedia when available.</p>
-        <a class="now-source-link"
-           data-history-source
-           href="https://en.wikipedia.org/wiki/{{ now.music.release_date_iso | date: '%B_%d' }}"
-           target="_blank"
-           rel="noopener noreferrer">
-          Explore this date on Wikipedia <span aria-hidden="true">↗</span>
-        </a>
-        <p class="now-history-status" data-history-status aria-live="polite">Historical context is selected from Wikimedia’s “On this day” feed.</p>
-      </aside>
-    </div>
-
-    <div class="now-essay">
-      <p class="now-overline">The current thread</p>
-      {% for paragraph in now.music.interest %}
-        <p>{% if forloop.index == 2 %}That led me to <i>mono no aware</i>{{ paragraph | remove_first: "That led me to mono no aware" }}{% else %}{{ paragraph }}{% endif %}</p>
+    <div class="now-presently-grid">
+      {% for item in now.presently %}
+        <article class="now-present-card">
+          <span class="now-present-number" aria-hidden="true">{{ item.roman }}</span>
+          <h3>{{ item.label }}</h3>
+          <p>
+            {% if item.url %}
+              <a class="now-inline-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+            {% else %}
+              {{ item.text }}
+            {% endif %}
+          </p>
+        </article>
       {% endfor %}
-    </div>
-
-    <div class="now-playlists" data-playlist-picker>
-      <div class="now-subheading">
-        <div>
-          <p class="now-overline">Made for me</p>
-          <h3>Apple Music playlists</h3>
-        </div>
-        <p>Choose a playlist to see its current songs. Previews depend on Apple’s player and your region.</p>
-      </div>
-
-      <div class="now-playlist-tabs" role="tablist" aria-label="Apple Music playlists">
-        {% for playlist in now.playlists %}
-          <button class="now-playlist-tab"
-                  type="button"
-                  role="tab"
-          id="now-playlist-tab-{{ forloop.index }}"
-          aria-selected="false"
-          aria-expanded="false"
-          aria-controls="now-playlist-panel"
-          tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
-                  data-playlist-title="{{ playlist.title | escape }}"
-                  data-playlist-embed="{{ playlist.embed_url | escape }}">
-            <span class="now-tab-number">{{ playlist.roman }}</span>
-            <span>{{ playlist.title }}</span>
-          </button>
-        {% endfor %}
-      </div>
-
-      <div class="now-player-panel"
-           id="now-playlist-panel"
-           role="tabpanel"
-           hidden>
-        <div class="now-player-frame" data-player-frame></div>
-      </div>
     </div>
   </section>
 
@@ -158,88 +94,88 @@ permalink: /now/
     </div>
   </section>
 
-  <section class="now-section now-workshop" aria-labelledby="now-workshop-title">
+  <section class="now-section" aria-labelledby="now-music-title">
     <div class="now-section-heading">
-      <h2 id="now-workshop-title">The Workshop</h2>
+      <h2 id="now-music-title">Heavy Rotation</h2>
     </div>
 
-    <div class="now-workshop-grid">
-      <div class="now-presently-grid">
-        {% for item in now.presently %}
-          <article class="now-present-card">
-            <span class="now-present-number" aria-hidden="true">{{ item.roman }}</span>
-            <h3>{{ item.label }}</h3>
-            <p>{{ item.text }}</p>
-            {% if item.url %}
-              <a class="now-text-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
-                {{ item.link_label }} <span aria-hidden="true">↗</span>
-              </a>
-            {% endif %}
-          </article>
+    <div class="now-feature-grid">
+      <div class="now-record-card">
+        <div class="now-record-copy">
+          <p class="now-overline">Current favorite song</p>
+          <h3>{{ now.music.title }}</h3>
+          <p class="now-byline">{{ now.music.artist }} <span aria-hidden="true">·</span> <cite>{{ now.music.album }}</cite></p>
+          <dl class="now-inline-meta">
+            <div>
+              <dt>Catalog release</dt>
+              <dd>{{ now.music.release_date }}</dd>
+            </div>
+          </dl>
+          <blockquote>{{ now.music.note }}</blockquote>
+          <iframe class="now-song-player"
+                  src="{{ now.music.embed_url }}"
+                  title="{{ now.music.title }} by {{ now.music.artist }} on Apple Music"
+                  loading="lazy"
+                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                  referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+
+      <aside class="now-history-card"
+             data-history-card
+             data-release-date="{{ now.music.release_date_iso | escape }}">
+        <p class="now-overline">In the world then</p>
+        <p data-history-text>A notable event near {{ now.music.release_date }} will load from Wikipedia when available.</p>
+        <a class="now-source-link"
+           data-history-source
+           href="https://en.wikipedia.org/wiki/{{ now.music.release_date_iso | date: '%B_%d' }}"
+           target="_blank"
+           rel="noopener noreferrer">
+          Explore this date on Wikipedia <span aria-hidden="true">↗</span>
+        </a>
+        <p class="now-history-status" data-history-status aria-live="polite">Historical context is selected from Wikimedia’s “On this day” feed.</p>
+      </aside>
+    </div>
+
+    <div class="now-playlists" data-playlist-picker>
+      <div class="now-playlist-tabs" role="tablist" aria-label="Apple Music playlists">
+        {% for playlist in now.playlists %}
+          <button class="now-playlist-tab"
+                  type="button"
+                  role="tab"
+                  id="now-playlist-tab-{{ forloop.index }}"
+                  aria-selected="false"
+                  aria-expanded="false"
+                  aria-controls="now-playlist-panel"
+                  tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                  data-playlist-title="{{ playlist.title | escape }}"
+                  data-playlist-embed="{{ playlist.embed_url | escape }}">
+            <span class="now-tab-number">{{ playlist.roman }}</span>
+            <span>{{ playlist.title }}</span>
+          </button>
         {% endfor %}
       </div>
 
-      <aside class="now-github-card"
-             data-github-card
-             data-github-api="https://api.github.com/users/{{ now.github.username }}"
-             aria-labelledby="now-github-title">
-        <div class="now-github-heading">
-          <div>
-            <p class="now-overline">Live from the workshop</p>
-            <p class="now-github-edition">Public profile · updated live</p>
-          </div>
-          <span class="now-github-mark" aria-hidden="true">
-            <svg viewBox="0 0 12 14"><use xlink:href="#icon-github"></use></svg>
-          </span>
-        </div>
-        <div class="now-github-profile">
-          <img src="{{ now.github.avatar_url }}"
-               alt=""
-               width="88"
-               height="88"
-               loading="lazy"
-               data-github-avatar>
-          <div>
-            <h3 id="now-github-title" data-github-name>{{ now.github.display_name }}</h3>
-            <a href="{{ now.github.profile_url }}" target="_blank" rel="noopener noreferrer">@{{ now.github.username }}</a>
-          </div>
-        </div>
-        <p data-github-bio>{{ now.github.fallback_bio }}</p>
-        <dl class="now-github-stats" aria-label="Public GitHub statistics">
-          <div class="now-github-stat now-github-stat-years">
-            <dt>Years on GitHub</dt>
-            <dd data-github-years>—</dd>
-          </div>
-          <div class="now-github-stat">
-            <dt>Public repos</dt>
-            <dd data-github-repos>—</dd>
-          </div>
-          <div class="now-github-stat">
-            <dt>Stars earned</dt>
-            <dd data-github-stars>—</dd>
-          </div>
-          <div class="now-github-stat">
-            <dt>Est. public commits</dt>
-            <dd data-github-commits>—</dd>
-          </div>
-        </dl>
-        <p class="now-github-method">Live public data. Commit search is an estimate and may omit private work or commits outside indexed default branches.</p>
-        <div class="now-github-recent" data-github-recent hidden>
-          <p class="now-overline">Recently updated</p>
-          <ul data-github-repo-list></ul>
-        </div>
-        <p class="now-github-status" data-github-status aria-live="polite">Live details load from GitHub when available.</p>
-        <a class="now-button-link" href="{{ now.github.profile_url }}" target="_blank" rel="noopener noreferrer">
-          Visit GitHub profile <span aria-hidden="true">↗</span>
-        </a>
-      </aside>
+      <div class="now-player-panel"
+           id="now-playlist-panel"
+           role="tabpanel"
+           hidden>
+        <div class="now-player-frame" data-player-frame></div>
+      </div>
+    </div>
+
+    <div class="now-essay">
+      <p class="now-overline">The current thread</p>
+      {% for paragraph in now.music.interest %}
+        <p>{% if forloop.index == 2 %}That led me to <i>mono no aware</i>{{ paragraph | remove_first: "That led me to mono no aware" }}{% else %}{{ paragraph }}{% endif %}</p>
+      {% endfor %}
     </div>
   </section>
 
   <section class="now-colophon" aria-label="Now-page inspiration">
     <div class="now-meander" aria-hidden="true">
       <svg viewBox="0 0 240 14" preserveAspectRatio="none">
-        <path d="M0 12h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12" />
+        <path d="M0 12h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12" />
       </svg>
     </div>
     <a class="now-text-link" href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">

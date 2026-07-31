@@ -14,7 +14,6 @@
   var CACHE_TTL_MS = 60 * 60 * 1000;
   var HISTORY_CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
   var HISTORY_SEARCH_RADIUS_DAYS = 7;
-  var GITHUB_REPO_COUNT = 3;
 
   function removeLegacyHeadingLinks() {
     page.querySelectorAll(".anchor").forEach(function (anchor) {
@@ -347,170 +346,7 @@
         JSON.stringify({ savedAt: Date.now(), value: value })
       );
     } catch (error) {
-      // Storage can be disabled in private browsing; the live card still works.
-    }
-  }
-
-  function formatRepositoryDate(dateValue) {
-    var date = new Date(dateValue);
-    if (Number.isNaN(date.getTime())) {
-      return "";
-    }
-    return new Intl.DateTimeFormat(undefined, {
-      month: "short",
-      year: "numeric"
-    }).format(date);
-  }
-
-  function formatNumber(value) {
-    return new Intl.NumberFormat(undefined, {
-      notation: Number(value) >= 10000 ? "compact" : "standard",
-      maximumFractionDigits: 1
-    }).format(Number(value) || 0);
-  }
-
-  function accountAge(createdAt) {
-    var created = new Date(createdAt);
-    if (Number.isNaN(created.getTime())) {
-      return "—";
-    }
-    var years =
-      (Date.now() - created.getTime()) / (365.2425 * 24 * 60 * 60 * 1000);
-    return years < 1 ? "<1" : String(Math.floor(years));
-  }
-
-  function renderGitHubCard(card, payload, fromCache) {
-    var user = payload.user;
-    var repos = payload.repos || [];
-    var name = card.querySelector("[data-github-name]");
-    var avatar = card.querySelector("[data-github-avatar]");
-    var bio = card.querySelector("[data-github-bio]");
-    var years = card.querySelector("[data-github-years]");
-    var repoCount = card.querySelector("[data-github-repos]");
-    var stars = card.querySelector("[data-github-stars]");
-    var commits = card.querySelector("[data-github-commits]");
-    var recent = card.querySelector("[data-github-recent]");
-    var list = card.querySelector("[data-github-repo-list]");
-    var status = card.querySelector("[data-github-status]");
-
-    if (user.name) {
-      name.textContent = user.name;
-    }
-    if (user.avatar_url) {
-      avatar.src = user.avatar_url;
-    }
-    if (user.bio) {
-      bio.textContent = user.bio;
-    }
-    var starCount = repos
-      .filter(function (repository) {
-        return !repository.fork;
-      })
-      .reduce(function (total, repository) {
-        return total + Number(repository.stargazers_count || 0);
-      }, 0);
-
-    years.textContent = accountAge(user.created_at);
-    repoCount.textContent = formatNumber(user.public_repos);
-    stars.textContent = formatNumber(starCount);
-    commits.textContent =
-      typeof payload.commitCount === "number"
-        ? "≈" + formatNumber(payload.commitCount)
-        : "—";
-
-    list.replaceChildren();
-    repos
-      .filter(function (repository) {
-        return !repository.fork;
-      })
-      .slice(0, GITHUB_REPO_COUNT)
-      .forEach(function (repository) {
-        var item = document.createElement("li");
-        var link = document.createElement("a");
-        var label = document.createElement("span");
-        link.href = repository.html_url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.append(document.createTextNode(repository.name));
-        label.textContent = formatRepositoryDate(repository.updated_at);
-        link.appendChild(label);
-        item.appendChild(link);
-        list.appendChild(item);
-      });
-
-    if (list.children.length) {
-      recent.hidden = false;
-    }
-    status.textContent = fromCache
-      ? "Showing recently cached public GitHub details."
-      : "Public details refreshed from GitHub.";
-  }
-
-  async function initGitHubCard() {
-    var card = page.querySelector("[data-github-card]");
-    if (!card || !window.fetch) {
-      return;
-    }
-
-    var apiUrl = card.dataset.githubApi;
-    var username = page.dataset.githubUser;
-    var cacheKey = "katalepsara-now-github-v2-" + username;
-    var cached = readCache(cacheKey);
-
-    if (cached) {
-      renderGitHubCard(card, cached, true);
-      return;
-    }
-
-    var status = card.querySelector("[data-github-status]");
-
-    try {
-      var responses = await Promise.all([
-        window.fetch(apiUrl, {
-          headers: { Accept: "application/vnd.github+json" }
-        }),
-        window.fetch(
-          apiUrl + "/repos?sort=updated&direction=desc&per_page=100&type=owner",
-          { headers: { Accept: "application/vnd.github+json" } }
-        )
-      ]);
-
-      if (!responses[0].ok || !responses[1].ok) {
-        throw new Error("GitHub returned a non-success response.");
-      }
-
-      var values = await Promise.all([
-        responses[0].json(),
-        responses[1].json()
-      ]);
-      var commitCount = null;
-
-      try {
-        var searchUrl =
-          "https://api.github.com/search/commits?q=" +
-          encodeURIComponent("author:" + username) +
-          "&per_page=1";
-        var commitResponse = await window.fetch(searchUrl, {
-          headers: { Accept: "application/vnd.github+json" }
-        });
-        if (commitResponse.ok) {
-          var commitSearch = await commitResponse.json();
-          commitCount = Number(commitSearch.total_count);
-        }
-      } catch (commitError) {
-        // The lower search rate limit should not prevent core stats rendering.
-      }
-
-      var payload = {
-        user: values[0],
-        repos: values[1],
-        commitCount: Number.isFinite(commitCount) ? commitCount : null
-      };
-      writeCache(cacheKey, payload);
-      renderGitHubCard(card, payload, false);
-    } catch (error) {
-      status.textContent =
-        "Live GitHub details are unavailable; the profile link still works.";
+      // Storage can be disabled in private browsing; live enrichment still works.
     }
   }
 
@@ -518,5 +354,4 @@
   observeColorScheme();
   initHistoricalContext();
   initPlaylistPicker();
-  initGitHubCard();
 })();

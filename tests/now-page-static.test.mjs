@@ -38,7 +38,10 @@ assert.ok(
 );
 assert.equal(data.screen.length, 2);
 assert.equal(data.presently.length, 7);
-assert.equal(data.github.username, "mmccoy-01");
+assert.equal(data.github, undefined);
+assert.equal(data.presently[2].label, "Small pleasure");
+assert.match(data.presently[2].url, /^https:\/\/www\.facebook\.com\//);
+assert.equal(data.presently[2].link_label, undefined);
 
 assert.match(page, /permalink:\s*\/now\//);
 assert.match(page, /data-playlist-picker/);
@@ -47,11 +50,9 @@ assert.match(page, /class="now-song-player"/);
 assert.match(page, /data-history-card/);
 assert.match(page, /data-release-date=/);
 assert.match(page, /data-history-text/);
-assert.match(page, /data-github-card/);
-assert.match(page, /data-github-years/);
-assert.match(page, /data-github-stars/);
-assert.match(page, /data-github-commits/);
+assert.doesNotMatch(page, /data-github|now-github|GitHub profile/);
 assert.match(page, /https:\/\/nownownow\.com\/about/);
+assert.match(page, /class="now-inline-link"/);
 assert.doesNotMatch(page, /;;/);
 assert.doesNotMatch(page, /now-record-art|now-record-label|>BTC</);
 assert.doesNotMatch(page, /Open in Apple Music|data-playlist-link/);
@@ -60,6 +61,18 @@ assert.doesNotMatch(page, /I · Audire|II · Videre|III · Opus/);
 assert.doesNotMatch(
   page,
   /The music and atmosphere|What I recently watched|The systems, questions/
+);
+assert.ok(
+  page.indexOf('id="now-workshop-title"') <
+    page.indexOf('id="now-screen-title"') &&
+    page.indexOf('id="now-screen-title"') <
+      page.indexOf('id="now-music-title"'),
+  "Sections must render Workshop, On Screen, then Heavy Rotation."
+);
+assert.ok(
+  page.indexOf('class="now-playlists"') <
+    page.indexOf('class="now-essay"'),
+  "Playlist tabs must sit immediately before the current thread."
 );
 
 assert.match(layout, /class="has-push-menu now-page"/);
@@ -78,15 +91,11 @@ assert.doesNotMatch(
   /requestIdleCallback|data-player-empty|data-load-player/
 );
 assert.match(script, /localStorage/);
-assert.match(script, /dataset\.githubApi/);
-assert.match(script, /search\/commits/);
-assert.match(script, /stargazers_count/);
-assert.match(script, /accountAge/);
+assert.doesNotMatch(script, /github|stargazers_count|accountAge/i);
 assert.match(script, /syncApplePlayerColorScheme/);
 assert.match(script, /findNearbyHistoricalEvent/);
 assert.match(script, /en\.wikipedia\.org\/api\/rest_v1\/feed\/onthisday\/events/);
 assert.match(script, /HISTORY_SEARCH_RADIUS_DAYS\s*=\s*7/);
-assert.match(script, /noopener noreferrer/);
 assert.doesNotMatch(script, /token|authorization/i);
 
 assert.match(config, /- title:\s*Now\s+url:\s*\/now\//);

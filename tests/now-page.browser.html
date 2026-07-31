@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../assets/css/now.css">
 </head>
 <body class="now-page">
-  <main class="now-shell" data-now-page data-github-user="mmccoy-01">
+  <main class="now-shell" data-now-page>
     <h2 id="legacy-heading"><a class="anchor" href="#legacy-heading"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="></a>Test heading</h2>
     <section data-playlist-picker>
       <div role="tablist">
@@ -30,18 +30,6 @@
         <div data-player-frame></div>
       </div>
     </section>
-
-    <aside data-github-card data-github-api="https://api.github.test/users/mmccoy-01">
-      <img data-github-avatar alt="">
-      <h2 data-github-name>Fallback Name</h2>
-      <p data-github-bio>Fallback bio</p>
-      <span data-github-years>—</span>
-      <span data-github-repos>—</span>
-      <span data-github-stars>—</span>
-      <span data-github-commits>—</span>
-      <div data-github-recent hidden><ul data-github-repo-list></ul></div>
-      <p data-github-status></p>
-    </aside>
 
     <aside data-history-card data-release-date="2001-05-22">
       <p data-history-text>Fallback historical context</p>
@@ -97,29 +85,9 @@
           }
         });
       }
-      var isRepos = String(url).includes("/repos?");
-      var isCommitSearch = String(url).includes("/search/commits?");
-      var value = isCommitSearch
-        ? { total_count: 452, incomplete_results: false }
-        : isRepos
-        ? [{
-            name: "public-project",
-            html_url: "https://github.com/mmccoy-01/public-project",
-            updated_at: "2026-07-30T12:00:00Z",
-            fork: false,
-            stargazers_count: 7
-          }]
-        : {
-            name: "Michael McCoy",
-            avatar_url: "https://example.com/avatar.png",
-            bio: "Live public bio",
-            created_at: "2020-01-01T00:00:00Z",
-            public_repos: 12,
-            followers: 4
-          };
       return Promise.resolve({
-        ok: true,
-        json: function () { return Promise.resolve(value); }
+        ok: false,
+        json: function () { return Promise.resolve({}); }
       });
     };
   </script>
@@ -178,22 +146,6 @@
         if (document.activeElement !== tabs[0] ||
             tabs[1].getAttribute("aria-selected") !== "true") {
           throw new Error("Manual arrow-key tab navigation failed.");
-        }
-
-        if (document.querySelector("[data-github-repos]").textContent !== "12") {
-          throw new Error("GitHub repository count was not rendered.");
-        }
-        if (document.querySelector("[data-github-stars]").textContent !== "7") {
-          throw new Error("GitHub star total was not rendered.");
-        }
-        if (!document.querySelector("[data-github-commits]").textContent.includes("452")) {
-          throw new Error("Estimated GitHub commits were not rendered.");
-        }
-        if (document.querySelector("[data-github-years]").textContent === "—") {
-          throw new Error("GitHub account age was not rendered.");
-        }
-        if (document.querySelectorAll("[data-github-repo-list] li").length !== 1) {
-          throw new Error("Recent GitHub repositories were not rendered.");
         }
 
         var poster = document.querySelector(".now-poster-wrap");

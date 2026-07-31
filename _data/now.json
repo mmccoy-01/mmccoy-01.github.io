@@ -113,8 +113,7 @@
       "roman": "III",
       "label": "Small pleasure",
       "text": "A reverse Guinness.",
-      "url": "https://www.facebook.com/groups/guinnesscommunity/posts/4477136072604231/",
-      "link_label": "See the reference"
+      "url": "https://www.facebook.com/groups/guinnesscommunity/posts/4477136072604231/"
     },
     {
       "roman": "IV",
@@ -136,12 +135,5 @@
       "label": "Something I recommend",
       "text": "Making a /now page!"
     }
-  ],
-  "github": {
-    "username": "mmccoy-01",
-    "display_name": "Michael McCoy",
-    "profile_url": "https://github.com/mmccoy-01",
-    "avatar_url": "https://github.com/mmccoy-01.png?size=240",
-    "fallback_bio": "Research, systems, writing, and work in progress."
-  }
+  ]
 }
