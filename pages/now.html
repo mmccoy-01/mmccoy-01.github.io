@@ -1,0 +1,241 @@
+---
+layout: now
+title: Now
+description: A record of what presently has Michael McCoy's attention.
+permalink: /now/
+---
+{% assign now = site.data.now %}
+
+<article class="now-shell" data-now-page data-github-user="{{ now.github.username | escape }}">
+  <header class="now-hero">
+    <div class="now-hero-orbit" aria-hidden="true"></div>
+    <p class="now-kicker">Nunc</p>
+    <h1>Now</h1>
+    <p class="now-deck">{{ now.intro }}</p>
+    <p class="now-updated">
+      <span>Last updated</span>
+      <time datetime="2026-07-30">{{ now.last_updated }}</time>
+    </p>
+  </header>
+
+  <div class="now-meander" aria-hidden="true">
+    <svg viewBox="0 0 240 14" preserveAspectRatio="none">
+      <path d="M0 12h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12" />
+    </svg>
+  </div>
+
+  <section class="now-section" aria-labelledby="now-music-title">
+    <div class="now-section-heading">
+      <p class="now-section-number">I · Audire</p>
+      <h2 id="now-music-title">Heavy Rotation</h2>
+      <p>The music and atmosphere I keep returning to.</p>
+    </div>
+
+    <div class="now-feature-grid">
+      <div class="now-record-card">
+        <div class="now-record-art" aria-hidden="true">
+          <span class="now-record-ring"></span>
+          <span class="now-record-label">BTC</span>
+        </div>
+        <div class="now-record-copy">
+          <p class="now-overline">Current favorite song</p>
+          <h3>{{ now.music.title }}</h3>
+          <p class="now-byline">{{ now.music.artist }} <span aria-hidden="true">·</span> <cite>{{ now.music.album }}</cite></p>
+          <dl class="now-inline-meta">
+            <div>
+              <dt>Catalog release</dt>
+              <dd>{{ now.music.release_date }}</dd>
+            </div>
+          </dl>
+          <blockquote>{{ now.music.note }}</blockquote>
+          <iframe class="now-song-player"
+                  src="{{ now.music.embed_url }}"
+                  title="{{ now.music.title }} by {{ now.music.artist }} on Apple Music"
+                  loading="lazy"
+                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                  referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <a class="now-text-link" href="{{ now.music.apple_url }}" target="_blank" rel="noopener noreferrer">
+            Open in Apple Music <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="now-history-card">
+        <p class="now-overline">In the world then</p>
+        <p>{{ now.music.history.text }}</p>
+        <a class="now-source-link" href="{{ now.music.history.source_url }}" target="_blank" rel="noopener noreferrer">
+          {{ now.music.history.source_label }} <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
+    </div>
+
+    <div class="now-essay">
+      <p class="now-overline">The current thread</p>
+      {% for paragraph in now.music.interest %}
+        <p>{% if forloop.index == 2 %}That led me to <i>mono no aware</i>{{ paragraph | remove_first: "That led me to mono no aware" }}{% else %}{{ paragraph }}{% endif %}</p>
+      {% endfor %}
+    </div>
+
+    <div class="now-playlists" data-playlist-picker>
+      <div class="now-subheading">
+        <div>
+          <p class="now-overline">Made for me</p>
+          <h3>Apple Music playlists</h3>
+        </div>
+        <p>Choose a playlist to see its current songs. Previews depend on Apple’s player and your region.</p>
+      </div>
+
+      <div class="now-playlist-tabs" role="tablist" aria-label="Apple Music playlists">
+        {% for playlist in now.playlists %}
+          <button class="now-playlist-tab{% if forloop.first %} is-active{% endif %}"
+                  type="button"
+                  role="tab"
+                  id="now-playlist-tab-{{ forloop.index }}"
+                  aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                  aria-controls="now-playlist-panel"
+                  tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                  data-playlist-title="{{ playlist.title | escape }}"
+                  data-playlist-embed="{{ playlist.embed_url | escape }}"
+                  data-playlist-url="{{ playlist.url | escape }}">
+            <span class="now-tab-number">{{ playlist.roman }}</span>
+            <span>{{ playlist.title }}</span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="now-player-panel" id="now-playlist-panel" role="tabpanel" aria-labelledby="now-playlist-tab-1">
+        <div class="now-player-empty" data-player-empty>
+          <p>Select a playlist to load Apple’s embedded player.</p>
+          <button type="button" class="now-load-player" data-load-player>Load Heavy Rotation</button>
+        </div>
+        <div class="now-player-frame" data-player-frame hidden></div>
+        <div class="now-player-footer">
+          <p>Apple Music may offer 30-second previews to listeners who are not signed in.</p>
+          <a href="{{ now.playlists[0].url }}" data-playlist-link target="_blank" rel="noopener noreferrer">
+            Open <span data-playlist-link-title>Heavy Rotation</span> in Apple Music <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-section" aria-labelledby="now-screen-title">
+    <div class="now-section-heading">
+      <p class="now-section-number">II · Videre</p>
+      <h2 id="now-screen-title">On Screen</h2>
+      <p>What I recently watched, what is still in progress, and what stayed with me.</p>
+    </div>
+
+    <div class="now-screen-grid">
+      {% for item in now.screen %}
+        <article class="now-screen-card">
+          <div class="now-poster-wrap">
+            <img src="{{ item.poster }}"
+                 alt="{{ item.title }} poster"
+                 loading="lazy"
+                 width="300"
+                 height="445">
+            <span class="now-status">{{ item.status }}</span>
+          </div>
+          <div class="now-screen-copy">
+            <p class="now-overline">{{ item.kind }}</p>
+            <h3>{{ item.title }}</h3>
+            <p class="now-screen-date">{{ item.date_label }}</p>
+            <p class="now-plot">{{ item.plot }}</p>
+
+            <dl class="now-screen-meta">
+              <div><dt>Year</dt><dd>{{ item.year }}</dd></div>
+              {% if item.director != "" %}<div><dt>Director</dt><dd>{{ item.director }}</dd></div>{% endif %}
+              <div><dt>Genre</dt><dd>{{ item.genres | join: ", " }}</dd></div>
+              <div><dt>IMDb</dt><dd>{{ item.imdb_score }}</dd></div>
+              {% if item.personal_score != "" %}<div class="now-personal-score"><dt>My score</dt><dd>{{ item.personal_score }}</dd></div>{% endif %}
+            </dl>
+
+            <details class="now-notes">
+              <summary>Read my notes</summary>
+              <div>
+                {% for paragraph in item.notes %}<p>{{ paragraph }}</p>{% endfor %}
+                <p class="now-fine-print"><strong>Cast:</strong> {{ item.cast | join: ", " }}. <strong>Awards:</strong> {{ item.awards }}{% if item.box_office != "" %} <strong>Box office:</strong> {{ item.box_office }}.{% endif %}</p>
+              </div>
+            </details>
+
+            <a class="now-text-link" href="https://www.imdb.com/title/{{ item.imdb_id }}/" target="_blank" rel="noopener noreferrer">
+              View on IMDb <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="now-section now-workshop" aria-labelledby="now-workshop-title">
+    <div class="now-section-heading">
+      <p class="now-section-number">III · Opus</p>
+      <h2 id="now-workshop-title">The Workshop</h2>
+      <p>The systems, questions, discoveries, and small pleasures shaping the present.</p>
+    </div>
+
+    <div class="now-workshop-grid">
+      <div class="now-presently-grid">
+        {% for item in now.presently %}
+          <article class="now-present-card">
+            <span class="now-present-number" aria-hidden="true">{{ item.roman }}</span>
+            <h3>{{ item.label }}</h3>
+            <p>{{ item.text }}</p>
+            {% if item.url %}
+              <a class="now-text-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+                {{ item.link_label }} <span aria-hidden="true">↗</span>
+              </a>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+
+      <aside class="now-github-card"
+             data-github-card
+             data-github-api="https://api.github.com/users/{{ now.github.username }}"
+             aria-labelledby="now-github-title">
+        <p class="now-overline">Live from the workshop</p>
+        <div class="now-github-profile">
+          <img src="{{ now.github.avatar_url }}"
+               alt=""
+               width="88"
+               height="88"
+               loading="lazy"
+               data-github-avatar>
+          <div>
+            <h3 id="now-github-title" data-github-name>{{ now.github.display_name }}</h3>
+            <a href="{{ now.github.profile_url }}" target="_blank" rel="noopener noreferrer">@{{ now.github.username }}</a>
+          </div>
+        </div>
+        <p data-github-bio>{{ now.github.fallback_bio }}</p>
+        <dl class="now-github-stats" aria-label="Public GitHub statistics">
+          <div><dt>Repositories</dt><dd data-github-repos>—</dd></div>
+          <div><dt>Followers</dt><dd data-github-followers>—</dd></div>
+        </dl>
+        <div class="now-github-recent" data-github-recent hidden>
+          <p class="now-overline">Recently updated</p>
+          <ul data-github-repo-list></ul>
+        </div>
+        <p class="now-github-status" data-github-status aria-live="polite">Live details load from GitHub when available.</p>
+        <a class="now-button-link" href="{{ now.github.profile_url }}" target="_blank" rel="noopener noreferrer">
+          Visit GitHub profile <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="now-colophon" aria-labelledby="now-colophon-title">
+    <div class="now-meander" aria-hidden="true">
+      <svg viewBox="0 0 240 14" preserveAspectRatio="none">
+        <path d="M0 12h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12V2h12v10h12" />
+      </svg>
+    </div>
+    <p class="now-kicker">Nunc · Hic</p>
+    <h2 id="now-colophon-title">A page in the <code>/now</code> tradition</h2>
+    <p>This page was inspired by Derek Sivers and the <code>/now</code> movement—a way of sharing the larger picture of what you might tell a friend you had not seen in a year.</p>
+    <a class="now-text-link" href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">
+      Learn about now pages at nownownow.com <span aria-hidden="true">→</span>
+    </a>
+  </section>
+</article>

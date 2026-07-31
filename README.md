@@ -205,3 +205,73 @@ above. Commit the updated `book/` output, shared `assets/`, source map, loader,
 and documentation, then push `main`. GitHub Pages serves the checked-in book at
 `/book/` and Jekyll automatically applies the shared loader to every post. No
 server configuration or secret is required.
+
+## `/now` page
+
+The site-wide navigation links to a modular page at `/now/`. Its writing,
+featured song, personalized Apple Music links, screen notes, “Presently”
+entries, and GitHub username all live in `_data/now.json`. Edit that file for a
+routine update; the layout and responsive presentation do not need to change.
+
+The page uses `_layouts/now.html`, `pages/now.html`, `assets/css/now.css`, and
+`assets/js/now.js`. It follows the site's light/dark preference and uses the
+existing header, search, menu, and footer. The Now-specific styles are loaded
+only for this page.
+
+### Apple Music behavior
+
+The five playlist controls use the supplied personalized Apple Music URLs.
+Selecting one lazy-loads Apple's official embedded web player into a single
+shared panel, so the page never loads five players at once. Desktop loads the
+first playlist when the browser is idle; mobile waits for a deliberate tap to
+save data and space. Every playlist also has a direct Apple Music link.
+The featured song has its own compact, lazy-loaded Apple player.
+
+Apple controls the embedded track list, regional availability, sign-in, and
+playback. Apple states that visitors who are not signed in may hear 30-second
+previews, while subscribers may sign in for full playback. Personalized
+playlist embeds can still vary by storefront or Apple account, so the direct
+links are the dependable fallback. The page never autoplays audio and requires
+no MusicKit token or secret.
+
+### Featured-song and historical refresh
+
+The committed JSON is the page's durable source of truth. An optional,
+dependency-free build-time helper looks up the Apple track by its numeric ID
+and searches Wikipedia's “On this day” feed for an event on, or within seven
+days of, the catalog release date:
+
+```powershell
+# Preview a proposed update without changing files
+node scripts/update-now.mjs
+
+# Apply it after reviewing the proposed sentence
+node scripts/update-now.mjs --write
+```
+
+This is intentionally not a browser-time request: the page remains complete if
+Apple or Wikipedia is unavailable, and a human can review which historical
+event is worth featuring. The date is the Apple catalog release date, not a
+claim about a separate single release.
+
+### GitHub card
+
+The GitHub card has a complete static fallback and enhances itself in the
+browser with the public GitHub REST API. It shows public repository/follower
+counts and up to three recently updated, non-fork repositories. Responses are
+cached in the visitor's browser for one hour to respect GitHub's unauthenticated
+rate limit. No token, private data, backend, or exposed secret is used; if the
+API is unavailable, the avatar, username, and profile link continue to work.
+
+Run the page's dependency-free checks with:
+
+```powershell
+node --check assets/js/now.js
+node --check scripts/update-now.mjs
+node tests/now-page-static.test.mjs
+```
+
+For a browser smoke test, open `tests/now-page.browser.html` or load it in
+Chrome/Edge headlessly and confirm `#test-results` has
+`data-status="passed"`. The fixture mocks GitHub and uses inert player URLs, so
+it is deterministic and makes no external requests.

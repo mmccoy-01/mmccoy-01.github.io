@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Now page browser smoke test</title>
+</head>
+<body>
+  <main data-now-page data-github-user="mmccoy-01">
+    <section data-playlist-picker>
+      <div role="tablist">
+        <button id="now-playlist-tab-1"
+                role="tab"
+                data-playlist-title="Heavy Rotation"
+                data-playlist-embed="about:blank?heavy"
+                data-playlist-url="https://example.com/heavy">Heavy Rotation</button>
+        <button id="now-playlist-tab-2"
+                role="tab"
+                data-playlist-title="Chill"
+                data-playlist-embed="about:blank?chill"
+                data-playlist-url="https://example.com/chill">Chill</button>
+      </div>
+      <div id="now-playlist-panel" role="tabpanel">
+        <div data-player-empty>
+          <button data-load-player type="button">Load Heavy Rotation</button>
+        </div>
+        <div data-player-frame hidden></div>
+        <a data-playlist-link><span data-playlist-link-title></span></a>
+      </div>
+    </section>
+
+    <aside data-github-card data-github-api="https://api.github.test/users/mmccoy-01">
+      <img data-github-avatar alt="">
+      <h2 data-github-name>Fallback Name</h2>
+      <p data-github-bio>Fallback bio</p>
+      <span data-github-repos>—</span>
+      <span data-github-followers>—</span>
+      <div data-github-recent hidden><ul data-github-repo-list></ul></div>
+      <p data-github-status></p>
+    </aside>
+  </main>
+
+  <output id="test-results">running</output>
+
+  <script>
+    localStorage.clear();
+    window.fetch = function (url) {
+      var isRepos = String(url).includes("/repos?");
+      var value = isRepos
+        ? [{
+            name: "public-project",
+            html_url: "https://github.com/mmccoy-01/public-project",
+            updated_at: "2026-07-30T12:00:00Z",
+            fork: false
+          }]
+        : {
+            name: "Michael McCoy",
+            avatar_url: "https://example.com/avatar.png",
+            bio: "Live public bio",
+            public_repos: 12,
+            followers: 4
+          };
+      return Promise.resolve({
+        ok: true,
+        json: function () { return Promise.resolve(value); }
+      });
+    };
+  </script>
+  <script src="../assets/js/now.js"></script>
+  <script>
+    window.setTimeout(function () {
+      var result = document.getElementById("test-results");
+      try {
+        var tabs = document.querySelectorAll("[role=tab]");
+        var frame = document.querySelector("[data-player-frame]");
+        if (tabs[0].getAttribute("aria-selected") !== "true") {
+          throw new Error("Initial tab was not selected.");
+        }
+        if (!frame.querySelector("iframe")) {
+          document.querySelector("[data-load-player]").click();
+        }
+        if (!frame.querySelector("iframe")) {
+          throw new Error("Player iframe was not created.");
+        }
+
+        tabs[1].click();
+        if (tabs[1].getAttribute("aria-selected") !== "true") {
+          throw new Error("Clicked tab was not selected.");
+        }
+        if (!frame.querySelector("iframe").title.includes("Chill")) {
+          throw new Error("Player did not switch playlists.");
+        }
+
+        tabs[1].dispatchEvent(new KeyboardEvent("keydown", {
+          key: "ArrowRight",
+          bubbles: true
+        }));
+        if (tabs[0].getAttribute("aria-selected") !== "true") {
+          throw new Error("Arrow-key tab navigation failed.");
+        }
+
+        if (document.querySelector("[data-github-repos]").textContent !== "12") {
+          throw new Error("GitHub repository count was not rendered.");
+        }
+        if (document.querySelectorAll("[data-github-repo-list] li").length !== 1) {
+          throw new Error("Recent GitHub repositories were not rendered.");
+        }
+
+        result.textContent = "passed";
+        result.dataset.status = "passed";
+      } catch (error) {
+        result.textContent = error.message;
+        result.dataset.status = "failed";
+      }
+    }, 250);
+  </script>
+</body>
+</html>
