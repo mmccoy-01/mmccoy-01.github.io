@@ -1580,6 +1580,13 @@ document.addEventListener('DOMContentLoaded', function() {
       padding: 1.75rem;
       text-align: center;
     }
+
+    .scrolly-panel .glass-card,
+    .scrolly-panel.show-text .glass-card {
+      opacity: var(--mobile-text-opacity, 0);
+      transform: translateY(var(--mobile-text-offset, 40px));
+      transition: none;
+    }
   }
 </style>
 
@@ -1766,6 +1773,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!track || !stickyViewport || !panels.length) return;
 
     const panelCount = panels.length;
+    const mobileViewport = window.matchMedia('(max-width: 768px)');
+    const mobileScrollFactor = 1.25;
     let panelWidth = 0;
     let activePanelIndex = -1;
     let scrollFrame = 0;
@@ -1779,11 +1788,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       panelWidth = nextPanelWidth;
 
-      // Keep the vertical scroll distance exactly equal to the horizontal
-      // travel distance. Using CSS's own 100vh keeps this in sync with the
-      // sticky viewport when a mobile browser shows or hides its toolbars.
-      const horizontalTravel = panelWidth * (panelCount - 1);
-      wrapper.style.height = `calc(100vh + ${horizontalTravel}px)`;
+      // Mobile gets a longer scroll cycle for every image so it can pause,
+      // reveal its text, clear the text, and only then move to the next image.
+      // Desktop keeps its existing one-to-one continuous progression.
+      const scrollTravel = mobileViewport.matches
+        ? panelWidth * panelCount * mobileScrollFactor
+        : panelWidth * (panelCount - 1);
+      wrapper.style.height = `calc(100vh + ${scrollTravel}px)`;
     }
 
     function setActivePanel(index) {
@@ -1814,11 +1825,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const currentScroll = window.scrollY - wrapperTop;
       const progress = Math.min(Math.max(currentScroll / maxScroll, 0), 1);
-      const translateX = progress * panelWidth * (panelCount - 1);
-      const nextPanelIndex = Math.min(
-        Math.round(translateX / panelWidth),
-        panelCount - 1
-      );
+      let translateX;
+      let nextPanelIndex;
+
+      if (mobileViewport.matches) {
+        const rawCycle = progress * panelCount;
+        const reachedEnd = rawCycle >= panelCount;
+        const cycleIndex = reachedEnd
+          ? panelCount - 1
+          : Math.floor(rawCycle);
+        const cycleProgress = reachedEnd ? 1 : rawCycle - cycleIndex;
+
+        // Image-only -> fade in -> readable hold -> fade out -> image-only
+        // transition. All values are tied to scroll position, so fast swipes
+        // cannot leave a card stuck over the wrong photograph.
+        let textOpacity = 0;
+        if (cycleProgress >= 0.14 && cycleProgress < 0.30) {
+          textOpacity = (cycleProgress - 0.14) / 0.16;
+        } else if (cycleProgress >= 0.30 && cycleProgress < 0.62) {
+          textOpacity = 1;
+        } else if (cycleProgress >= 0.62 && cycleProgress < 0.76) {
+          textOpacity = 1 - ((cycleProgress - 0.62) / 0.14);
+        }
+
+        const movementProgress = Math.min(
+          Math.max((cycleProgress - 0.80) / 0.20, 0),
+          1
+        );
+        const easedMovement = movementProgress * movementProgress *
+          (3 - (2 * movementProgress));
+
+        nextPanelIndex = cycleIndex;
+        translateX = (
+          cycleIndex + (cycleIndex < panelCount - 1 ? easedMovement : 0)
+        ) * panelWidth;
+
+        const activePanel = panels[nextPanelIndex];
+        activePanel.style.setProperty(
+          '--mobile-text-opacity',
+          textOpacity.toFixed(3)
+        );
+        activePanel.style.setProperty(
+          '--mobile-text-offset',
+          `${((1 - textOpacity) * 40).toFixed(2)}px`
+        );
+      } else {
+        translateX = progress * panelWidth * (panelCount - 1);
+        nextPanelIndex = Math.min(
+          Math.round(translateX / panelWidth),
+          panelCount - 1
+        );
+      }
 
       track.style.transform = `translate3d(${-translateX}px, 0, 0)`;
       setActivePanel(nextPanelIndex);
