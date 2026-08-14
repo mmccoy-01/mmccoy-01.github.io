@@ -1447,8 +1447,7 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 100%;
     width: max-content;
     will-change: transform;
-    transform: translateX(0);
-    transition: transform 0.1s linear;
+    transform: translate3d(0, 0, 0);
   }
 
   .scrolly-panel {
@@ -1533,6 +1532,42 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-top: 20px;
+  }
+
+  /* Desktop keeps the portrait photography uncropped and gives the copy its
+     own readable column. Mobile retains the original full-bleed treatment. */
+  @media (min-width: 769px) {
+    .scrolly-panel {
+      padding-left: clamp(2.5rem, 6vw, 7rem);
+      background: #000;
+    }
+
+    .panel-bg {
+      left: auto;
+      right: clamp(2rem, 5vw, 6rem);
+      width: min(52vw, 48rem);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-overlay {
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.96) 0%,
+        rgba(0, 0, 0, 0.86) 32%,
+        rgba(0, 0, 0, 0.24) 62%,
+        rgba(0, 0, 0, 0.45) 100%
+      );
+    }
+
+    .glass-card {
+      width: min(35vw, 450px);
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @media (max-width: 768px) {
@@ -1726,61 +1761,90 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!wrapper) return;
 
     const track = wrapper.querySelector('.horizontal-track');
-    const panels = wrapper.querySelectorAll('.scrolly-panel');
-    if (!track || !panels.length) return;
+    const stickyViewport = wrapper.querySelector('.horizontal-scroll');
+    const panels = Array.from(wrapper.querySelectorAll('.scrolly-panel'));
+    if (!track || !stickyViewport || !panels.length) return;
 
     const panelCount = panels.length;
+    let panelWidth = 0;
+    let activePanelIndex = -1;
+    let scrollFrame = 0;
+    let resizeFrame = 0;
 
-    function setWrapperHeight() {
-      // Total horizontal distance we need to travel
-      const totalScrollWidth = panelCount * window.innerWidth;
-      const extraScroll = totalScrollWidth - window.innerWidth;
-      // Height of the wrapper = viewport height + extra scroll distance
-      wrapper.style.height = (window.innerHeight + extraScroll) + 'px';
+    function measure() {
+      // Measure the panel itself because its 100vw width can differ from the
+      // wrapper's content width by the browser scrollbar width.
+      const nextPanelWidth = panels[0].getBoundingClientRect().width;
+      if (nextPanelWidth <= 0) return;
+
+      panelWidth = nextPanelWidth;
+
+      // Keep the vertical scroll distance exactly equal to the horizontal
+      // travel distance. Using CSS's own 100vh keeps this in sync with the
+      // sticky viewport when a mobile browser shows or hides its toolbars.
+      const horizontalTravel = panelWidth * (panelCount - 1);
+      wrapper.style.height = `calc(100vh + ${horizontalTravel}px)`;
     }
 
-    setWrapperHeight();
-    window.addEventListener('resize', setWrapperHeight);
+    function setActivePanel(index) {
+      if (index === activePanelIndex) return;
 
-    function updateScroll() {
+      panels.forEach((panel, panelIndex) => {
+        panel.classList.toggle('show-text', panelIndex === index);
+      });
+      activePanelIndex = index;
+    }
+
+    function render() {
+      scrollFrame = 0;
+      if (panelWidth <= 0) return;
+
       const rect = wrapper.getBoundingClientRect();
       const wrapperTop = rect.top + window.scrollY;
-      const maxScroll = wrapper.offsetHeight - window.innerHeight;
-
-      if (maxScroll <= 0) return;
-
-      const currentScroll = window.scrollY - wrapperTop;
-      let progress = currentScroll / maxScroll;
-      progress = Math.min(Math.max(progress, 0), 1);
-
-      const translateX = progress * (panelCount - 1) * window.innerWidth;
-      track.style.transform = `translateX(-${translateX}px)`;
-    }
-
-    window.addEventListener('scroll', updateScroll);
-
-    // Reveal text with IntersectionObserver (cards not stuck invisible)
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('show-text');
-            } else {
-              entry.target.classList.remove('show-text');
-            }
-          });
-        },
-        {
-          threshold: 0.85
-        }
+      const maxScroll = Math.max(
+        wrapper.offsetHeight - stickyViewport.offsetHeight,
+        0
       );
 
-      panels.forEach((panel) => observer.observe(panel));
-    } else {
-      // Fallback: just show all text if IntersectionObserver isn't supported
-      panels.forEach((panel) => panel.classList.add('show-text'));
+      if (maxScroll <= 0) {
+        track.style.transform = 'translate3d(0, 0, 0)';
+        setActivePanel(0);
+        return;
+      }
+
+      const currentScroll = window.scrollY - wrapperTop;
+      const progress = Math.min(Math.max(currentScroll / maxScroll, 0), 1);
+      const translateX = progress * panelWidth * (panelCount - 1);
+      const nextPanelIndex = Math.min(
+        Math.round(translateX / panelWidth),
+        panelCount - 1
+      );
+
+      track.style.transform = `translate3d(${-translateX}px, 0, 0)`;
+      setActivePanel(nextPanelIndex);
     }
+
+    function requestRender() {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(render);
+    }
+
+    function requestMeasure() {
+      if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(function () {
+        resizeFrame = 0;
+        measure();
+        render();
+      });
+    }
+
+    measure();
+    render();
+
+    window.addEventListener('scroll', requestRender, { passive: true });
+    window.addEventListener('resize', requestMeasure, { passive: true });
+    window.addEventListener('orientationchange', requestMeasure, { passive: true });
+    window.addEventListener('pageshow', requestMeasure);
   })();
 </script>
 
