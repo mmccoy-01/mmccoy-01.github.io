@@ -4,7 +4,6 @@
 # Social Media Settings
 # Remove the item if you don't need it
 #=include social.yml
-
 # Posts Settings
 #=include posts.yml
 
@@ -21,6 +20,7 @@ collections:
 paginate_path: "/page/:num/"
 show_get_theme_btn: true
 use_logo: false
+
 
 # Content paginator
 paginate_content:
@@ -40,14 +40,18 @@ paginate_content:
     single:
       is_generated: true
 
+
 # SASS
 sass:
   style: compressed
+
 
 # Plugins
 plugins:
   - jekyll-paginate
   - jekyll-paginate-content
+  - jekyll-archives
+
 
 # Exclude my node related stuff
 exclude: [
@@ -61,5 +65,16 @@ exclude: [
   'gulpfile.js',
   'README.md'
 ]
+
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
+
 
 version: Φ

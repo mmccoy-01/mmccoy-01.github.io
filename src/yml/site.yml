@@ -3,27 +3,29 @@ title: Katâlepsāra | Grasp, Transform, Repeat
 description: We are drowning in information and starving for knowledge. Indigestion of information has become a problem. We’re gaining weight and not nutrition.
 tags:
   - blog
-  - stoicism
-  - philosophy
-  - psychology
-  - neuroscience
-  - consciousness
 show_hero: true
-paginate: 8
 menu:
   - title: Home
     url: /
+  - title: Now
+    url: /now/
+  - title: Book
+    url: /book/
+  - title: Wedding
+    url: /wedding
   - title: Archive
     url: /archive
+  - title: PhD Dashboard
+    url: /PhD_Dashboard
   - title: About
     url: /about
+  - title: CV
+    url: "https://mmccoy-01.github.io/cv/cv-mfm.pdf"
   - title: Contact
     url: /contact
   - title: Feed
     url: /feed.xml
 email: michael@katalepsara.com
-# See: https://disqus.com/
-disqus_username: disqus_username
 # Contact Form Setting
 # See: https://formspree.io/
 formspree_form_id: mleyzkqk

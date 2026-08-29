@@ -891,7 +891,7 @@ permalink: /PhD_Dashboard/
     editorGrid.innerHTML = picks.map((record, idx) => {
       const p = record.paper;
       return `
-        <a class="editor-card" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener">
+        <a class="editor-card" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener noreferrer">
           <div class="badges" style="margin-top:0">
             <span class="badge label">${escapeHtml(editorCategory(record, idx))}</span>
             ${isPreprintSignal(record) ? `<span class="badge preprint">Preprint</span>` : `<span class="badge source">${escapeHtml(sourceLabel(record))}</span>`}
@@ -915,7 +915,7 @@ permalink: /PhD_Dashboard/
         <div class="paper-main">
           <div class="paper-top">
             <div>
-              <a class="paper-title" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener">${escapeHtml(p.title || "Untitled")}</a>
+              <a class="paper-title" href="${escapeHtml(paperUrl(record))}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title || "Untitled")}</a>
               <div class="meta">${escapeHtml(p.journal || "Unknown journal")} · ${escapeHtml(p.pubdate || "No date")} · ${(p.authors || []).slice(0, 5).map(escapeHtml).join(", ")}${(p.authors || []).length > 5 ? " et al." : ""}</div>
               <div class="badges">
                 ${isPreprintSignal(record) ? `<span class="badge preprint">Preprint</span>` : `<span class="badge source">${escapeHtml(sourceLabel(record))}</span>`}
@@ -940,8 +940,8 @@ permalink: /PhD_Dashboard/
           </div>
 
           <div class="actions">
-            ${p.doi ? `<a class="btn" href="https://doi.org/${escapeHtml(p.doi)}" target="_blank" rel="noopener">DOI</a>` : ""}
-            ${p.pmc_url ? `<a class="btn" href="${escapeHtml(p.pmc_url)}" target="_blank" rel="noopener">Full text</a>` : ""}
+            ${p.doi ? `<a class="btn" href="https://doi.org/${escapeHtml(p.doi)}" target="_blank" rel="noopener noreferrer">DOI</a>` : ""}
+            ${p.pmc_url ? `<a class="btn" href="${escapeHtml(p.pmc_url)}" target="_blank" rel="noopener noreferrer">Full text</a>` : ""}
             <button class="btn" type="button" data-action="copy-prompt" data-index="${index}">Copy Prompt</button>
             <button class="btn" type="button" data-action="copy-citation" data-index="${index}">Copy citation</button>
             <button class="btn" type="button" data-action="export-ris" data-index="${index}">Export RIS</button>

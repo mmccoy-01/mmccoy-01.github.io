@@ -179,8 +179,15 @@ To preview Jekyll posts from this repository on a system with Ruby and the
 bundle installed:
 
 ```powershell
-bundle exec jekyll serve
+npm install
+npm run dev
 ```
+
+The development task builds the checked-in front-end assets, generates the
+Jekyll configuration and theme files, and starts Jekyll with live reload. Use
+`npm run build` for a production build, `npm test` for the static regression
+suite, and `npm run audit` to check the development toolchain for known package
+vulnerabilities. Node.js 20 or newer and Ruby Bundler are required.
 
 The shared implementation and output-only Quarto integration can be checked
 without rebuilding either source system:
