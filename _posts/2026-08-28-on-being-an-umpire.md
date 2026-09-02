@@ -221,9 +221,9 @@ That was my first ejection as an umpire. And it wasn't anything to write home ab
 
 Not jokingly, but spitefully.
 
-Just pure stupid, ignorant, and classless Delco trash.
+Just pure ignorant and classless trash.
 
-What struck me wasn't just his childish bitching. It was the complete transition I had watched happen. At the beginning of the game, we were two normal people having a friendly conversation. By the end, I had become an object for his anger.
+What struck me wasn't just his childish complaining. It was the complete transition I had watched happen. At the beginning of the game, we were two normal people having a friendly conversation. By the end, I had become an object for his anger.
 
 I was polite.
 
@@ -241,7 +241,7 @@ Coaches and parents can create an environment that is not conducive to respect. 
 
 I'm a nice person. I really am. I try my absolute best to be a good person.
 
-That's why umpiring could affect me so deeply. When people were outright mean to me despite me doing nothing to deserve it, it struck an old chord. It reminded me of being younger and trying everything to be nice, kind, and do the right thing, then being punished or treated badly anyway. It used to fuck with my head because I couldn't reconcile the treatment with my behavior.
+That's why umpiring could affect me so deeply. When people were outright mean to me despite me doing nothing to deserve it, it struck an old chord. It reminded me of being younger and trying everything to be nice, kind, and do the right thing, then being punished or treated badly anyway. It used to mess with my head because I couldn't reconcile the treatment with my behavior.
 
 That feeling is deeply rooted. It's probably part of why I have such high standards. It's part of why I am the way I am and why I've gotten to where I am. Intellectually, I understand that other people's behavior is beyond my control. It's easier said than done to be completely undisturbed by it.
 
@@ -611,7 +611,7 @@ I had also called him shortly before his death and left a voicemail. He never ca
 
 >The death itself almost isn't the difficult part. The difficult part is imagining the world afterward—the world in which that person simply no longer exists.
 
-I hadn't yet imagined the umpiring world without Frank. And, even now, as I write, it fucks me up inside that he's gone. What will Tri-County Umpire Group become without him? It's still too early to know. All these thoughts kept coming back to me:
+I hadn't yet imagined the umpiring world without Frank. And, even now, as I write, it messes me up inside that he's gone. What will Tri-County Umpire Group become without him? It's still too early to know. All these thoughts kept coming back to me:
 
 - All the last-minute assignments.
 - All the doubleheaders.
@@ -637,7 +637,7 @@ Nobody can completely vouch for exactly how much I did for him—or how much he 
 
 Nobody can completely explain the relationship.
 
-Frank could drive me absolutely fucking insane.
+Frank could drive me absolutely insane.
 
 But look at what came out of those phone calls.
 
