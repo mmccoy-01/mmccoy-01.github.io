@@ -1,19 +1,18 @@
 {
-  "last_updated": "July 30, 2026",
+  "last_updated": "September 2, 2026",
   "intro": "A record of what presently has my attention.",
   "music": {
-    "title": "Warm Safe Place",
-    "artist": "Staind",
-    "album": "Break the Cycle",
-    "release_date": "May 22, 2001",
-    "release_date_iso": "2001-05-22",
-    "apple_url": "https://music.apple.com/us/song/263065402",
-    "embed_url": "https://embed.music.apple.com/us/song/263065402",
-    "track_id": "263065402",
-    "note": "The harmonization at “and then I find you here” is like bliss.",
+    "title": "Moon Chamber",
+    "artist": "Embracer",
+    "album": "Color Theory",
+    "release_date": "October 4, 2019",
+    "release_date_iso": "2019-10-04",
+    "apple_url": "https://music.apple.com/us/song/moon-chamber/1479079206",
+    "embed_url": "https://embed.music.apple.com/us/song/moon-chamber/1479079206",
+    "track_id": "1479079206",
+    "note": "A song that keeps me from waking up to reality.",
     "interest": [
-      "The album Somewhere In Between by Systematic was also released the same day. Just found that out the next day while working out. My musical interests are eclectic, but a recent attempt to name the genre of some new music turned into a deeper conversation about why it resonates with me. I realized that I’m drawn less to depressive themes than to a dreamy, isolated atmosphere—a mixture of shoegaze, ambient, slowcore, and horror.",
-      "That led me to mono no aware, the Japanese idea of finding beauty in impermanence. I made a playlist and an eerie cover around that feeling, with a solitary figure representing the shadow impermanence casts over life. A great deal of the music, art, and philosophy I love seems to revolve around finding beauty in things precisely because they cannot last."
+      "I first discovered this song in late 2022. I really like it a lot. Something about it is nostalgically sentimental. Like a deja vu song that would've been heard during my childhood. It's a shame this group is no longer together putting out music."
     ]
   },
   "playlists": [
@@ -50,90 +49,62 @@
   ],
   "screen": [
     {
-      "kind": "Recently watched",
-      "title": "Se7en",
-      "status": "Processed",
-      "poster": "https://m.media-amazon.com/images/M/MV5BY2IzNzMxZjctZjUxZi00YzAxLTk3ZjMtODFjODdhMDU5NDM1XkEyXkFqcGc@._V1_SX300.jpg",
-      "imdb_id": "tt0114369",
-      "year": "1995",
-      "type": "Movie",
-      "director": "David Fincher",
-      "genres": ["Crime", "Drama", "Mystery"],
-      "cast": ["Morgan Freeman", "Brad Pitt", "Kevin Spacey"],
-      "plot": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
-      "imdb_score": "8.6",
-      "metascore": "65",
-      "personal_score": "7/10",
-      "date_label": "Watched July 28, 2026",
-      "awards": "Nominated for 1 Oscar; 29 wins and 44 nominations total.",
-      "box_office": "$101,040,643",
-      "notes": [
-        "TikTok said this movie had a plot twist, so I finally got around to watching it. It became one of the highest-scored movies in my Obsidian vault.",
-        "I thought Se7en was good, and the conversation in the car near the end was probably my favorite part. The ending is poetic, but it did not hit nearly as hard as it could have because the emotional buildup was not there. The envy and wrath parts felt rushed, and the movie could have been much stronger if it had developed certain characters more.",
-        "One of the major investigative breakthroughs also felt like such an unrealistic leap that it genuinely annoyed me. I have no idea why the IMDb rating is that high—I’d give it around a 7."
-      ]
-    },
-    {
       "kind": "Watching",
-      "title": "Two and a Half Men",
+      "title": "Cheers",
       "status": "Processing",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMzI2ZDMyNGEtNmIwOS00NTI1LThlZDctYzYzYmE3NDNlNTJlXkEyXkFqcGc@._V1_SX300.jpg",
-      "imdb_id": "tt0369179",
-      "year": "2003–2015",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTY0ZWFmNTktOGNjNi00M2Y0LWE1ODItZWY4Mzk3MzVjMDgzXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
+      "imdb_id": "tt0083399",
+      "year": "1982–1993",
       "type": "Series",
       "director": "",
-      "genres": ["Comedy", "Romance"],
-      "cast": ["Jon Cryer", "Ashton Kutcher", "Angus T. Jones"],
-      "plot": "A hedonistic jingle writer’s free-wheeling life comes to an abrupt halt when his brother and 10-year-old nephew move into his beach-front house.",
-      "imdb_score": "7.1",
+      "genres": ["Comedy", "Drama"],
+      "cast": ["Ted Danson", "Rhea Perlman", "John Ratzenberger"],
+      "plot": "The regulars of the Boston bar \"Cheers\" share their experiences and lives with each other while drinking or working at the bar where everybody knows your name.",
+      "imdb_score": "7.9",
       "metascore": "N/A",
       "personal_score": "",
-      "date_label": "Started March 15, 2026",
-      "awards": "Won 9 Primetime Emmys; 30 wins and 73 nominations total.",
-      "box_office": "",
-      "notes": [
-        "I saw the show off and on at home while growing up. I started the series again to have something on in the background, and I love it. After watching the Charlie Sheen documentary, Charlie has been on my mind; almost immediately, he also reminded me of an older version of Drake Bell from Drake & Josh.",
-        "Season 9 is when Ashton Kutcher joins, so I plan to stop after Season 8. I really hate how they killed off Charlie.",
-        "S1E18: so funny. A great episode. Joke after joke. It is also funny how Alan is always making pros-and-cons lists—it becomes a recurring, very Type A bit."
-      ]
+      "date_label": "",
+      "awards": "Won 28 Primetime Emmys. 77 wins & 181 nominations total.",
+      "box_office": "N/A",
+      "notes": ["I watched the first episode and instantly fell in love. The chemistry among characters is great and natural. No wonder the show lasted as long as it did. I think Frasier is connected somehow too, but haven't gone into understanding that connection more."]
     }
   ],
   "presently": [
     {
       "roman": "I",
       "label": "Working on",
-      "text": "I’m developing a stronger structure for my PhD so I can triage data and become more organized. I really like the program, but it is difficult because it requires doing many things simultaneously. I’m trying to use systems to stay sane, efficient, and capable of working at a high level. I have high standards for myself, and I do not want to compromise them simply because I am stretched thin."
+      "text": "I made a WKRP app that basically adds Dr. Johnny Fever and Venus Flytrap among other voice hosts between songs. It's hands off and is really neat. I won't go in depth here, but reach out if you're curious. I'll eventually ship it to GitHub, but right now its private."
     },
     {
       "roman": "II",
       "label": "Reading",
-      "text": "A collection of PhD and graduate-school writing books. I think I understand the greater themes now; the next step is to execute and follow through on them. Eventually, I would also love to build a bookshelf of what I have read on this site."
+      "text": "I recently cleared out my Reader list of [PhD graduate school books](https://katalepsara.com/what-40-books-taught-me-about-doing-a-phd/). I have something neat related to that that I'm working on. Currently, I'm reading research articles germane to my research area."
     },
     {
       "roman": "III",
       "label": "Small pleasure",
-      "text": "A reverse Guinness.",
-      "url": "https://www.facebook.com/groups/guinnesscommunity/posts/4477136072604231/"
+      "text": "Sam's Club pickup orders. I love Sam's club so much.",
+      "url":
     },
     {
       "roman": "IV",
       "label": "Recent discovery",
-      "text": "Liza Minnelli’s mother is Judy Garland."
+      "text": "After heading to South Carolina at the end of August, it reminded me again of how large the world is and to not get caught up in my own head because the expansiveness of the world makes trivial things not matter."
     },
     {
       "roman": "V",
       "label": "Looking forward to",
-      "text": "An upcoming trip to South Carolina at the end of August."
+      "text": "A Doors Tribute band at the end of December."
     },
     {
       "roman": "VI",
       "label": "One open question",
-      "text": "I’m so caught up in the immediate act of doing at this point in my career. I wonder whether everything I’m doing now will eventually pay off in the future."
+      "text": "How can I readily update this /now page? Maybe like a github workflows .yml file that is basically a questionnaire. That'd be cool."
     },
     {
       "roman": "VII",
       "label": "Something I recommend",
-      "text": "Making a /now page!"
+      "text": "My friend Tim started a podcast with his friend revolving around Andy Griffith show episodes. The chemistry and dialogue between them is great. [Check it out](https://open.spotify.com/show/033VoQfw15pziSRRzSh3tl)."
     }
   ]
 }

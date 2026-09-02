@@ -20,10 +20,10 @@ const [dataText, page, layout, css, script, config, readme, updater] =
 
 const data = JSON.parse(dataText);
 
-assert.equal(data.last_updated, "July 30, 2026");
-assert.equal(data.music.title, "Warm Safe Place");
-assert.equal(data.music.track_id, "263065402");
-assert.equal(data.music.release_date_iso, "2001-05-22");
+assert.equal(data.last_updated, "September 2, 2026");
+assert.equal(data.music.title, "Moon Chamber");
+assert.equal(data.music.track_id, "1479079206");
+assert.equal(data.music.release_date_iso, "2019-10-04");
 assert.equal(data.music.history, undefined);
 assert.match(data.music.apple_url, /^https:\/\/music\.apple\.com\//);
 assert.match(data.music.embed_url, /^https:\/\/embed\.music\.apple\.com\//);
@@ -37,10 +37,16 @@ assert.ok(
   )
 );
 assert.equal(data.screen.length, 2);
+assert.equal(data.screen[1].kind, "Watching");
+assert.equal(data.screen[1].title, "Cheers");
+assert.equal(data.screen[1].imdb_id, "tt0083399");
+assert.equal(data.screen[1].imdb_score, "7.9");
+assert.deepEqual(data.screen[1].genres, ["Comedy", "Drama"]);
+assert.deepEqual(data.screen[1].notes, []);
 assert.equal(data.presently.length, 7);
 assert.equal(data.github, undefined);
 assert.equal(data.presently[2].label, "Small pleasure");
-assert.match(data.presently[2].url, /^https:\/\/www\.facebook\.com\//);
+assert.equal(data.presently[2].url, undefined);
 assert.equal(data.presently[2].link_label, undefined);
 
 assert.match(page, /permalink:\s*\/now\//);
@@ -53,6 +59,7 @@ assert.match(page, /data-history-text/);
 assert.doesNotMatch(page, /data-github|now-github|GitHub profile/);
 assert.match(page, /https:\/\/nownownow\.com\/about/);
 assert.match(page, /class="now-inline-link"/);
+assert.match(page, /More about \{\{ item\.title \}\}/);
 assert.doesNotMatch(page, /;;/);
 assert.doesNotMatch(page, /now-record-art|now-record-label|>BTC</);
 assert.doesNotMatch(page, /Open in Apple Music|data-playlist-link/);

@@ -83,7 +83,7 @@ permalink: /now/
           </div>
 
           <details class="now-notes">
-            <summary>Read my notes on {{ item.title }}</summary>
+            <summary>{% if item.notes.size > 0 %}Read my notes on {{ item.title }}{% else %}More about {{ item.title }}{% endif %}</summary>
             <div>
               {% for paragraph in item.notes %}<p>{{ paragraph }}</p>{% endfor %}
               <p class="now-fine-print"><strong>Cast:</strong> {{ item.cast | join: ", " }}. <strong>Awards:</strong> {{ item.awards }}{% if item.box_office != "" %} <strong>Box office:</strong> {{ item.box_office }}.{% endif %}</p>
