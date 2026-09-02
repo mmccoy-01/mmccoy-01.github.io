@@ -248,7 +248,9 @@ If I had to compress 50 books into a single idea, it would be this:
 
 ## The Books I Read
 
-## Graduate School Reading
+<details class="graduate-school-library">
+  <summary>View the complete reading list</summary>
+  <div class="graduate-school-table-wrap" role="region" aria-label="Complete reading list" tabindex="0" markdown="1">
 
 <small>Publication years refer to the work's first publication unless the title identifies a particular edition. Article dates link to the original pages. Select Type, Title, Author, or Published to sort the table; select it again to reverse the order.</small>
 
@@ -310,7 +312,78 @@ If I had to compress 50 books into a single idea, it would be this:
 | <img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/271953895/X4r24I2MetMr0atj1iRT1csilkzdOuZYqXDm_Gne01o-cove_oipx1ZZ.png" alt="Cover" width="64"> | Book | *Writing Your Journal Article in Twelve Weeks: A Guide to Academic Publishing Success* | Wendy Laura Belcher | 2009 |
 | <img src="https://substackcdn.com/image/fetch/$s_!RCX2!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc0156e76-97e8-45d8-8ac7-f72232500266_527x543.jpeg" alt="Article image" width="64"> | Article | [Your Supervisor Isn't Google: What a PhD Is Really Teaching You](https://rodguru123.substack.com/p/your-supervisor-isnt-google-what) | Rod Pallister | 2026-03-27 |
 
+  </div>
+</details>
+
 <style>
+  .graduate-school-library {
+    margin: 1.5rem auto 2.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    border-radius: 0.5rem;
+    background: rgba(127, 127, 127, 0.06);
+  }
+
+  .graduate-school-library > summary {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    user-select: none;
+  }
+
+  .graduate-school-library > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .graduate-school-library > summary::after {
+    content: "Show +";
+    margin-left: auto;
+    padding-left: 1rem;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .graduate-school-library[open] > summary::after {
+    content: "Hide −";
+  }
+
+  .graduate-school-library > summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -4px;
+  }
+
+  .graduate-school-table-wrap {
+    overflow-x: auto;
+    padding: 0 1rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable;
+  }
+
+  .graduate-school-table-wrap table {
+    width: 100%;
+    min-width: 46rem;
+    margin: 1rem 0 0;
+  }
+
+  .graduate-school-table-wrap th:first-child,
+  .graduate-school-table-wrap td:first-child {
+    width: 8rem;
+    min-width: 8rem;
+  }
+
+  .graduate-school-table-wrap td:first-child img {
+    display: block;
+    width: 7rem !important;
+    max-width: none !important;
+    height: auto;
+    margin: 0 auto;
+  }
+
   .graduate-school-sortable th[data-sortable="true"] {
     cursor: pointer;
     user-select: none;
@@ -334,6 +407,30 @@ If I had to compress 50 books into a single idea, it would be this:
   .graduate-school-sortable th:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
+  }
+
+  @media (max-width: 720px) {
+    .graduate-school-library > summary {
+      padding: 0.75rem 0.85rem;
+    }
+
+    .graduate-school-table-wrap {
+      padding: 0 0.75rem 0.75rem;
+    }
+
+    .graduate-school-table-wrap table {
+      min-width: 42rem;
+    }
+
+    .graduate-school-table-wrap th:first-child,
+    .graduate-school-table-wrap td:first-child {
+      width: 7rem;
+      min-width: 7rem;
+    }
+
+    .graduate-school-table-wrap td:first-child img {
+      width: 6rem !important;
+    }
   }
 </style>
 

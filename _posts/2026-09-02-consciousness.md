@@ -1,5 +1,5 @@
 ---
-date: 2026-08-29
+date: 2026-09-02
 layout: post
 title: Consciousness
 subtitle: 🧠 Five layers—from feeling, to prediction, to the living system that makes a point of view possible.
