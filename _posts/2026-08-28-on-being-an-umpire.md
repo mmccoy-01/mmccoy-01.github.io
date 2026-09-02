@@ -245,7 +245,7 @@ That's why umpiring could affect me so deeply. When people were outright mean to
 
 That feeling is deeply rooted. It's probably part of why I have such high standards. It's part of why I am the way I am and why I've gotten to where I am. Intellectually, I understand that other people's behavior is beyond my control. It's easier said than done to be completely undisturbed by it.
 
-I think I'm farther along than I once was. But umpiring found exactly the nerve that could still provoke me. You can read my book for a historical-fiction foreword built around an umpiring experience.
+I think I'm farther along than I once was. But umpiring found exactly the nerve that could still provoke me. You can read my book for a [historical-fiction foreword](https://katalepsara.com/book/chapters/01-foreword.html) built around an umpiring experience.
 
 That's how deeply I tend to process things: I don't just experience something and move on. I dissect it, contextualize it, contemplate it, turn it around in my head, and eventually try to put it into words. And eventually I reached an uncomfortable conclusion:
 
@@ -413,7 +413,7 @@ In fact, he told me I was lucky to have parked in front of his place because his
 
 >"What note?"
 
-Apparently he had taped a note to my driver-side window. I hadn't seen it yet. He gave it to me, and I deliberately didn't read it because I could tell he now regretted writing it.
+Apparently he had taped a note to my driver-side window. He said it wasn't that bad of a note, but regardless, I gave it back to him, and I deliberately didn't read it because I could tell he now regretted writing it.
 
 We kept talking for ***two hours***.
 
