@@ -175,7 +175,7 @@ The trouble is that real life never gives us every cell in the cube. We rarely h
 
 This is where prediction touches psychoanalysis, cognitive dissonance, and worry. A feeling can exist without its correct explanation. If the source of an emotion is unavailable, the brain does not leave the feeling unlabeled; it constructs a plausible story. Certainty can be rewarding because it closes an unresolved loop. Doubt keeps alternatives alive, which is useful for truth and uncomfortable for the organism.
 
-![The Cognitive Bias Codex, grouping the shortcuts that arise from too much information, too little meaning, limited time, and limited memory.](https://res.cloudinary.com/dtf8hxbjn/image/upload/v1788374031/Consciousness/03_gjtqlg.jpg)
+![The Cognitive Bias Codex, grouping the shortcuts that arise from too much information, too little meaning, limited time, and limited memory.](https://upload.wikimedia.org/wikipedia/commons/6/65/Cognitive_bias_codex_en.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original)
 
 At level three, consciousness is **an embodied model extended through time—using memory to predict, attention to select, action to test, and error to revise**.
 
