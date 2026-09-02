@@ -23,7 +23,6 @@ jobs:
 
             for (const label of [
               { name: "now-update", color: "9a6a2f", description: "Structured update for the /now page" },
-              { name: "now-screen-update", color: "bd8a45", description: "Add a movie or series to the /now page" },
               { name: "now-reminder", color: "e9e0cf", description: "Monthly reminder to refresh the /now page" }
             ]) {
               try {
@@ -42,7 +41,7 @@ jobs:
             });
             const updateAlreadyOpen = openIssues.some((issue) =>
               !issue.pull_request && issue.labels.some((label) =>
-                ["now-update", "now-screen-update", "now-reminder"].includes(
+                ["now-update", "now-reminder"].includes(
                   typeof label === "string" ? label : label.name
                 )
               )
@@ -54,7 +53,6 @@ jobs:
             }
 
             const formUrl = `https://github.com/${owner}/${repo}/issues/new?template=now-update.yml`;
-            const screenFormUrl = `https://github.com/${owner}/${repo}/issues/new?template=now-screen-update.yml`;
             await github.rest.issues.create({
               owner,
               repo,
@@ -65,8 +63,6 @@ jobs:
                 "A new month has begun. If anything has changed, use the short form below; blank answers preserve the current page.",
                 "",
                 `**[Open the /now update form](${formUrl})**`,
-                "",
-                `**[Add a movie or series](${screenFormUrl})**`,
                 "",
                 "Close this reminder if there is nothing new this month. A submitted update will close it automatically."
               ].join("\n")

@@ -17,7 +17,6 @@ const [
   updater,
   issueUpdater,
   issueForm,
-  screenIssueForm,
   reminderWorkflow,
   applyWorkflow
 ] =
@@ -32,7 +31,6 @@ const [
     read("scripts/update-now.mjs"),
     read("scripts/apply-now-issue.mjs"),
     read(".github/ISSUE_TEMPLATE/now-update.yml"),
-    read(".github/ISSUE_TEMPLATE/now-screen-update.yml"),
     read(".github/workflows/now-reminder.yml"),
     read(".github/workflows/apply-now-update.yml")
   ]);
@@ -154,13 +152,13 @@ assert.match(issueUpdater, /extractImdbId/);
 assert.match(issueForm, /name:\s*Update the \/now page/);
 assert.match(issueForm, /label:\s*Working on/);
 assert.match(issueForm, /label:\s*Featured Apple Music song/);
-assert.match(screenIssueForm, /name:\s*Add a movie or series to \/now/);
-assert.match(screenIssueForm, /label:\s*IMDb URL or ID/);
-assert.match(screenIssueForm, /label:\s*On Screen action/);
+assert.match(issueForm, /Add a movie or series/);
+assert.match(issueForm, /label:\s*IMDb URL or ID/);
+assert.match(issueForm, /label:\s*On Screen action/);
 assert.match(reminderWorkflow, /name:\s*Monthly \/now reminder/);
 assert.match(reminderWorkflow, /cron:\s*"0 15 1 \* \*"/);
 assert.match(reminderWorkflow, /updateAlreadyOpen/);
-assert.match(reminderWorkflow, /now-screen-update\.yml/);
+assert.doesNotMatch(reminderWorkflow + applyWorkflow, /now-screen-update|Add to On Screen/);
 assert.match(reminderWorkflow, /assignees:\s*\[owner\]/);
 assert.match(applyWorkflow, /github\.event\.issue\.user\.login == github\.repository_owner/);
 assert.match(applyWorkflow, /OMDB_API_KEY:\s*\$\{\{ secrets\.OMDB_API_KEY \}\}/);

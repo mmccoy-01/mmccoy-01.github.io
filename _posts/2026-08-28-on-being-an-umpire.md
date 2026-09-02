@@ -89,7 +89,7 @@ At the time, I was working full-time at CHOP doing CAR-T cell therapy research. 
 
 >Doubleheader after doubleheader after doubleheader.
 
-Combined with the summer heat and humidity, it was miserable. You would literally sweat, except the sweat wouldn't evaporate, so you would just stay wet while becoming progressively more dehydrated. The fields were notorious hot. Umpires had suffered heat strokes some days.
+Combined with the summer heat and humidity, it was miserable. You would literally sweat, except the sweat wouldn't evaporate, so you would just stay wet while becoming progressively more dehydrated. The fields were notoriously hot. Umpires had suffered heat strokes some days.
 
 I remember one tripleheader when my internal organs legitimately ached. Like I was actually hit by a car. Between innings I went into the clubhouse just to cool myself down. The coaches were actually very kind and understanding. And that's worth noting because, believe it or not, I really didn't have that much trouble with coaches, kids, or parents over the more than 200 games I eventually umpired. There were incidents, obviously, but nowhere near as many as I had anticipated when I first put on the uniform.
 

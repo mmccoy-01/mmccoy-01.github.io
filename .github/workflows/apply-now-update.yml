@@ -18,9 +18,7 @@ jobs:
     if: >-
       github.event.issue.user.login == github.repository_owner &&
       (contains(github.event.issue.labels.*.name, 'now-update') ||
-       contains(github.event.issue.labels.*.name, 'now-screen-update') ||
-       startsWith(github.event.issue.title, 'Now update:') ||
-       startsWith(github.event.issue.title, 'Add to On Screen:'))
+       startsWith(github.event.issue.title, 'Now update:'))
     runs-on: ubuntu-latest
     steps:
       - name: Check out the site

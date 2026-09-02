@@ -227,20 +227,21 @@ only for this page.
 
 ### Update the `/now` page from GitHub
 
-The repository includes an **Update the /now page** Issue Form. It provides
-optional fields for each Workshop card, notes on the current screen item, and
-the featured Apple Music song. Blank fields preserve the committed value. A
-valid form submitted by the repository owner updates `_data/now.json`, runs the
-site checks, and opens or refreshes a review pull request. Merging that pull
-request publishes the update through the site's normal GitHub Pages flow.
+The repository includes one **Update the /now page** Issue Form. It provides
+optional fields for each Workshop card, notes on the current screen item, the
+featured Apple Music song, and a new movie or series. Blank fields preserve the
+committed value. A valid form submitted by the repository owner updates
+`_data/now.json`, runs the site checks, and opens or refreshes a review pull
+request. Merging that pull request publishes the update through the site's
+normal GitHub Pages flow.
 
-A separate **Add a movie or series to /now** form accepts either an IMDb title
-URL or an ID such as `tt0083399`. It uses that ID to retrieve the title, poster,
-year, type, director, genres, cast, plot, IMDb rating, Metascore, awards, and box
-office from OMDb. New titles appear first. Submitting an existing IMDb ID updates
-that entry instead of creating a duplicate, and the form also offers an explicit
-option to replace the current On Screen list. Viewing status, personal score,
-date label, and personal notes remain author-controlled form fields.
+The optional On Screen section accepts either an IMDb title URL or an ID such as
+`tt0083399`. It uses that ID to retrieve the title, poster, year, type, director,
+genres, cast, plot, IMDb rating, Metascore, awards, and box office from OMDb. New
+titles appear first. Submitting an existing IMDb ID updates that entry instead
+of creating a duplicate, and the form also offers an explicit option to replace
+the current On Screen list. Viewing status, personal score, date label, and
+personal notes remain author-controlled form fields.
 
 The **Monthly /now reminder** workflow runs on the first day of each month at
 15:00 UTC and creates a single reminder issue containing a link to the form. It
