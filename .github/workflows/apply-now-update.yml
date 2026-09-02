@@ -1,0 +1,117 @@
+name: Apply /now form
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: now-update-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      (contains(github.event.issue.labels.*.name, 'now-update') ||
+       contains(github.event.issue.labels.*.name, 'now-screen-update') ||
+       startsWith(github.event.issue.title, 'Now update:') ||
+       startsWith(github.event.issue.title, 'Add to On Screen:'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Apply and validate the form
+        id: apply
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        run: node scripts/apply-now-issue.mjs --event "$GITHUB_EVENT_PATH" --write
+
+      - name: Refresh Apple Music metadata
+        if: steps.apply.outputs.music_changed == 'true'
+        run: node scripts/update-now.mjs --write
+
+      - name: Run site checks
+        run: npm test
+
+      - name: Create or update the preview pull request
+        id: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/now-update-${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add _data/now.json
+          git diff --cached --quiet && { echo "The submitted values already match the page."; exit 1; }
+          git commit -m "Update /now page from issue #${ISSUE_NUMBER}"
+          git push --force-with-lease origin "$branch"
+
+          pr_url="$(gh pr list --head "$branch" --state open --json url --jq '.[0].url')"
+          if [ -z "$pr_url" ]; then
+            pr_url="$(gh pr create \
+              --base "$DEFAULT_BRANCH" \
+              --head "$branch" \
+              --title "Update /now page" \
+              --body "Automated preview from the structured /now form. Closes #${ISSUE_NUMBER}.")"
+          fi
+          echo "url=${pr_url}" >> "$GITHUB_OUTPUT"
+
+      - name: Link the preview and close monthly reminders
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        env:
+          PREVIEW_PR_URL: ${{ steps.pull-request.outputs.url }}
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.issue.number,
+              body: `Your validated /now update is ready to review: ${process.env.PREVIEW_PR_URL}`
+            });
+
+            const reminders = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: "open",
+              labels: "now-reminder",
+              per_page: 100
+            });
+            for (const reminder of reminders) {
+              if (!reminder.pull_request) {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: reminder.number,
+                  state: "closed",
+                  state_reason: "completed"
+                });
+              }
+            }
+
+      - name: Report an unsuccessful update
+        if: failure()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `I could not prepare this /now update. Review the validation details in [the workflow run](${runUrl}), edit the form response, and the check will run again.`
+            });

@@ -225,6 +225,46 @@ The page uses `_layouts/now.html`, `pages/now.html`, `assets/css/now.css`, and
 existing header, search, menu, and footer. The Now-specific styles are loaded
 only for this page.
 
+### Update the `/now` page from GitHub
+
+The repository includes an **Update the /now page** Issue Form. It provides
+optional fields for each Workshop card, notes on the current screen item, and
+the featured Apple Music song. Blank fields preserve the committed value. A
+valid form submitted by the repository owner updates `_data/now.json`, runs the
+site checks, and opens or refreshes a review pull request. Merging that pull
+request publishes the update through the site's normal GitHub Pages flow.
+
+A separate **Add a movie or series to /now** form accepts either an IMDb title
+URL or an ID such as `tt0083399`. It uses that ID to retrieve the title, poster,
+year, type, director, genres, cast, plot, IMDb rating, Metascore, awards, and box
+office from OMDb. New titles appear first. Submitting an existing IMDb ID updates
+that entry instead of creating a duplicate, and the form also offers an explicit
+option to replace the current On Screen list. Viewing status, personal score,
+date label, and personal notes remain author-controlled form fields.
+
+The **Monthly /now reminder** workflow runs on the first day of each month at
+15:00 UTC and creates a single reminder issue containing a link to the form. It
+assigns that issue to the repository owner so GitHub Mobile can send an
+assignment notification. It will not create another while a reminder or update
+remains open. It can also be run manually from the Actions tab. After a form
+produces a pull request, any open monthly reminder is closed automatically.
+
+Before using the forms for the first time, open the repository's **Settings →
+Actions → General → Workflow permissions** and enable **Allow GitHub Actions to
+create and approve pull requests**. The workflows use the repository's built-in
+token, so no personal access token is required. Routine Workshop updates do not
+call a third-party service.
+
+Movie and series lookup requires one repository secret:
+
+1. Request an OMDb API key at <https://www.omdbapi.com/apikey.aspx>.
+2. Open **Settings → Secrets and variables → Actions** in the repository.
+3. Create a repository secret named `OMDB_API_KEY` containing that key.
+
+The key is supplied only to the owner-authorized update step. It is never added
+to `_data/now.json`, sent to the browser, printed in the pull request, or stored
+in the submitted issue.
+
 ### Apple Music behavior
 
 The five playlist controls use the supplied personalized Apple Music URLs.

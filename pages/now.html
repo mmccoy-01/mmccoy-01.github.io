@@ -12,7 +12,7 @@ permalink: /now/
     <h1>Now</h1>
     <p class="now-updated">
       <span>Last updated</span>
-      <time datetime="2026-07-30">{{ now.last_updated }}</time>
+      <time datetime="{{ now.last_updated | date: '%Y-%m-%d' }}">{{ now.last_updated }}</time>
     </p>
   </header>
 
@@ -32,13 +32,13 @@ permalink: /now/
         <article class="now-present-card">
           <span class="now-present-number" aria-hidden="true">{{ item.roman }}</span>
           <h3>{{ item.label }}</h3>
-          <p>
+          <div class="now-present-text">
             {% if item.url %}
               <a class="now-inline-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
             {% else %}
-              {{ item.text }}
+              {{ item.text | markdownify }}
             {% endif %}
-          </p>
+          </div>
         </article>
       {% endfor %}
     </div>

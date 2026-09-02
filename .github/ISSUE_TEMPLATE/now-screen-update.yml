@@ -1,0 +1,67 @@
+name: Add a movie or series to /now
+description: Populate an On Screen entry from an IMDb URL or title ID
+title: "Add to On Screen: "
+labels:
+  - now-screen-update
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Paste an IMDb title URL or ID. The workflow retrieves the title metadata from OMDb and prepares a review pull request. The IMDb ID is the lookup key; your API key remains in GitHub Secrets.
+
+  - type: input
+    id: imdb
+    attributes:
+      label: IMDb URL or ID
+      description: A full IMDb title URL or an ID beginning with tt.
+      placeholder: https://www.imdb.com/title/tt0083399/ or tt0083399
+    validations:
+      required: true
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: On Screen action
+      description: Add keeps the other titles. Replace removes the current list first.
+      options:
+        - Add to the current list
+        - Replace the current list
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: status
+    attributes:
+      label: Viewing status
+      description: Short text for the poster badge. Defaults to In progress.
+      placeholder: In progress, Finished, Paused, or Rewatching
+
+  - type: input
+    id: score
+    attributes:
+      label: Personal score
+      description: Optional personal rating displayed alongside the IMDb rating.
+      placeholder: 8/10
+
+  - type: input
+    id: date
+    attributes:
+      label: Date label
+      description: Optional free-form date or viewing-period label.
+      placeholder: Watched September 2026
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Personal notes
+      description: Optional. Separate paragraphs with a blank line.
+      placeholder: What did you think about it?
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Ready to update
+      options:
+        - label: I reviewed the IMDb title and am ready for the preview pull request.
+          required: true

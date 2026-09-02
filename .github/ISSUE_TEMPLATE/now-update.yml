@@ -1,0 +1,74 @@
+name: Update the /now page
+description: Submit a quick, structured update without editing JSON by hand
+title: "Now update: "
+labels:
+  - now-update
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add only what changed. Blank fields preserve the current page. Markdown links such as `[label](https://example.com)` are supported in Workshop answers.
+
+  - type: textarea
+    id: working_on
+    attributes:
+      label: Working on
+      placeholder: What has most of your attention right now?
+
+  - type: textarea
+    id: reading
+    attributes:
+      label: Reading
+      placeholder: What are you reading or studying?
+
+  - type: textarea
+    id: small_pleasure
+    attributes:
+      label: Small pleasure
+      placeholder: What small thing has been making life better?
+
+  - type: textarea
+    id: recent_discovery
+    attributes:
+      label: Recent discovery
+      placeholder: What did you recently notice, learn, or rediscover?
+
+  - type: textarea
+    id: looking_forward
+    attributes:
+      label: Looking forward to
+      placeholder: What are you anticipating?
+
+  - type: textarea
+    id: open_question
+    attributes:
+      label: One open question
+      placeholder: What question is following you around?
+
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Something I recommend
+      placeholder: What would you recommend to someone else?
+
+  - type: textarea
+    id: screen_notes
+    attributes:
+      label: Current screen notes
+      description: Updates the notes for the current On Screen item. Separate paragraphs with a blank line, or enter [clear] to remove its notes.
+      placeholder: What do you think of what you are currently watching?
+
+  - type: input
+    id: featured_song
+    attributes:
+      label: Featured Apple Music song
+      description: Paste a complete Apple Music song URL to replace the current featured song.
+      placeholder: https://music.apple.com/us/song/...
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Ready to update
+      options:
+        - label: I entered at least one new value above and am ready for the preview pull request.
+          required: true

@@ -1,0 +1,73 @@
+name: Monthly /now reminder
+
+on:
+  schedule:
+    # The first day of each month (10 or 11 a.m. US Eastern, depending on DST).
+    - cron: "0 15 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create one update reminder
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            for (const label of [
+              { name: "now-update", color: "9a6a2f", description: "Structured update for the /now page" },
+              { name: "now-screen-update", color: "bd8a45", description: "Add a movie or series to the /now page" },
+              { name: "now-reminder", color: "e9e0cf", description: "Monthly reminder to refresh the /now page" }
+            ]) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name: label.name });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({ owner, repo, ...label });
+              }
+            }
+
+            const openIssues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: "open",
+              per_page: 100
+            });
+            const updateAlreadyOpen = openIssues.some((issue) =>
+              !issue.pull_request && issue.labels.some((label) =>
+                ["now-update", "now-screen-update", "now-reminder"].includes(
+                  typeof label === "string" ? label : label.name
+                )
+              )
+            );
+
+            if (updateAlreadyOpen) {
+              core.info("An open /now update or reminder already exists; no duplicate was created.");
+              return;
+            }
+
+            const formUrl = `https://github.com/${owner}/${repo}/issues/new?template=now-update.yml`;
+            const screenFormUrl = `https://github.com/${owner}/${repo}/issues/new?template=now-screen-update.yml`;
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title: "Monthly /now update reminder",
+              labels: ["now-reminder"],
+              assignees: [owner],
+              body: [
+                "A new month has begun. If anything has changed, use the short form below; blank answers preserve the current page.",
+                "",
+                `**[Open the /now update form](${formUrl})**`,
+                "",
+                `**[Add a movie or series](${screenFormUrl})**`,
+                "",
+                "Close this reminder if there is nothing new this month. A submitted update will close it automatically."
+              ].join("\n")
+            });

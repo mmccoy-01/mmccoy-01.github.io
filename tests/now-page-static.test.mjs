@@ -6,7 +6,21 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relativePath) => readFile(path.join(root, relativePath), "utf8");
 
-const [dataText, page, layout, css, script, config, readme, updater] =
+const [
+  dataText,
+  page,
+  layout,
+  css,
+  script,
+  config,
+  readme,
+  updater,
+  issueUpdater,
+  issueForm,
+  screenIssueForm,
+  reminderWorkflow,
+  applyWorkflow
+] =
   await Promise.all([
     read("_data/now.json"),
     read("pages/now.html"),
@@ -15,15 +29,20 @@ const [dataText, page, layout, css, script, config, readme, updater] =
     read("assets/js/now.js"),
     read("_config.yml"),
     read("README.md"),
-    read("scripts/update-now.mjs")
+    read("scripts/update-now.mjs"),
+    read("scripts/apply-now-issue.mjs"),
+    read(".github/ISSUE_TEMPLATE/now-update.yml"),
+    read(".github/ISSUE_TEMPLATE/now-screen-update.yml"),
+    read(".github/workflows/now-reminder.yml"),
+    read(".github/workflows/apply-now-update.yml")
   ]);
 
 const data = JSON.parse(dataText);
 
-assert.equal(data.last_updated, "September 2, 2026");
-assert.equal(data.music.title, "Moon Chamber");
-assert.equal(data.music.track_id, "1479079206");
-assert.equal(data.music.release_date_iso, "2019-10-04");
+assert.match(data.last_updated, /^[A-Z][a-z]+ \d{1,2}, \d{4}$/);
+assert.equal(typeof data.music.title, "string");
+assert.match(data.music.track_id, /^\d+$/);
+assert.match(data.music.release_date_iso, /^\d{4}-\d{2}-\d{2}$/);
 assert.equal(data.music.history, undefined);
 assert.match(data.music.apple_url, /^https:\/\/music\.apple\.com\//);
 assert.match(data.music.embed_url, /^https:\/\/embed\.music\.apple\.com\//);
@@ -36,18 +55,26 @@ assert.ok(
       item.embed_url.startsWith("https://embed.music.apple.com/")
   )
 );
-assert.equal(data.screen.length, 2);
-assert.equal(data.screen[1].kind, "Watching");
-assert.equal(data.screen[1].title, "Cheers");
-assert.equal(data.screen[1].imdb_id, "tt0083399");
-assert.equal(data.screen[1].imdb_score, "7.9");
-assert.deepEqual(data.screen[1].genres, ["Comedy", "Drama"]);
-assert.deepEqual(data.screen[1].notes, []);
+assert.ok(data.screen.length >= 1);
+assert.ok(data.screen.every((item) => typeof item.title === "string"));
+assert.ok(data.screen.every((item) => Array.isArray(item.notes)));
 assert.equal(data.presently.length, 7);
 assert.equal(data.github, undefined);
 assert.equal(data.presently[2].label, "Small pleasure");
 assert.equal(data.presently[2].url, undefined);
 assert.equal(data.presently[2].link_label, undefined);
+assert.deepEqual(
+  data.presently.map((item) => item.label),
+  [
+    "Working on",
+    "Reading",
+    "Small pleasure",
+    "Recent discovery",
+    "Looking forward to",
+    "One open question",
+    "Something I recommend"
+  ]
+);
 
 assert.match(page, /permalink:\s*\/now\//);
 assert.match(page, /data-playlist-picker/);
@@ -59,6 +86,8 @@ assert.match(page, /data-history-text/);
 assert.doesNotMatch(page, /data-github|now-github|GitHub profile/);
 assert.match(page, /https:\/\/nownownow\.com\/about/);
 assert.match(page, /class="now-inline-link"/);
+assert.match(page, /item\.text \| markdownify/);
+assert.match(page, /now\.last_updated \| date: '%Y-%m-%d'/);
 assert.match(page, /More about \{\{ item\.title \}\}/);
 assert.doesNotMatch(page, /;;/);
 assert.doesNotMatch(page, /now-record-art|now-record-label|>BTC</);
@@ -90,6 +119,8 @@ assert.match(css, /@media \(max-width:\s*720px\)/);
 assert.match(css, /scroll-snap-type:\s*x mandatory/);
 assert.match(css, /focus-visible/);
 assert.match(css, /\.now-section-heading h2[\s\S]*Dancing Script/);
+assert.match(css, /\.now-present-card[\s\S]*min-width:\s*0/);
+assert.match(css, /\.now-present-text[\s\S]*overflow-wrap:\s*anywhere/);
 
 assert.match(script, /__katalepsaraNowInitialized/);
 assert.match(script, /removeLegacyHeadingLinks/);
@@ -108,9 +139,34 @@ assert.doesNotMatch(script, /token|authorization/i);
 assert.match(config, /- title:\s*Now\s+url:\s*\/now\//);
 assert.match(readme, /## `\/now` page/);
 assert.match(readme, /node scripts\/update-now\.mjs --write/);
+assert.match(readme, /Update the `\/now` page from GitHub/);
 assert.doesNotMatch(updater, /api\.wikimedia\.org|findHistoricalEvent/);
 assert.match(updater, /itunes\.apple\.com\/lookup/);
 assert.match(updater, /release_date_iso/);
 assert.match(updater, /process\.argv\.includes\("--write"\)/);
+
+assert.match(issueUpdater, /Only the repository owner/);
+assert.match(issueUpdater, /validateNowData/);
+assert.match(issueUpdater, /America\/New_York/);
+assert.match(issueUpdater, /https:\/\/www\.omdbapi\.com\//);
+assert.match(issueUpdater, /OMDB_API_KEY/);
+assert.match(issueUpdater, /extractImdbId/);
+assert.match(issueForm, /name:\s*Update the \/now page/);
+assert.match(issueForm, /label:\s*Working on/);
+assert.match(issueForm, /label:\s*Featured Apple Music song/);
+assert.match(screenIssueForm, /name:\s*Add a movie or series to \/now/);
+assert.match(screenIssueForm, /label:\s*IMDb URL or ID/);
+assert.match(screenIssueForm, /label:\s*On Screen action/);
+assert.match(reminderWorkflow, /name:\s*Monthly \/now reminder/);
+assert.match(reminderWorkflow, /cron:\s*"0 15 1 \* \*"/);
+assert.match(reminderWorkflow, /updateAlreadyOpen/);
+assert.match(reminderWorkflow, /now-screen-update\.yml/);
+assert.match(reminderWorkflow, /assignees:\s*\[owner\]/);
+assert.match(applyWorkflow, /github\.event\.issue\.user\.login == github\.repository_owner/);
+assert.match(applyWorkflow, /OMDB_API_KEY:\s*\$\{\{ secrets\.OMDB_API_KEY \}\}/);
+assert.match(applyWorkflow, /npm test/);
+assert.match(applyWorkflow, /pull-requests:\s*write/);
+assert.doesNotMatch(reminderWorkflow + applyWorkflow, /uses:\s*[^\s]+@(v|main|master)\b/);
+assert.doesNotMatch(page + css + script, /OMDB_API_KEY/);
 
 console.log("now-page static checks passed");

@@ -18,7 +18,7 @@
     "build:assets": "gulp assets",
     "build:scripts": "gulp scripts",
     "dev": "gulp",
-    "test": "node tests/github-highlight-static.test.mjs && node tests/now-page-static.test.mjs && node tests/site-theme-static.test.mjs && node tests/site-integrity-static.test.mjs",
+    "test": "node tests/github-highlight-static.test.mjs && node tests/now-page-static.test.mjs && node tests/now-issue-update.test.mjs && node tests/site-theme-static.test.mjs && node tests/site-integrity-static.test.mjs",
     "audit": "npm audit --audit-level=high"
   },
   "engines": {
