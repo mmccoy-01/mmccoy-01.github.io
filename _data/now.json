@@ -52,7 +52,7 @@
       "kind": "Watching",
       "title": "Cheers",
       "status": "Processing",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNTY0ZWFmNTktOGNjNi00M2Y0LWE1ODItZWY4Mzk3MzVjMDgzXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
+      "poster": "https://www.imdb.com/title/tt0083399/mediaviewer/rm201084929/?ref_=tt_ov_i",
       "imdb_id": "tt0083399",
       "year": "1982–1993",
       "type": "Series",
@@ -78,7 +78,7 @@
     {
       "roman": "II",
       "label": "Reading",
-      "text": "I recently cleared out my Reader list of [PhD graduate school books](https://katalepsara.com/what-40-books-taught-me-about-doing-a-phd/). I have something neat related to that that I'm working on. Currently, I'm reading research articles germane to my research area."
+      "text": "I recently cleared out my Reader list of [PhD graduate school books](https://katalepsara.com/what-50-books-taught-me-about-doing-a-phd/). I have something neat related to that that I'm working on. Currently, I'm reading research articles germane to my research area."
     },
     {
       "roman": "III",
@@ -98,7 +98,7 @@
     {
       "roman": "VI",
       "label": "One open question",
-      "text": "How can I readily update this /now page? Maybe like a github workflows .yml file that is basically a questionnaire. That'd be cool."
+      "text": "How can I readily update this /now page? Maybe like a github workflows .yml file that is basically a questionnaire. That'd be cool. Update 2hrs later - I did it. We'll see how it runs October 1st!"
     },
     {
       "roman": "VII",
