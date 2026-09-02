@@ -1,9 +1,9 @@
 ---
 date: 2026-03-09 20:00:00
 layout: post
-title: What 40 Books Taught Me About Doing a PhD
+title: What 50+ Books Taught Me About Doing a PhD
 subtitle: 🎓 On research, ambiguity, writing, and the slow process of learning how to critically think.
-description: During the first year of my PhD program, I read nearly forty books about how to navigate doctoral research. This essay distills the most valuable lessons they offered—about writing, ambiguity, rejection, mentorship, and the psychological realities of research. It’s less a guide to “doing a PhD” and more a reflection on what the process actually teaches you once you’re inside it.
+description: During the first year of my PhD program, I read over fifty books about how to navigate doctoral research. This essay distills the most valuable lessons they offered—about writing, ambiguity, rejection, mentorship, and the psychological realities of research. It’s less a guide to “doing a PhD” and more a reflection on what the process actually teaches you once you’re inside it.
 image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1773100007/What%2040%20Books%20Taught%20Me%20About%20Doing%20a%20PhD/1_weceqi.jpg
 optimized_image: https://res.cloudinary.com/dtf8hxbjn/image/upload/t_w380/v1773100007/What%2040%20Books%20Taught%20Me%20About%20Doing%20a%20PhD/1_weceqi.jpg
 category: tips
@@ -42,7 +42,7 @@ In fact, the cliche is true: it's easier said than done.
 
 That’s not to say preparation is useless. It isn’t. But some lessons only acquire weight **after friction**. After confusion. After the first time you realize that nobody actually knows the exact path forward.
 
-After I read through nearly forty books on doctoral research, a pattern started to emerge.
+After I read through over fifty books on doctoral research, a pattern started to emerge.
 
 The PhD is not primarily a test of intelligence.
 
@@ -245,3 +245,6 @@ Those abilities are harder to measure than grades, but they are ultimately the r
 If I had to compress nearly 40 books into a single idea, it would be this:
 
 >A PhD is less about proving that you are extraordinary and more about learning how to work steadily, think clearly, write honestly, tolerate ambiguity, collaborate well, and finish something difficult that matters.
+
+## The Books I Read
+
