@@ -1,15 +1,15 @@
 {
-  "last_updated": "September 2, 2026",
+  "last_updated": "October 1, 2026",
   "intro": "A record of what presently has my attention.",
   "music": {
-    "title": "Moon Chamber",
-    "artist": "Embracer",
-    "album": "Color Theory",
-    "release_date": "October 4, 2019",
-    "release_date_iso": "2019-10-04",
-    "apple_url": "https://music.apple.com/us/song/moon-chamber/1479079206",
-    "embed_url": "https://embed.music.apple.com/us/song/moon-chamber/1479079206",
-    "track_id": "1479079206",
+    "title": "Fragile Hands",
+    "artist": "Movements",
+    "album": "Happier Now",
+    "release_date": "September 4, 2026",
+    "release_date_iso": "2026-09-04",
+    "apple_url": "https://music.apple.com/us/song/1893741759",
+    "embed_url": "https://embed.music.apple.com/us/song/1893741759",
+    "track_id": "1893741759",
     "note": "A song that keeps me from waking up to reality.",
     "interest": [
       "I first discovered this song in late 2022. I really like it a lot. Something about it is nostalgically sentimental. Like a deja vu song that would've been heard during my childhood. It's a shame this group is no longer together putting out music."
@@ -50,60 +50,70 @@
   "screen": [
     {
       "kind": "Watching",
-      "title": "Cheers",
-      "status": "Processing",
-      "poster": "https://www.imdb.com/title/tt0083399/mediaviewer/rm201084929/?ref_=tt_ov_i",
-      "imdb_id": "tt0083399",
-      "year": "1982–1993",
-      "type": "Series",
-      "director": "",
-      "genres": ["Comedy", "Drama"],
-      "cast": ["Ted Danson", "Rhea Perlman", "John Ratzenberger"],
-      "plot": "The regulars of the Boston bar \"Cheers\" share their experiences and lives with each other while drinking or working at the bar where everybody knows your name.",
-      "imdb_score": "7.9",
-      "metascore": "N/A",
-      "personal_score": "",
+      "title": "The Beekeeper",
+      "status": "Finished",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzg3YjVmZGYtOTc5MC00MDdiLTllOTYtZWQ0ODQ1MmMyNTExXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt15314262",
+      "year": "2024",
+      "type": "Movie",
+      "director": "David Ayer",
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
+      "cast": [
+        "Jason Statham",
+        "Emmy Raver-Lampman",
+        "Bobby Naderi"
+      ],
+      "plot": "Adam Clay is a beekeeper, but someone very important to him is scammed and driven to harm. However, what these power and money hungry scammers don't know, is that Clay is an agent in a classified program called Beekeepers, and they underestimate how much of a threat he is. Adam sets out on a quest of vengeance, where he hunts and kills those responsible for the incident.",
+      "imdb_score": "6.3",
+      "metascore": "53",
+      "personal_score": "7/10",
       "date_label": "",
-      "awards": "Won 28 Primetime Emmys. 77 wins & 181 nominations total.",
-      "box_office": "N/A",
-      "notes": ["I watched the first episode and instantly fell in love. The chemistry among characters is great and natural. No wonder the show lasted as long as it did. I think Frasier is connected somehow too, but haven't gone into understanding that connection more."]
+      "awards": "1 win & 6 nominations total",
+      "box_office": "$66,220,535",
+      "notes": [
+        "i liked the movie. good prevailed. all i could think about was the [katalepsara](www.katalepsara.com/book) book: what injures the bee, injures the hive. we as a cosmopolis are interconnected and interdependent. i really liked the movie. good pacing. good story. good action. some parts were realistic, but i guess that kind if unrealistic action is okay. like a child could enjoy this movie, but it is quite graphic. anyways, great movie. good prevails. and adam clay is a man who upholds principles."
+      ]
     }
   ],
   "presently": [
     {
       "roman": "I",
       "label": "Working on",
-      "text": "I made a WKRP app that basically adds Dr. Johnny Fever and Venus Flytrap among other voice hosts between songs. It's hands off and is really neat. I won't go in depth here, but reach out if you're curious. I'll eventually ship it to GitHub, but right now its private."
+      "text": "I'm getting back into consistently working out, shadowboxing, and eating. Classes started back up last month. I'm happy this automatic /now updater worked!"
     },
     {
       "roman": "II",
       "label": "Reading",
-      "text": "I recently cleared out my Reader list of [PhD graduate school books](https://katalepsara.com/what-50-books-taught-me-about-doing-a-phd/). I have something neat related to that that I'm working on. Currently, I'm reading research articles germane to my research area."
+      "text": "Haven't really read much of anything. Too much mental bandwidth occupied to even concentrate or process reading anything. I do want to try to do more of nothing. Doing less is doing more."
     },
     {
       "roman": "III",
       "label": "Small pleasure",
-      "text": "Sam's Club pickup orders. I love Sam's club so much."
+      "text": "[Hand wrap roller](https://www.dragoboxing.com/)"
     },
     {
       "roman": "IV",
       "label": "Recent discovery",
-      "text": "After heading to South Carolina at the end of August, it reminded me again of how large the world is and to not get caught up in my own head because the expansiveness of the world makes trivial things not matter."
+      "text": "idk meditative breathwork is pretty cool. im sure ive made plenty of recent discoveries but nothing coming to mind atm. or at least nothing i want to detail."
     },
     {
       "roman": "V",
       "label": "Looking forward to",
-      "text": "A Doors Tribute band at the end of December."
+      "text": "the fall/winter. i want it to be cold. my body runs hot so its been a very uncomfortable year."
     },
     {
       "roman": "VI",
       "label": "One open question",
-      "text": "How can I readily update this /now page? Maybe like a github workflows .yml file that is basically a questionnaire. That'd be cool. Update 2hrs later - I did it. We'll see how it runs October 1st!"
+      "text": "the future of ai? now im old enough to have predictive potential given existing for long enough. i think its an incredibly useful tool that democratizes capability. sure, people are/will lose their jobs over it, but people will adapt—or society will adapt? im sure there will be a technological plateau or societal upper limit. e.g. television technology will reach a point where FPS doesnt matter because it exceeds human visual processing to even make a perceptual difference. so similarly, perhaps jobs will become obsolete/delegated to ai. i think that is exciting. im too cynical to think this true, but perhaps we reach a point where humans no longer have to \"work.\" they can just \"exist.\" enjoy wholeheartedly and entirely an existence while it lasts. but alas, fickle human dispositions will muddle this utopian vision. humans just \"need\" to be/feel better than onr another so rather than putting up their fellow men, they will put them down and this utopia will never actualize. but i digress. the point of this rambiling was that i wonder if ai will inch us closer to a world where instead of being a human doing to live, we can be a human being and live!"
     },
     {
       "roman": "VII",
       "label": "Something I recommend",
-      "text": "My friend Tim started a podcast with his friend revolving around Andy Griffith show episodes. The chemistry and dialogue between them is great. [Check it out](https://open.spotify.com/show/033VoQfw15pziSRRzSh3tl)."
+      "text": "focus on your relationships. make them meaningful. dont enter interactions preoccupied, enter with an open heart."
     }
   ]
 }
