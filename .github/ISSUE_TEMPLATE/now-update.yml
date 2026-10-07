@@ -65,6 +65,20 @@ body:
       description: Paste a complete Apple Music song URL to replace the current featured song.
       placeholder: https://music.apple.com/us/song/...
 
+  - type: textarea
+    id: song_note
+    attributes:
+      label: Song note
+      description: Optional short note shown beside the featured song. Enter [clear] to remove it.
+      placeholder: What keeps this song in rotation?
+
+  - type: textarea
+    id: song_interest
+    attributes:
+      label: Song context
+      description: Optional background or longer thoughts about the featured song. Separate paragraphs with a blank line, or enter [clear] to remove them.
+      placeholder: Why does this song matter to you right now?
+
   - type: markdown
     attributes:
       value: |

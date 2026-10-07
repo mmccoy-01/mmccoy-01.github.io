@@ -33,6 +33,16 @@ Second paragraph.
 
 https://music.apple.com/us/song/example/1234567890
 
+### Song note
+
+A song for the end of summer.
+
+### Song context
+
+First paragraph.
+
+Second paragraph.
+
 ### Ready to update
 
 - [x] Ready
@@ -54,12 +64,16 @@ assert.equal(
   result.data.music.apple_url,
   "https://music.apple.com/us/song/example/1234567890"
 );
+assert.equal(result.data.music.note, "A song for the end of summer.");
+assert.deepEqual(result.data.music.interest, ["First paragraph.", "Second paragraph."]);
 assert.equal(result.data.last_updated, "September 2, 2026");
 assert.equal(result.musicChanged, true);
 assert.deepEqual(result.changes, [
   "Working on",
   "Current screen notes",
-  "Featured Apple Music song"
+  "Featured Apple Music song",
+  "Song note",
+  "Song context"
 ]);
 assert.equal(validateNowData(result.data), result.data);
 

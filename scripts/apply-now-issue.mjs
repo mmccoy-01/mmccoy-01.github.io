@@ -346,6 +346,8 @@ export function applyIssueResponses(sourceData, responses, updateDate = new Date
   }
 
   const songUrl = responseFor(responses, "Featured Apple Music song");
+  const songNote = responseFor(responses, "Song note");
+  const songInterest = responseFor(responses, "Song context");
   let musicChanged = false;
   if (songUrl !== undefined) {
     validateAppleMusicUrl(songUrl);
@@ -353,6 +355,20 @@ export function applyIssueResponses(sourceData, responses, updateDate = new Date
       data.music.apple_url = songUrl;
       musicChanged = true;
       changes.push("Featured Apple Music song");
+    }
+  }
+  if (songNote !== undefined) {
+    const nextNote = songNote === "[clear]" ? "" : songNote;
+    if (data.music.note !== nextNote) {
+      data.music.note = nextNote;
+      changes.push("Song note");
+    }
+  }
+  if (songInterest !== undefined) {
+    const nextInterest = songInterest === "[clear]" ? [] : splitNotes(songInterest);
+    if (JSON.stringify(data.music.interest) !== JSON.stringify(nextInterest)) {
+      data.music.interest = nextInterest;
+      changes.push("Song context");
     }
   }
 
