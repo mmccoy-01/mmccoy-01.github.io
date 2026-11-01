@@ -1,39 +1,7 @@
 ---
-layout: phd_dashboard
-menu: false
-title: Chemosciences Observatory
-description: A weekly reading ritual across taste, smell, chemical sensing, and the biology that connects them.
+layout: null
 permalink: /Chemosciences/
+sitemap: false
 ---
-
-<link rel="stylesheet" href="{{ '/assets/css/chemosciences.css' | relative_url }}">
-<div id="chemo-dashboard" data-source="https://raw.githubusercontent.com/mmccoy-01/pubmed/chemosciences-data/output/chemosciences" data-fallback="{{ '/assets/data/chemosciences' | relative_url }}">
-  <section class="co-hero" aria-label="Chemosciences Observatory">
-    <div class="co-topline"><a href="{{ '/PhD_Dashboard/' | relative_url }}">↖ PhD dashboard</a><span>THE WEEKLY READING ROOM</span></div>
-    <div class="co-hero-grid"><div><p class="co-eyebrow"><span></span> FOLLOW THE CONNECTIONS</p><h1>Chemosciences<br><em>Observatory.</em></h1><p class="co-intro">Across senses. Between tissues. Beyond the familiar.<br>A little structure for a wider scientific curiosity.</p></div>
-      <div class="co-orbit" aria-hidden="true"><svg viewBox="0 0 300 240"><g fill="none" stroke="currentColor"><ellipse cx="150" cy="120" rx="126" ry="58" transform="rotate(-30 150 120)"/><ellipse cx="150" cy="120" rx="126" ry="58" transform="rotate(30 150 120)"/><ellipse cx="150" cy="120" rx="126" ry="58" transform="rotate(90 150 120)"/><path d="M43 92L150 120 249 164M150 120L198 43M150 120L99 198"/></g><g fill="currentColor"><circle cx="150" cy="120" r="8"/><circle cx="43" cy="92" r="4"/><circle cx="249" cy="164" r="4"/><circle cx="198" cy="43" r="4"/><circle cx="99" cy="198" r="4"/></g></svg><span>DIFFERENT SYSTEMS. SHARED QUESTIONS.</span></div>
-    </div>
-  </section>
-  <div class="co-toolbar"><div><label>SEARCH COVERAGE</label><week-calendar id="co-week"></week-calendar></div><div class="co-search"><label for="co-search">FIND A THREAD</label><input id="co-search" type="search" placeholder="A molecule, cell, author, or idea…"></div><button id="co-reset" class="co-button" type="button">Reset filters</button></div>
-  <p id="co-status" class="co-status" role="status">Opening the observatory…</p>
-  <div class="co-tabs" role="tablist" aria-label="Explore research"><button type="button" role="tab" id="co-reading-tab" aria-selected="true" aria-controls="co-reading">Reading room</button><button type="button" role="tab" id="co-map-tab" aria-selected="false" aria-controls="co-map" tabindex="-1">Connection map <span>↗</span></button></div>
-  <div class="co-topics" id="co-topics" aria-label="Filter by research area"></div>
-  <section id="co-reading" role="tabpanel" aria-labelledby="co-reading-tab">
-    <div class="co-section-head"><div><p class="co-eyebrow">FIVE PLACES TO BEGIN</p><h2>Editor’s digest</h2></div><p id="co-count" class="co-muted"></p></div>
-    <p class="co-caption">Selected by ontology signal and topic diversity. Scores reflect relevance and connection potential; they do not measure scientific quality.</p>
-    <div id="co-digest" class="co-digest"></div>
-    <div class="co-section-head co-secondary"><div><p class="co-eyebrow">KEEP EXPLORING</p><h2>The weekly reading list</h2></div><label class="co-check"><input type="checkbox" id="co-archive"> Include other matched candidates</label></div>
-    <div id="co-papers" class="co-papers"></div>
-  </section>
-  <section id="co-map" role="tabpanel" aria-labelledby="co-map-tab" hidden>
-    <div class="co-section-head"><div><p class="co-eyebrow">A FIELD OF POSSIBILITIES</p><h2>Follow a thread.</h2></div><p class="co-muted">Same-sized nodes. Specific, explainable connections.</p></div>
-    <div class="co-map-controls"><label>Weeks <select id="co-map-range"><option value="current">Selected week</option><option value="all">All weeks</option><option value="custom">Choose multiple weeks</option></select></label><label>Connect by <select id="co-map-layer"><option value="concept">Shared biology</option><option value="author">Shared authors</option></select></label><label class="co-check"><input type="checkbox" id="co-map-archive"> Include matched candidates</label><label class="co-check"><input type="checkbox" id="co-map-neighbors"> Show earlier connections</label><button type="button" class="co-button" id="co-map-reset">Reset view</button></div>
-    <div id="co-map-weeks" class="co-week-choices" hidden></div>
-    <p id="co-map-status" class="co-caption" role="status"></p>
-    <div class="co-map-layout"><div id="co-network" class="co-network"></div><aside id="co-inspector" class="co-inspector" aria-live="polite"><span class="co-eyebrow">LOOK CLOSER</span><h3>Choose a paper</h3><p>Drag to explore. Scroll to zoom. Select a node to see the concepts connecting it to its neighbors.</p><p>Lines represent shared ontology concepts or authors, not citations or proven biological equivalence.</p></aside></div>
-    <div id="co-map-accessible" class="co-map-list"></div>
-  </section>
-  <div class="co-footnote"><span>CURIOUS BY DESIGN.</span><p>PubMed research and indexed preprints · Weekly updates · Transparent ontology ranking<br>Original abstracts, no generated summaries. Your PhD feed remains separate.</p></div>
-  <noscript>This dashboard needs JavaScript to load the weekly research. <a href="https://github.com/mmccoy-01/pubmed/tree/chemosciences-data/output/chemosciences">Read the Markdown digests on GitHub.</a></noscript>
-</div>
-<script type="module" src="{{ '/assets/js/chemosciences.js' | relative_url }}"></script>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chemosciences has moved</title><meta http-equiv="refresh" content="0;url={{ '/PhD_Dashboard/' | relative_url }}#chemosciences"><link rel="canonical" href="{{ '/PhD_Dashboard/' | absolute_url }}#chemosciences"></head><body><p><a href="{{ '/PhD_Dashboard/' | relative_url }}#chemosciences">Open Chemosciences inside the PhD dashboard.</a></p></body></html>

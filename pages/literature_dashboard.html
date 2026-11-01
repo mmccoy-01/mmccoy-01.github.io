@@ -7,6 +7,12 @@ image: https://res.cloudinary.com/dtf8hxbjn/image/upload/v1779631543/tongue_zaee
 permalink: /PhD_Dashboard/
 ---
 
+<link rel="stylesheet" href="{{ '/assets/css/dashboard-tabs.css' | relative_url }}">
+<div class="research-dashboard-tabs" role="tablist" aria-label="Research dashboards">
+  <button type="button" role="tab" id="phd-research-tab" aria-controls="phd-research-panel" aria-selected="true">PhD research</button>
+  <button type="button" role="tab" id="chemosciences-research-tab" aria-controls="chemosciences-research-panel" aria-selected="false" tabindex="-1">Chemosciences</button>
+</div>
+<section id="phd-research-panel" class="research-dashboard-panel" role="tabpanel" aria-labelledby="phd-research-tab">
 <style>
   #phd-lit-dashboard {
     --bg: #09111f;
@@ -1101,3 +1107,9 @@ permalink: /PhD_Dashboard/
   loadWeeks();
 })();
 </script>
+
+</section>
+<section id="chemosciences-research-panel" class="research-dashboard-panel" role="tabpanel" aria-labelledby="chemosciences-research-tab" data-panel-url="{{ '/PhD_Dashboard/chemosciences-panel.html' | relative_url }}" hidden>
+  <p class="research-dashboard-loading" role="status">Opening Chemosciences…</p>
+</section>
+<script type="module" src="{{ '/assets/js/dashboard-tabs.js' | relative_url }}"></script>
