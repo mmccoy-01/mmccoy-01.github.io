@@ -657,8 +657,9 @@ permalink: /PhD_Dashboard/
 
   <div class="top-controls">
     <div>
-      <label for="weekSelect">Week</label>
-      <select id="weekSelect"><option>Loading weeks…</option></select>
+      <label>Search coverage</label>
+      <week-calendar id="phd-week-calendar"></week-calendar>
+      <select id="weekSelect" hidden aria-hidden="true" tabindex="-1"><option>Loading weeks…</option></select>
     </div>
     <div>
       <label for="searchInput">Search</label>
@@ -699,6 +700,7 @@ permalink: /PhD_Dashboard/
   </section>
 </div></div>
 
+<script type="module" src="{{ '/assets/js/week-calendar.js' | relative_url }}"></script>
 <script>
 (function () {
   const OWNER = "mmccoy-01";
@@ -712,6 +714,19 @@ permalink: /PhD_Dashboard/
 
   const root = document.getElementById("phd-lit-dashboard");
   const weekSelect = root.querySelector("#weekSelect");
+  const weekCalendar = root.querySelector("#phd-week-calendar");
+  const calendarReady = customElements.whenDefined("week-calendar");
+  function calendarCoverage(run, days = 7) {
+    const end = new Date(`${run}T12:00:00Z`);
+    end.setUTCDate(end.getUTCDate() - 1);
+    const start = new Date(end);
+    start.setUTCDate(start.getUTCDate() - Math.max(0, days - 1));
+    return { id: run, start: start.toISOString().slice(0, 10), end: end.toISOString().slice(0, 10), inferred: true };
+  }
+  weekCalendar.addEventListener("change", () => {
+    weekSelect.value = weekCalendar.value;
+    loadDigest(weekCalendar.value);
+  });
   const searchInput = root.querySelector("#searchInput");
   const labelFilter = root.querySelector("#labelFilter");
   const resetBtn = root.querySelector("#resetBtn");
@@ -727,6 +742,7 @@ permalink: /PhD_Dashboard/
   let weeks = [];
   let digest = null;
   let records = [];
+  let digestRequestId = 0;
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -1017,6 +1033,9 @@ permalink: /PhD_Dashboard/
         .reverse();
       if (!weeks.length) throw new Error("No dated output folders found.");
       weekSelect.innerHTML = weeks.map(w => `<option value="${w}">${w}</option>`).join("");
+      await calendarReady;
+      weekCalendar.runs = weeks.map(w => calendarCoverage(w));
+      weekCalendar.value = weeks[0];
       await loadDigest(weeks[0]);
     } catch (err) {
       status.textContent = `Could not load GitHub output folders: ${err.message}`;
@@ -1025,6 +1044,7 @@ permalink: /PhD_Dashboard/
   }
 
   async function loadDigest(week) {
+    const requestId = ++digestRequestId;
     status.textContent = `Loading ${week}/digest.json…`;
     summarySection.hidden = true;
     editorSection.hidden = true;
@@ -1032,7 +1052,12 @@ permalink: /PhD_Dashboard/
     try {
       const res = await fetch(`${RAW_BASE}/${week}/digest.json`, { cache: "no-store" });
       if (!res.ok) throw new Error(`Could not fetch digest.json (${res.status})`);
-      digest = await res.json();
+      const loadedDigest = await res.json();
+      if (requestId !== digestRequestId) return;
+      digest = loadedDigest;
+      await calendarReady;
+      weekCalendar.runs = weekCalendar.runs.map(r => r.id === week ? calendarCoverage(week, digest.days_back || 7) : r);
+      weekCalendar.value = week;
       records = (digest.records || []).slice().sort((a,b) => score(b) - score(a));
       status.textContent = `Loaded ${week}.`;
       renderStats();
@@ -1040,7 +1065,7 @@ permalink: /PhD_Dashboard/
       renderEditors();
       renderPapers();
     } catch (err) {
-      status.textContent = `Could not load digest for ${week}: ${err.message}`;
+      if (requestId === digestRequestId) status.textContent = `Could not load digest for ${week}: ${err.message}`;
     }
   }
 
