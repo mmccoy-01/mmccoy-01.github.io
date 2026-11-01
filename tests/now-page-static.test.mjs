@@ -158,7 +158,7 @@ assert.match(issueForm, /Add a movie or series/);
 assert.match(issueForm, /label:\s*IMDb URL or ID/);
 assert.match(issueForm, /label:\s*On Screen action/);
 assert.match(reminderWorkflow, /name:\s*Monthly \/now reminder/);
-assert.match(reminderWorkflow, /cron:\s*"0 15 1 \* \*"/);
+assert.match(reminderWorkflow, /cron:\s*"17 15 1 \* \*"/);
 assert.match(reminderWorkflow, /updateAlreadyOpen/);
 assert.doesNotMatch(reminderWorkflow + applyWorkflow, /now-screen-update|Add to On Screen/);
 assert.match(reminderWorkflow, /assignees:\s*\[owner\]/);

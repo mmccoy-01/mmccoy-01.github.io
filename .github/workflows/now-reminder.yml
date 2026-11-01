@@ -2,8 +2,8 @@ name: Monthly /now reminder
 
 on:
   schedule:
-    # The first day of each month (10 or 11 a.m. US Eastern, depending on DST).
-    - cron: "0 15 1 * *"
+    # The first day of each month, offset from the top of the hour (10:17 or 11:17 a.m. US Eastern, depending on DST).
+    - cron: "17 15 1 * *"
   workflow_dispatch:
 
 permissions:
