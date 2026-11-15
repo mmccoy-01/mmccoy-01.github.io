@@ -122,33 +122,43 @@ For now, I know what the next dollar should do. I fill the buckets I’ve commit
 <summary>Good financial books</summary>
 <div style="overflow-x: auto">
 <table id="money-books">
-<thead><tr><th scope="col">Cover</th><th scope="col"><button type="button" data-column="1">Title</button></th><th scope="col"><button type="button" data-column="2">Author</button></th><th scope="col"><button type="button" data-column="3">Published</button></th></tr></thead>
+<thead>
+<tr>
+  <th scope="col">Cover</th>
+  <th scope="col"><button type="button" data-column="1">Title</button></th>
+  <th scope="col"><button type="button" data-column="2">Author</button></th>
+  <th scope="col"><button type="button" data-column="3">Published</button></th>
+</tr>
+</thead>
 <tbody>
 <tr><td><img src="https://imgv2-2-f.scribdassets.com/img/document/558201759/original/528319790d/1669326945?v=1" alt="Cover of 5 Steps to Retire in 5 Years" width="42" loading="lazy"></td><td>5 Steps to Retire in 5 Years</td><td>Jason Fieber</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=KflY-Yz5P8UC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of A Mathematician Plays The Stock Market" width="42" loading="lazy"></td><td>A Mathematician Plays The Stock Market</td><td>John Allen Paulos</td><td>2007</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=AHNv1Pf3pQMC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of A Non-Random Walk Down Wall Street" width="42" loading="lazy"></td><td>A Non-Random Walk Down Wall Street</td><td>Andrew W. Lo &amp; A. Craig MacKinlay</td><td>2011</td></tr>
-<tr><td><img src="https://books.google.com/books/content?id=24xgDwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of A Random Walk Down Wall Street The Time-Tested Strategy for Successful Investing (Twelfth Edition)" width="42" loading="lazy"></td><td>A Random Walk Down Wall Street The Time-Tested Strategy for Successful Investing (Twelfth Edition)</td><td>Burton G. Malkiel</td><td>2018</td></tr>
+<tr><td><img src="https://books.google.com/books/content?id=24xgDwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of A Random Walk Down Wall Street" width="42" loading="lazy"></td><td>A Random Walk Down Wall Street The Time-Tested Strategy for Successful Investing (Twelfth Edition)</td><td>Burton G. Malkiel</td><td>2018</td></tr>
 <tr><td><img src="https://m.media-amazon.com/images/I/41oXaby3D8L._SY346_.jpg" alt="Cover of Beginners Guide to Dividend Investing 2020" width="42" loading="lazy"></td><td>Beginners Guide to Dividend Investing 2020</td><td>Matthew O. Jacobs</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=_ndiZEX7y6QC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of Butterfly Economics" width="42" loading="lazy"></td><td>Butterfly Economics</td><td>Paul Ormerod</td><td>2012</td></tr>
-<tr><td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1562466363l/51070475.jpg" alt="Cover of Crush the Market" width="42" loading="lazy"></td><td>Crush the Market</td><td>Tim Morris</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=I3OuzQEACAAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Cover of Credit Repair" width="42" loading="lazy"></td><td>Credit Repair</td><td>Kris Chanatry</td><td>2020</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=_Y89zgEACAAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Cover of Credit Secrets" width="42" loading="lazy"></td><td>Credit Secrets</td><td>Dan Cardone</td><td>2020</td></tr>
-<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/219617054/kKdGm1R8VNXqrmBP0ktsSzMa_9tEIx0rOG1eNUIVA40-cove_bRQfZ2m.jpg" alt="Cover of DAY TRADING IN THE 2020-2030 DECADE From Zero to Passive Income. Practical Guide for Newbies to Learn How to Trade Financial Markets (Forex, Cryptocurrency, ... Stocks, Options, Futures) in 11 Easy Steps" width="42" loading="lazy"></td><td>DAY TRADING IN THE 2020-2030 DECADE From Zero to Passive Income. Practical Guide for Newbies to Learn How to Trade Financial Markets (Forex, Cryptocurrency, ... Stocks, Options, Futures) in 11 Easy Steps</td><td>Dexter Wade</td><td>—</td></tr>
+<tr><td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1562466363l/51070475.jpg" alt="Cover of Crush the Market" width="42" loading="lazy"></td><td>Crush the Market</td><td>Tim Morris</td><td>—</td></tr>
+<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/219617054/kKdGm1R8VNXqrmBP0ktsSzMa_9tEIx0rOG1eNUIVA40-cove_bRQfZ2m.jpg" alt="Cover of Day Trading in the 2020–2030 Decade" width="42" loading="lazy"></td><td>DAY TRADING IN THE 2020-2030 DECADE From Zero to Passive Income. Practical Guide for Newbies to Learn How to Trade Financial Markets (Forex, Cryptocurrency, ... Stocks, Options, Futures) in 11 Easy Steps</td><td>Dexter Wade</td><td>—</td></tr>
 <tr><td><img src="https://prodimage.images-bn.com/pimages/2940164353681_p0_v1_s550x406.jpg" alt="Cover of Dividend Investing for Beginners &amp; Dummies" width="42" loading="lazy"></td><td>Dividend Investing for Beginners &amp; Dummies</td><td>Giovanni Rigters</td><td>—</td></tr>
 <tr><td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1590608354i/53498277.jpg" alt="Cover of Dividend Investing for Everyone" width="42" loading="lazy"></td><td>Dividend Investing for Everyone</td><td>Tim Morris</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=eJTbDQAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of Investing For Dummies" width="42" loading="lazy"></td><td>Investing For Dummies</td><td>Eric Tyson</td><td>2017</td></tr>
-<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/150631018/vMvOzQQuwSo921i0OGsgxSVBGslCEeo9LXVJAi2TqTk-cover-00001.jpeg" alt="Cover of Mastering Stocks Strategies for Day Trading, Options Trading, Dividend Investing and Making a Living From the Stock Market" width="42" loading="lazy"></td><td>Mastering Stocks Strategies for Day Trading, Options Trading, Dividend Investing and Making a Living From the Stock Market</td><td>Michael K Brown</td><td>—</td></tr>
+<tr><td><img src="https://books.google.com/books/content?id=sD9NDwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of Landlording on AutoPilot" width="42" loading="lazy"></td><td>Landlording on AutoPilot</td><td>Mike Butler</td><td>2018</td></tr>
+<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/150631018/vMvOzQQuwSo921i0OGsgxSVBGslCEeo9LXVJAi2TqTk-cover-00001.jpeg" alt="Cover of Mastering Stocks" width="42" loading="lazy"></td><td>Mastering Stocks Strategies for Day Trading, Options Trading, Dividend Investing and Making a Living From the Stock Market</td><td>Michael K Brown</td><td>—</td></tr>
 <tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/39997201/cover-image-9781413330144_V3UkfZU.jpg" alt="Cover of Nolo's Guide to Single-Member LLCs" width="42" loading="lazy"></td><td>Nolo's Guide to Single-Member LLCs</td><td>David M. Steingold</td><td>—</td></tr>
-<tr><td><img src="https://books.google.com/books/content?id=nqM2tQEACAAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Cover of Security Analysis Sixth Edition Foreword by Warren Buffett" width="42" loading="lazy"></td><td>Security Analysis Sixth Edition Foreword by Warren Buffett</td><td>Benjamin Graham &amp; David Dodd</td><td>2008</td></tr>
+<tr><td>—</td><td>One Up on Wall Street</td><td>Peter S. Lynch &amp; John Rothchild</td><td>1988</td></tr>
+<tr><td><img src="https://books.google.com/books/content?id=nqM2tQEACAAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Cover of Security Analysis" width="42" loading="lazy"></td><td>Security Analysis Sixth Edition Foreword by Warren Buffett</td><td>Benjamin Graham &amp; David Dodd</td><td>2008</td></tr>
 <tr><td><img src="https://imgcdn.saxo.com/_9798649760348" alt="Cover of Stock Market Investing Bible" width="42" loading="lazy"></td><td>Stock Market Investing Bible</td><td>Zuckerman, Mark</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=pnoxuAEACAAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Cover of Tax-Free Wealth" width="42" loading="lazy"></td><td>Tax-Free Wealth</td><td>Tom Wheelwright</td><td>2018</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=Sw5TDwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of The Bitcoin Standard" width="42" loading="lazy"></td><td>The Bitcoin Standard</td><td>Saifedean Ammous</td><td>2018</td></tr>
 <tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/150631035/MAdunYYHvo3XKobspRjT2usfpGUoFcqMF2PQaQ4ni7o-co_aNFrhW5.xhtml" alt="Cover of The Case for Dividend Growth" width="42" loading="lazy"></td><td>The Case for Dividend Growth</td><td>David L. Bahnsen</td><td>—</td></tr>
-<tr><td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442852106i/25388965.jpg" alt="Cover of The Dividend Mantra Way Achieving Financial Independence by Living Below Your Means and Investing in Dividend Growth Stocks" width="42" loading="lazy"></td><td>The Dividend Mantra Way Achieving Financial Independence by Living Below Your Means and Investing in Dividend Growth Stocks</td><td>Jason Fieber</td><td>—</td></tr>
-<tr><td><img src="https://readwise-assets.s3.amazonaws.com/static/images/article3.5c705a01b476.png" alt="Cover of The Next Millionaire Next Door Enduring Strategies for Building Wealth" width="42" loading="lazy"></td><td>The Next Millionaire Next Door Enduring Strategies for Building Wealth</td><td>Thomas J. Stanley</td><td>—</td></tr>
-<tr><td><img src="https://books.google.com/books/content?id=wr74DwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of The Personal MBA 10th Anniversary Edition" width="42" loading="lazy"></td><td>The Personal MBA 10th Anniversary Edition</td><td>Josh Kaufman</td><td>2020</td></tr>
-<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/40269374/cover-cover.jpeg" alt="Cover of The Simple Path to Wealth Your Road Map to Financial Independence and a Rich, Free Life" width="42" loading="lazy"></td><td>The Simple Path to Wealth Your Road Map to Financial Independence and a Rich, Free Life</td><td>JL Collins</td><td>—</td></tr>
-<tr><td><img src="https://images-na.ssl-images-amazon.com/images/I/514aHF5BDrL._SY291_BO1,204,203,200_QL40_.jpg" alt="Cover of The Single Best Investment Creating Wealth with Dividend Growth" width="42" loading="lazy"></td><td>The Single Best Investment Creating Wealth with Dividend Growth</td><td>Lowell Miller</td><td>—</td></tr>
+<tr><td><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442852106i/25388965.jpg" alt="Cover of The Dividend Mantra Way" width="42" loading="lazy"></td><td>The Dividend Mantra Way Achieving Financial Independence by Living Below Your Means and Investing in Dividend Growth Stocks</td><td>Jason Fieber</td><td>—</td></tr>
+<tr><td>—</td><td>The Intelligent Investor</td><td>Benjamin Graham, Warren E. Buffett &amp; Jason Zweig</td><td>2012</td></tr>
+<tr><td><img src="https://readwise-assets.s3.amazonaws.com/static/images/article3.5c705a01b476.png" alt="Cover of The Next Millionaire Next Door" width="42" loading="lazy"></td><td>The Next Millionaire Next Door Enduring Strategies for Building Wealth</td><td>Thomas J. Stanley</td><td>—</td></tr>
+<tr><td><img src="https://books.google.com/books/content?id=wr74DwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of The Personal MBA" width="42" loading="lazy"></td><td>The Personal MBA 10th Anniversary Edition</td><td>Josh Kaufman</td><td>2020</td></tr>
+<tr><td><img src="https://readwise-assets.s3.amazonaws.com/media/reader/parsed_document_assets/40269374/cover-cover.jpeg" alt="Cover of The Simple Path to Wealth" width="42" loading="lazy"></td><td>The Simple Path to Wealth Your Road Map to Financial Independence and a Rich, Free Life</td><td>JL Collins</td><td>—</td></tr>
+<tr><td><img src="https://images-na.ssl-images-amazon.com/images/I/514aHF5BDrL._SY291_BO1,204,203,200_QL40_.jpg" alt="Cover of The Single Best Investment" width="42" loading="lazy"></td><td>The Single Best Investment Creating Wealth with Dividend Growth</td><td>Lowell Miller</td><td>—</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=yPrllPuKvbYC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of Warren Buffett and the Interpretation of Financial Statements" width="42" loading="lazy"></td><td>Warren Buffett and the Interpretation of Financial Statements</td><td>Mary Buffett &amp; David Clark</td><td>2011</td></tr>
 <tr><td><img src="https://books.google.com/books/content?id=i3tXDwAAQBAJ&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;edge=curl&amp;source=gbs_api" alt="Cover of Your Money or Your Life" width="42" loading="lazy"></td><td>Your Money or Your Life</td><td>Vicki Robin &amp; Joe Dominguez</td><td>2008</td></tr>
 </tbody>
@@ -160,21 +170,28 @@ For now, I know what the next dollar should do. I fill the buckets I’ve commit
 (() => {
   const table = document.getElementById("money-books");
   const body = table.tBodies[0];
-  const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+  const collator = new Intl.Collator(undefined, {
+    numeric: true,
+    sensitivity: "base"
+  });
+
   for (const button of table.querySelectorAll("button[data-column]")) {
     button.addEventListener("click", () => {
       const header = button.parentElement;
       const ascending = header.getAttribute("aria-sort") !== "ascending";
       table.querySelector("[aria-sort]")?.removeAttribute("aria-sort");
+
       const column = Number(button.dataset.column);
       const sorted = Array.from(body.rows).sort((left, right) => {
         const a = left.cells[column].textContent.trim();
         const b = right.cells[column].textContent.trim();
+
         if (a === b) return 0;
         if (a === "—") return 1;
         if (b === "—") return -1;
         return collator.compare(a, b) * (ascending ? 1 : -1);
       });
+
       body.append(...sorted);
       header.setAttribute("aria-sort", ascending ? "ascending" : "descending");
     });
